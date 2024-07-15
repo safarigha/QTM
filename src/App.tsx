@@ -1,9 +1,12 @@
-function App() {
+import React from "react";
+import Register from "./pages/auth/register/Register";
+
+const App: React.FC = () => {
   return (
-    <>
-      <div className="text-red-500 bg-red-100">hi arezoo</div>
-    </>
+    <div>
+      <Register />
+    </div>
   );
-}
+};
 
 export default App;
