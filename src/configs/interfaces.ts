@@ -1,3 +1,4 @@
+//buttons interfaces//
 export interface IBrandColorButton {
   text: React.ReactNode;
   classNames?: string;
@@ -46,4 +47,12 @@ export interface ISimpleButton {
 export interface IAddTaskCalenderButton {
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+//input interfaces//
+export interface IInput {
+  label: string;
+  id: string;
+  type: string;
+  onChange?: (e: { target: { value: string; id: string } }) => void;
 }
