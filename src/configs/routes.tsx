@@ -3,7 +3,8 @@ import { createBrowserRouter } from "react-router-dom";
 // import ForgetPage from "../pages/forget/Forget";
 // import LoginPage from "../pages/login/Login";
 import App from "../App";
-import Index from "../pages/auth/register/Index";
+import Layout from "../Layout";
+import Register from "../pages/auth/register/Register";
 // import AuthLayout from "../layouts/AuthLayout.tsx";
 // import ComponentM from "../components/component-M/ComponentM.tsx";
 // import ComponentA from "../components/component-A/ComponentA.tsx";
@@ -15,7 +16,11 @@ import Index from "../pages/auth/register/Index";
 export const routes = createBrowserRouter([
   {
     path: "/",
-    element: <App></App>,
+    element: (
+      <Layout isSignIn={false}>
+        <App />
+      </Layout>
+    ),
   },
   // {
   //   path: "/login",
@@ -28,9 +33,9 @@ export const routes = createBrowserRouter([
   {
     path: "/register",
     element: (
-      // <AuthLayout isSignIn={false}>
-      <Index />
-      // </AuthLayout>
+      <Layout isSignIn={false}>
+        <Register />
+      </Layout>
     ),
   },
   // {
