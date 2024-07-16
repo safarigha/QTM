@@ -1,10 +1,9 @@
-//commons coponent interfaces//
+//////commons coponent interfaces//
 
-import { UseFormRegister } from "react-hook-form";
-import { z } from "zod";
-import UserRegisterSchema from "../validations/UserRegisterShema";
+import { ReactNode } from "react";
+import { UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
 
-//buttons
+//////buttons
 export interface IBrandColorButton {
   text: React.ReactNode;
   classNames?: string;
@@ -55,7 +54,7 @@ export interface IAddTaskCalenderButton {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-//input
+///////input
 export interface IInput {
   label: string;
   id: string;
@@ -63,26 +62,27 @@ export interface IInput {
   onChange?: (e: { target: { value: string; id: string } }) => void;
 }
 
-//inputForm
+//////inputForm
+
 export interface ITextField {
   id: string;
   label: string;
   type: "text";
-  register: ReturnType<UseFormRegister<any>>;
+  // register: ReturnType<UseFormRegister<any>>;
 }
 
 export interface IEmailField {
   id: string;
   label: string;
   type: "email";
-  register: ReturnType<UseFormRegister<any>>;
+  // register: ReturnType<UseFormRegister<any>>;
 }
 
 export interface IPasswordField {
   id: string;
   label: string;
   type: "password";
-  register: ReturnType<UseFormRegister<any>>;
+  // register: ReturnType<UseFormRegister<any>>;
 }
 
 export type IField = ITextField | IEmailField | IPasswordField;
@@ -91,25 +91,23 @@ export interface IInputForm {
   fields: IField[];
   submitText: string;
   errors: Record<string, any>;
+  disabled?: boolean;
+  onSubmit: () => void;
 }
 
-//authentication interfasces//
-//rule
+//////authentication interfasces//
+//////rule//
 export interface IRules {
   onClose: () => void;
 }
 
-//register
-// configs/interfaces.ts
-
-// export type FieldRegisterValues = z.infer<typeof UserRegisterSchema>;
-
-export interface IRegisterFormData {
+//////register//
+export type IRegisterFormData = {
   username: string;
   email: string;
   password: string;
-  isCheckedRule: boolean;
-}
+  // isCheckedRule: boolean;
+};
 
 // export interface IRegisterForm {
 //   onSubmit: (data: IRegisterFormData) => void;
