@@ -1,24 +1,28 @@
-import { z } from "zod";
+import { z, ZodType } from "zod";
+import { IRegisterFormData } from "../configs/interfaces";
 
-const UserRegisterSchema = z.object({
-  id: z
-    .number({ required_error: "شناسه الزامی است" })
-    .int({ message: "شناسه باید یک عدد صحیح باشد" }),
+const UserRegisterSchema: ZodType<IRegisterFormData> = z.object({
   username: z
-    .string({ required_error: "نام کاربری الزامی است" })
-    .max(150, { message: "نام کاربری باید حداکثر ۱۵۰ کاراکتر باشد" })
-    .regex(/^[\w.@+-]+$/, {
-      message:
-        "نام کاربری فقط می‌تواند شامل حروف، اعداد، و علامات @/./+/-/_ باشد",
-    }),
+    .string()
+    .nonempty({ message: "وارد کردن نام کاربری الزامی است" })
+    .min(3, { message: "نام کاربری باید حداقل 3 کاراکتر باشد" })
+    .max(12, { message: "نام کاربری باید حداکثر 12 کاراکتر باشد" }),
   email: z
     .string()
-    .email({ message: "ایمیل باید معتبر باشد" })
-    .max(254, { message: "ایمیل باید حداکثر ۲۵۴ کاراکتر باشد" })
-    .nullable(),
+    .nonempty({ message: "وارد کردن ایمیل الزامی است" })
+    .email({ message: "ایمیل موردنظر معتبر نیست" }),
   password: z
-    .string({ required_error: "رمز عبور الزامی است" })
-    .max(255, { message: "رمز عبور باید حداکثر ۲۵۵ کاراکتر باشد" }),
+    .string()
+    .nonempty({ message: "وارد کردن رمز عبور الزامی است" })
+    .min(8, { message: "رمز عبور باید حداقل 8 کاراکتر باشد" })
+    .max(12, { message: "رمز عبور باید حداکثر 12 کاراکتر باشد" })
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/, {
+      message:
+        "رمز عبور باید حداقل شامل یک حرف کوچک، یک حرف بزرگ، یک عدد و یک علامت خاص باشد",
+    }),
+  isCheckedRule: z.boolean().refine((val) => val === true, {
+    message: "قوانین را مطالعه و تایید کنید",
+  }),
 });
 
 export default UserRegisterSchema;
