@@ -1,6 +1,6 @@
 import { IRedButton } from "../../../../configs/interfaces";
 
-const RedButton: React.FC<IRedButton> = ({
+const RedColorButton: React.FC<IRedButton> = ({
   text,
   classNames = "",
   type = "button",
@@ -17,4 +17,4 @@ const RedButton: React.FC<IRedButton> = ({
   );
 };
 
-export default RedButton;
+export default RedColorButton;
