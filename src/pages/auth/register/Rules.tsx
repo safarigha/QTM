@@ -1,54 +1,68 @@
 import React, { useState } from "react";
-import dialog from "daisyui";
-import button from "daisyui";
 import { IRules } from "../../../configs/interfaces";
+import CloseButton from "../../../components/commons/UI/buttons/CloseButton";
 
 const Rules: React.FC<IRules> = ({ onClose }) => {
   const [isOpen, setIsOpen] = useState(true);
 
+  const onCloseClick = () => {
+    setIsOpen(false);
+    onClose();
+  };
+
   return (
-    <dialog
-      open={isOpen}
-      onClose={() => {
-        setIsOpen(false);
-        onClose();
-      }}
-      // اگر این ویژگی‌ها در کتابخانه daisyui وجود نداشته باشند، باید حذف شوند
-      // size="large"
-      // title="قوانین و مقررات"
+    <div
+      className={`fixed inset-0 flex items-center justify-center bg-black/25 z-50 ${
+        isOpen ? "" : "hidden"
+      }`}
     >
-      <div className="p-6">
-        <p className="text-base text-black">
-          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-          استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
-          ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و
-          کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می‌باشد.
-        </p>
-        <ul className="list-disc mt-4">
-          <li>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</li>
-          <li>برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع</li>
-          <li>شناخت فراوان جامعه و متخصصان را می‌طلبد</li>
-          <li>در این صورت می‌توان امید داشت که تمام و دشواری موجود در ارائه</li>
-          <li>
-            جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده
-          </li>
-        </ul>
-      </div>
-      <div className="absolute top-0 right-0 m-4">
-        <button
-          // اگر این ویژگی‌ها در کتابخانه daisyui وجود نداشته باشند، باید حذف شوند
-          // variant="link"
-          // size="sm"
-          // icon="close"
-          onClick={() => {
-            setIsOpen(false);
-            onClose();
-          }}
-        >
-          بستن
-        </button>
-      </div>
-    </dialog>
+      <dialog
+        open={isOpen}
+        className="p-6 border flex flex-col rounded-lg bg-white"
+      >
+        <h2 className="font-extrabold text-center">
+          قوانین و مقررات کیوتی منیجر (کوئرا تسک منیجر)
+        </h2>
+        <div className="mt-2">
+          <h3 className="font-extrabold">استفاده از خدمات:</h3>
+          <p className="text-base text-black">
+            برای استفاده از خدمات کوئرا تسک منیجر، شما موظف به رعایت قوانین و
+            شرایط استفاده از خدمات هستید.
+          </p>
+        </div>
+        <div className="mt-2">
+          <h3 className="font-extrabold">مسئولیت‌ها:</h3>
+          <p className="text-base text-black">
+            هرگونه فعالیت در محیط کوئرا تسک منیجر باید با رعایت قوانین و مقررات
+            مربوطه صورت گیرد و مسئولیت این فعالیت‌ها با خود کاربر است.
+          </p>
+        </div>
+        <div className="mt-2">
+          <h3 className="font-extrabold">حریم خصوصی:</h3>
+          <p className="text-base text-black">
+            ما به حریم خصوصی کاربران اهمیت می دهیم و از هرگونه سوء استفاده از
+            اطلاعات شخصی پرهیز می‌کنیم.
+          </p>
+        </div>
+        <div className="mt-2">
+          <h3 className="font-extrabold">تغییرات:</h3>
+          <p className="text-base text-black">
+            ما ممکن است بدون اطلاع قبلی، شرایط و قوانین خود را تغییر دهیم. برای
+            اطلاعات بیشتر به آخرین نسخه قوانین و مقررات ما مراجعه کنید.
+          </p>
+        </div>
+        <div className="mt-2">
+          <h3 className="font-extrabold">تماس:</h3>
+          <p className="text-base text-black">
+            برای هرگونه سوال، ابهام یا درخواست اطلاعات بیشتر، می‌توانید با ما
+            تماس بگیرید.
+          </p>
+        </div>
+        <div className="absolute m-[0.5px]">
+          <CloseButton onClick={onCloseClick} />
+        </div>
+      </dialog>
+    </div>
   );
 };
 
