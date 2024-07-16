@@ -21,8 +21,9 @@ export interface InternalAxiosRequestConfig extends AxiosRequestConfig {
 }
 
 // ایجاد یک نمونه Axios برای ارتباط با API
-const apiClient = axios.create({
-  baseURL: process.env.REACT_APP_CONNECTION, // تنظیم آدرس پایه برای تمام درخواست‌ها
+export const apiClient = axios.create({
+  // baseURL: process.env.REACT_APP_CONNECTION, // تنظیم آدرس پایه برای تمام درخواست‌ها
+  baseURL: "http://185.8.174.74:8000",
   headers: {
     "Content-Type": "application/json", // تنظیم هدر Content-Type برای درخواست‌های ارسالی
   },
@@ -32,3 +33,5 @@ const apiClient = axios.create({
 apiClient.defaults.timeout = 10000;
 
 // اضافه کردن یک interceptor بر
+
+export default apiClient;
