@@ -1,22 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { ZodSchema } from "zod";
 import BrandColorButton from "../UI/buttons/BrandColorButton";
+import { IInputForm } from "../../../configs/interfaces";
 
-interface FormProps {
-  onSubmit: (data: any) => void;
-  fields: { id: string; type: string; label: string }[];
-  submitText: string;
-  schema: ZodSchema<any>;
-  includeCheckbox?: boolean;
-}
-
-const InputForm: React.FC<FormProps> = ({
+const InputForm: React.FC<IInputForm> = ({
   onSubmit,
   fields,
   submitText,
   schema,
   includeCheckbox = false,
+  onclick,
 }) => {
   const {
     register,
@@ -54,7 +47,9 @@ const InputForm: React.FC<FormProps> = ({
             {...register("isCheckedRule")}
             className="size-4 ml-1 "
           />
-          <button className="underline font-medium">قوانین و مقررات</button>
+          <button className="underline font-medium" onClick={onclick}>
+            قوانین و مقررات
+          </button>
           <div className="font-medium">را می‌پذیرم.</div>
           {errors.isCheckedRule && (
             <p className="text-red-500 text-xs ml-2">
@@ -73,44 +68,3 @@ const InputForm: React.FC<FormProps> = ({
 };
 
 export default InputForm;
-
-// import React from "react";
-// import { IInputForm } from "../../../configs/interfaces";
-// import Input from "../UI/Input";
-// import BrandColorButton from "../UI/buttons/BrandColorButton";
-
-// const InputForm: React.FC<IInputForm> = ({
-//   fields,
-//   submitText,
-//   errors,
-//   disabled,
-//   onSubmit,
-// }: IInputForm) => {
-//   return (
-//     <form onSubmit={onSubmit} className="w-full">
-//       {fields.map((field) => (
-//         <div key={field.id}>
-//           <Input
-//             id={field.id}
-//             type={field.type}
-//             label={field.label}
-//             {...field.register}
-//           ></Input>
-//           {errors[field.id] && (
-//             <p className="text-red-500 text-xs mt-2">
-//               {errors[field.id].message}
-//             </p>
-//           )}
-//         </div>
-//       ))}
-//       <BrandColorButton
-//         type="submit"
-//         text={submitText}
-//         classNames="mt-6 w-full h-10"
-//         disabled={disabled}
-//       />
-//     </form>
-//   );
-// };
-
-// export default InputForm;

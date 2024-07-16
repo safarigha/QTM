@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import { UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
+import { ZodSchema } from "zod";
 
 //////buttons
 export interface IBrandColorButton {
@@ -88,11 +89,12 @@ export interface IPasswordField {
 export type IField = ITextField | IEmailField | IPasswordField;
 
 export interface IInputForm {
-  fields: IField[];
+  onSubmit: (data: any) => void;
+  fields: { id: string; type: string; label: string }[];
   submitText: string;
-  errors: Record<string, any>;
-  disabled?: boolean;
-  onSubmit: () => void;
+  schema: ZodSchema<any>;
+  includeCheckbox?: boolean;
+  onclick?: () => void;
 }
 
 //////authentication interfasces//
