@@ -35,7 +35,7 @@ export default {
         "orange-primary": "#FD7E14",
       },
       fontFamily: {
-        iranyekan: ["iranyekan", "sans-serif"],
+        IranYekan: ["Iranyekan", "sans-serif"],
       },
     },
   },
