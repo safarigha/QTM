@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputForm from "../../../components/commons/forms/InputForm";
 import { loginAccount } from "../../../configs/APIs/accountApi";
 import { IField, ILoginFormData } from "../../../configs/interfaces";
@@ -14,7 +14,7 @@ const Login: React.FC = () => {
 
   const { showSuccess, showError } = useToast();
 
-  const handleRegisterSubmit = async (data: ILoginFormData) => {
+  const handleLoginSubmit = async (data: ILoginFormData) => {
     try {
       const response = await loginAccount(data);
       const { access, refresh, expires_in } = response.data;
@@ -58,8 +58,11 @@ const Login: React.FC = () => {
           fields={fields}
           submitText="ورود"
           schema={UserLoginSchema}
-          onSubmit={handleRegisterSubmit}
+          onSubmit={handleLoginSubmit}
         />
+        <div className="mt-4 text-brand-primary text-sm font-bold ">
+          <Link to="/reset-password">رمز عبور خود را فراموش کردم</Link>
+        </div>
       </div>
     </div>
   );

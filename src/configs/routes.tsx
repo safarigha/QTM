@@ -7,9 +7,7 @@ import Layout from "../Layout";
 import Register from "../pages/auth/register/Register";
 import Login from "../pages/auth/login/Login";
 import Board from "../pages/board/Board";
-// import AuthLayout from "../layouts/AuthLayout.tsx";
-// import ComponentM from "../components/component-M/ComponentM.tsx";
-// import ComponentA from "../components/component-A/ComponentA.tsx";
+import ResetPassword from "../pages/auth/ResetPassword/ResetPassword";
 // import NewBoard from "../pages/newBoard/newBoard.tsx";
 // import ComponentT from "../components/component-T/ComponentT.tsx";
 // import Profile from "../pages/profile/profile.tsx";
@@ -40,38 +38,19 @@ export const routes = createBrowserRouter([
       </Layout>
     ),
   },
-  // {
-  //   path: "/forget",
-  //   element: (
-  //     <AuthLayout isSignIn={false}>
-  //       <ForgetPage />
-  //     </AuthLayout>
-  //   ),
-  // },
-  // {
-  //   path: "/reset",
-  //   element: (
-  //     <AuthLayout isSignIn={false}>
-  //       <ResetPage />
-  //     </AuthLayout>
-  //   ),
-  // },
+  {
+    path: "/reset-password",
+    element: (
+      <Layout isSignIn={false}>
+        <ResetPassword />
+      </Layout>
+    ),
+  },
   {
     path: "/board",
     element: <Board />,
   },
-  // {
-  //   path: "/tina",
-  //   element: <ComponentT />,
-  // },
-  // {
-  //   path: "/mohammad",
-  //   element: <ComponentM />,
-  // },
-  // {
-  //   path: "/arezoo",
-  //   element: <ComponentA />,
-  // },
+
   // {
   //   path: "/profile",
   //   element: <Profile />,

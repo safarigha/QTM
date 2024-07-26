@@ -56,12 +56,14 @@ export interface IAddTaskCalenderButton {
 }
 
 ///////input
-export interface IInput {
-  label: string;
-  id: string;
-  type: string;
-  onChange?: (e: { target: { value: string; id: string } }) => void;
-}
+// export interface IInput {
+//   label: string;
+//   id: string;
+//   type: string;
+//   name?: string;
+//   value?: string;
+//   onChange?: (e: { target: { value: string; id: string } }) => void;
+// }
 
 //////inputForm
 
@@ -69,6 +71,8 @@ export interface ITextField {
   id: string;
   label: string;
   type: "text";
+  name?: string;
+  value?: string;
   // register: ReturnType<UseFormRegister<any>>;
 }
 
@@ -76,6 +80,8 @@ export interface IEmailField {
   id: string;
   label: string;
   type: "email";
+  name?: string;
+  value?: string;
   // register: ReturnType<UseFormRegister<any>>;
 }
 
@@ -83,6 +89,8 @@ export interface IPasswordField {
   id: string;
   label: string;
   type: "password";
+  name?: string;
+  value?: string;
   // register: ReturnType<UseFormRegister<any>>;
 }
 
@@ -90,7 +98,13 @@ export type IField = ITextField | IEmailField | IPasswordField;
 
 export interface IInputForm {
   onSubmit: (data: any) => void;
-  fields: { id: string; type: string; label: string }[];
+  fields: {
+    id: string;
+    type: string;
+    label: string;
+    name?: string;
+    value?: string;
+  }[];
   submitText: string;
   schema: ZodSchema<any>;
   includeCheckbox?: boolean;
@@ -99,7 +113,7 @@ export interface IInputForm {
 
 //////Toastify//
 export interface IToast {
-  showSuccess: (type: "register" | "login") => void;
+  showSuccess: (type: "register" | "login" | "resetPassword") => void;
   // showError: (type: "register" | "login") => void;
   showError: (message: string) => void;
   showInfo: (message: string) => void;
@@ -124,6 +138,11 @@ export type IRegisterFormData = {
 export type ILoginFormData = {
   username: string;
   password: string;
+};
+
+//////reset//
+export type IResetFormData = {
+  email: string;
 };
 
 //////RTK interfasces//

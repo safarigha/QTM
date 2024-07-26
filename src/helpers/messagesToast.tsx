@@ -5,6 +5,9 @@ export const messagesToast = {
   login: {
     success: "ورود با موفقیت انجام شد",
   },
+  resetPassword: {
+    success: "ایمیل بازیابی ارسال شد",
+  },
 };
 
 export const errorMessages = {

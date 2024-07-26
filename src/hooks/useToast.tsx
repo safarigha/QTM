@@ -4,7 +4,7 @@ import { messagesToast } from "../helpers/messagesToast";
 import { IToast } from "../configs/interfaces";
 
 const useToast = (): IToast => {
-  const showSuccess = (type: "register" | "login") => {
+  const showSuccess = (type: "register" | "login" | "resetPassword") => {
     const message = messagesToast[type].success;
     toast.success(message, {
       position: "top-center",
