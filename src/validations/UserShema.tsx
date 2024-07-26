@@ -1,9 +1,6 @@
 import { z } from "zod";
 
 const UserSchema = z.object({
-  id: z
-    .number({ required_error: "شناسه الزامی است" })
-    .int({ message: "شناسه باید یک عدد صحیح باشد" }),
   username: z
     .string({ required_error: "نام کاربری الزامی است" })
     .max(150, { message: "نام کاربری باید حداکثر ۱۵۰ کاراکتر باشد" })

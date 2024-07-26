@@ -97,6 +97,15 @@ export interface IInputForm {
   onclick?: () => void;
 }
 
+//////Toastify//
+export interface IToast {
+  showSuccess: (type: "register" | "login") => void;
+  // showError: (type: "register" | "login") => void;
+  showError: (message: string) => void;
+  showInfo: (message: string) => void;
+  showWarning: (message: string) => void;
+}
+
 //////authentication interfasces//
 //////rule//
 export interface IRules {
@@ -111,11 +120,14 @@ export type IRegisterFormData = {
   // isCheckedRule: boolean;
 };
 
-//////Toastify//
-export interface IToast {
-  showSuccess: (type: "register" | "login") => void;
-  // showError: (type: "register" | "login") => void;
-  showError: (message: string) => void;
-  showInfo: (message: string) => void;
-  showWarning: (message: string) => void;
+//////Login//
+export type ILoginFormData = {
+  username: string;
+  password: string;
+};
+
+//////RTK interfasces//
+export interface AuthState {
+  token: string | null;
+  expiresIn: number | null; // اضافه کردن expiresIn
 }

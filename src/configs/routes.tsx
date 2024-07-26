@@ -6,6 +6,7 @@ import App from "../App";
 import Layout from "../Layout";
 import Register from "../pages/auth/register/Register";
 import Login from "../pages/auth/login/Login";
+import Board from "../pages/board/Board";
 // import AuthLayout from "../layouts/AuthLayout.tsx";
 // import ComponentM from "../components/component-M/ComponentM.tsx";
 // import ComponentA from "../components/component-A/ComponentA.tsx";
@@ -55,10 +56,10 @@ export const routes = createBrowserRouter([
   //     </AuthLayout>
   //   ),
   // },
-  // {
-  //   path: "/dashboard",
-  //   element: <NewBoard />,
-  // },
+  {
+    path: "/board",
+    element: <Board />,
+  },
   // {
   //   path: "/tina",
   //   element: <ComponentT />,

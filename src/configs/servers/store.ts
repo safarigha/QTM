@@ -1,13 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
+import authSlice from "./auth/authSlice";
 import { useDispatch } from "react-redux";
 
-// اضافه کردن reducer ها و middleware ها در اینجا
-
 const store = configureStore({
-  reducer: {}, // reducer های شما اینجا اضافه می‌شوند
+  reducer: {
+    auth: authSlice,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false, // برای اینکه Redux Toolkit پیام خطا برای ذخیره‌سازی غیر قابل سریالی‌سازی را نمایش ندهد
+      serializableCheck: false,
     }),
 });
 

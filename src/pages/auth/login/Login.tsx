@@ -1,17 +1,34 @@
+import { useNavigate } from "react-router-dom";
 import InputForm from "../../../components/commons/forms/InputForm";
-import { registerAccount } from "../../../configs/APIs/accountApi";
-import { IField, IRegisterFormData } from "../../../configs/interfaces";
+import { loginAccount } from "../../../configs/APIs/accountApi";
+import { IField, ILoginFormData } from "../../../configs/interfaces";
 import { getErrorMessage } from "../../../helpers/errorMessages";
 import useToast from "../../../hooks/useToast";
-import UserRegisterSchema from "../../../validations/UserRegisterShema";
+import UserLoginSchema from "../../../validations/UserLoginShema";
+import { useAppDispatch } from "../../../configs/servers/store";
+import { setToken } from "../../../configs/servers/auth/authSlice";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const { showSuccess, showError } = useToast();
 
-  const handleRegisterSubmit = async (data: IRegisterFormData) => {
+  const handleRegisterSubmit = async (data: ILoginFormData) => {
     try {
-      const response = await registerAccount(data);
+      const response = await loginAccount(data);
+      const { access, refresh, expires_in } = response.data;
+
+      dispatch(
+        setToken({
+          accessToken: access,
+          refreshToken: refresh,
+          expiresIn: expires_in,
+        })
+      );
+
       showSuccess("login");
+      navigate("/board");
     } catch (error: any) {
       const statusCode = error.response?.status;
       const errorMessage = getErrorMessage("server", statusCode);
@@ -35,15 +52,13 @@ const Login: React.FC = () => {
     <div className="flex items-center justify-center">
       <div className="flex bg-white flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
         <p className="font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px]">
-          خوش اومدی! بیا و کارهات رو شروع کن
+          خوش اومدی! بیا کارهات رو شروع کن
         </p>
         <InputForm
           fields={fields}
-          submitText="ثبت نام"
-          schema={UserRegisterSchema}
+          submitText="ورود"
+          schema={UserLoginSchema}
           onSubmit={handleRegisterSubmit}
-          includeCheckbox={true}
-          onclick={open}
         />
       </div>
     </div>

@@ -26,7 +26,7 @@ export const changePassword = (data: any) => {
 };
 
 // درخواست برای ورود به سیستم
-export const login = (data: any) => {
+export const loginAccount = (data: any) => {
   return apiClient.post("/accounts/login/", data);
 };
 
@@ -41,6 +41,6 @@ export const setPassword = (data: any) => {
 };
 
 // درخواست برای تازه‌سازی توکن
-export const refreshToken = () => {
+export const refreshAccessTokenAPI = () => {
   return apiClient.post("/accounts/refresh/");
 };
