@@ -26,7 +26,7 @@ const InputForm: React.FC<IInputForm> = ({
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="w-full">
       {fields.map((field) => (
-        <div key={field.id}>
+        <div className="mt-2" key={field.id}>
           <label>{field.label}</label>
           <input
             type={field.type}

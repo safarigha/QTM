@@ -5,6 +5,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Layout from "../Layout";
 import Register from "../pages/auth/register/Register";
+import Login from "../pages/auth/login/Login";
 // import AuthLayout from "../layouts/AuthLayout.tsx";
 // import ComponentM from "../components/component-M/ComponentM.tsx";
 // import ComponentA from "../components/component-A/ComponentA.tsx";
@@ -22,14 +23,14 @@ export const routes = createBrowserRouter([
       </Layout>
     ),
   },
-  // {
-  //   path: "/login",
-  //   element: (
-  //     <AuthLayout isSignIn>
-  //       <LoginPage />,
-  //     </AuthLayout>
-  //   ),
-  // },
+  {
+    path: "/login",
+    element: (
+      <Layout isSignIn={true}>
+        <Login />,
+      </Layout>
+    ),
+  },
   {
     path: "/register",
     element: (
