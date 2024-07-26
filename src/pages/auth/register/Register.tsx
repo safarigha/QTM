@@ -4,16 +4,19 @@ import { IField, IRegisterFormData } from "../../../configs/interfaces";
 import UserRegisterSchema from "../../../validations/UserRegisterShema";
 import Rules from "./Rules";
 import { registerAccount } from "../../../configs/APIs/accountApi";
+import useToast from "../../../hooks/useToast";
 
 const Register: React.FC = () => {
+  const { showSuccess, showError } = useToast();
+
   const handleRegisterSubmit = async (data: IRegisterFormData) => {
     try {
       const response = await registerAccount(data); // فرستادن درخواست به API
       console.log("ثبت‌نام با موفقیت انجام شد!", response.data);
-      // اضافه کردن منطق برای پس از ثبت‌نام موفق
+      showSuccess("register");
     } catch (error) {
       console.error("خطا در ثبت‌نام:", error);
-      // اضافه کردن منطق برای مدیریت خطاها
+      showError("register");
     }
   };
 

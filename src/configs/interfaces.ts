@@ -111,7 +111,10 @@ export type IRegisterFormData = {
   // isCheckedRule: boolean;
 };
 
-// export interface IRegisterForm {
-//   onSubmit: (data: IRegisterFormData) => void;
-//   errors: Partial<Record<keyof IRegisterFormData, { message: string }>>;
-// }
+//////Toastify//
+export interface IToast {
+  showSuccess: (type: "register" | "login") => void;
+  showError: (type: "register" | "login") => void;
+  showInfo: (message: string) => void;
+  showWarning: (message: string) => void;
+}
