@@ -1,22 +1,26 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import InputForm from "../../../components/commons/forms/InputForm";
 import { IField, IRegisterFormData } from "../../../configs/interfaces";
 import UserRegisterSchema from "../../../validations/UserRegisterShema";
 import Rules from "./Rules";
 import { registerAccount } from "../../../configs/APIs/accountApi";
 import useToast from "../../../hooks/useToast";
+import { getErrorMessage } from "../../../helpers/errorMessages";
 
 const Register: React.FC = () => {
+  const navigate = useNavigate();
   const { showSuccess, showError } = useToast();
 
   const handleRegisterSubmit = async (data: IRegisterFormData) => {
     try {
-      const response = await registerAccount(data); // فرستادن درخواست به API
-      console.log("ثبت‌نام با موفقیت انجام شد!", response.data);
+      const response = await registerAccount(data);
       showSuccess("register");
-    } catch (error) {
-      console.error("خطا در ثبت‌نام:", error);
-      showError("register");
+      navigate("/login");
+    } catch (error: any) {
+      const statusCode = error.response?.status;
+      const errorMessage = getErrorMessage("server", statusCode);
+      showError(errorMessage);
     }
   };
 

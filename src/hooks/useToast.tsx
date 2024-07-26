@@ -8,6 +8,7 @@ const useToast = (): IToast => {
     const message = messagesToast[type].success;
     toast.success(message, {
       position: "top-center",
+      rtl: false,
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -15,13 +16,17 @@ const useToast = (): IToast => {
       draggable: true,
       progress: undefined,
       theme: "colored",
+      style: {
+        textAlign: "right",
+        direction: "rtl",
+      },
     });
   };
 
-  const showError = (type: "register" | "login") => {
-    const message = messagesToast[type].error;
+  const showError = (message: string) => {
     toast.error(message, {
       position: "top-center",
+      rtl: false,
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -29,12 +34,17 @@ const useToast = (): IToast => {
       draggable: true,
       progress: undefined,
       theme: "colored",
+      style: {
+        textAlign: "right",
+        direction: "rtl",
+      },
     });
   };
 
   const showInfo = (message: string) => {
     toast.info(message, {
       position: "top-center",
+      rtl: false,
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -42,12 +52,17 @@ const useToast = (): IToast => {
       draggable: true,
       progress: undefined,
       theme: "colored",
+      style: {
+        textAlign: "right",
+        direction: "rtl",
+      },
     });
   };
 
   const showWarning = (message: string) => {
     toast.warn(message, {
       position: "top-center",
+      rtl: false,
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -55,6 +70,10 @@ const useToast = (): IToast => {
       draggable: true,
       progress: undefined,
       theme: "colored",
+      style: {
+        textAlign: "right",
+        direction: "rtl",
+      },
     });
   };
 

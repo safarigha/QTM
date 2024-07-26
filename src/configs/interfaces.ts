@@ -114,7 +114,8 @@ export type IRegisterFormData = {
 //////Toastify//
 export interface IToast {
   showSuccess: (type: "register" | "login") => void;
-  showError: (type: "register" | "login") => void;
+  // showError: (type: "register" | "login") => void;
+  showError: (message: string) => void;
   showInfo: (message: string) => void;
   showWarning: (message: string) => void;
 }
