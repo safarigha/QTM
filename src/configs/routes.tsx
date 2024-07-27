@@ -7,7 +7,8 @@ import Layout from "../Layout";
 import Register from "../pages/auth/register/Register";
 import Login from "../pages/auth/login/Login";
 import Board from "../pages/board/Board";
-import ResetPassword from "../pages/auth/ResetPassword/ResetPassword";
+import ResetPassword from "../pages/auth/forgetPassword/ResetPassword";
+import SetPassword from "../pages/auth/forgetPassword/SetPassword";
 // import NewBoard from "../pages/newBoard/newBoard.tsx";
 // import ComponentT from "../components/component-T/ComponentT.tsx";
 // import Profile from "../pages/profile/profile.tsx";
@@ -43,6 +44,14 @@ export const routes = createBrowserRouter([
     element: (
       <Layout isSignIn={false}>
         <ResetPassword />
+      </Layout>
+    ),
+  },
+  {
+    path: "/set-password",
+    element: (
+      <Layout isSignIn={false}>
+        <SetPassword />
       </Layout>
     ),
   },

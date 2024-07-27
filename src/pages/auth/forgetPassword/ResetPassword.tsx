@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputForm from "../../../components/commons/forms/InputForm";
 import { resetPassword } from "../../../configs/APIs/accountApi";
 import { IField, IResetFormData } from "../../../configs/interfaces";
@@ -6,6 +6,7 @@ import { getErrorMessage } from "../../../helpers/errorMessages";
 import useToast from "../../../hooks/useToast";
 import ResetPasswordSchema from "../../../validations/ResetPasswordShema";
 import useSendEmail from "../../../hooks/useSendEmail";
+import { baseUrlApp } from "../../../configs/URLsPath";
 
 const ResetPassword: React.FC = () => {
   const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
@@ -16,13 +17,23 @@ const ResetPassword: React.FC = () => {
     try {
       const response = await resetPassword(data);
       const resetUrl = response.data.url;
-      await sendEmail(data.email, resetUrl);
-      if (success) {
-        showSuccess("resetPassword");
-        setIsValidEmail(true);
-      }
-      if (error) {
-        showError(error);
+      const url = new URL(resetUrl);
+      const token = url.searchParams.get("token");
+
+      if (token) {
+        localStorage.setItem("resetToken", token);
+        const resetEmailUrl = `${baseUrlApp}/set-password?token=${token}`;
+
+        await sendEmail(data.email, resetEmailUrl);
+        if (success) {
+          showSuccess("resetPassword");
+          setIsValidEmail(true);
+        }
+        if (error) {
+          showError(error);
+        }
+      } else {
+        return new Error("لطفا مجددا اقدام نمایید");
       }
     } catch (error: any) {
       const statusCode = error.response?.status;

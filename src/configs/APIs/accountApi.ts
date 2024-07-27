@@ -36,8 +36,11 @@ export const resetPassword = (data: any) => {
 };
 
 // درخواست برای تنظیم مجدد رمز عبور
-export const setPassword = (data: any) => {
-  return apiClient.patch("/accounts/reset-password/set-Password/", data);
+export const setPassword = (token: string, data: any) => {
+  return apiClient.patch(
+    `/accounts/reset-password/set-password/?token=${token}`,
+    data
+  );
 };
 
 // درخواست برای تازه‌سازی توکن

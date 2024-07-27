@@ -113,7 +113,9 @@ export interface IInputForm {
 
 //////Toastify//
 export interface IToast {
-  showSuccess: (type: "register" | "login" | "resetPassword") => void;
+  showSuccess: (
+    type: "register" | "login" | "resetPassword" | "setPassword"
+  ) => void;
   // showError: (type: "register" | "login") => void;
   showError: (message: string) => void;
   showInfo: (message: string) => void;
@@ -143,6 +145,11 @@ export type ILoginFormData = {
 //////reset//
 export type IResetFormData = {
   email: string;
+};
+
+export type ISetPasswordFormData = {
+  password: string;
+  password1: string;
 };
 
 //////RTK interfasces//
