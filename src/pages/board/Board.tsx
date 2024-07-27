@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAppDispatch } from "../../configs/servers/store";
 import { refreshAccessToken } from "../../configs/servers/auth/authSlice";
 import { getAccessToken } from "../../helpers/authToken";
+import LogoTitle from "../../components/commons/LogoTitle";
 
 const Board: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -12,7 +13,12 @@ const Board: React.FC = () => {
       dispatch(refreshAccessToken());
     }
   }, [dispatch]);
-  return <div>board</div>;
+  return (
+    <div>
+      board
+      <LogoTitle />
+    </div>
+  );
 };
 
 export default Board;

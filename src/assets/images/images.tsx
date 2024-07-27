@@ -1,2 +1,3 @@
 import backgroundAuth from "./backgroundAuth.svg";
-export { backgroundAuth };
+import QTlogo from "./QTlogo.png";
+export { backgroundAuth, QTlogo };

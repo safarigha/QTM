@@ -1,8 +1,8 @@
-//////commons coponent interfaces//
-
-import { ReactNode } from "react";
-import { UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
 import { ZodSchema } from "zod";
+//////commons coponent interfaces//
+export interface ILogoApp {
+  color: string;
+}
 
 //////buttons
 export interface IBrandColorButton {
@@ -55,18 +55,7 @@ export interface IAddTaskCalenderButton {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-///////input
-// export interface IInput {
-//   label: string;
-//   id: string;
-//   type: string;
-//   name?: string;
-//   value?: string;
-//   onChange?: (e: { target: { value: string; id: string } }) => void;
-// }
-
 //////inputForm
-
 export interface ITextField {
   id: string;
   label: string;
@@ -142,11 +131,12 @@ export type ILoginFormData = {
   password: string;
 };
 
-//////reset//
+//////reset password//
 export type IResetFormData = {
   email: string;
 };
 
+//////reset password//
 export type ISetPasswordFormData = {
   password: string;
   password1: string;
