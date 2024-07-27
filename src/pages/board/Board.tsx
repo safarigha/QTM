@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useAppDispatch } from "../../configs/servers/store";
 import { refreshAccessToken } from "../../configs/servers/auth/authSlice";
 import { getAccessToken } from "../../helpers/authToken";
-import LogoTitle from "../../components/commons/LogoTitle";
+import Sidbar from "./Sidebar";
 
 const Board: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -15,8 +15,8 @@ const Board: React.FC = () => {
   }, [dispatch]);
   return (
     <div>
-      board
-      <LogoTitle />
+      {/* board */}
+      <Sidbar />
     </div>
   );
 };

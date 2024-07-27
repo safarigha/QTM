@@ -1,3 +1,5 @@
+///استفاده نشده
+
 import { FlexDirection, ISimpleButton } from "../../../../configs/interfaces";
 
 const SimpleButton: React.FC<ISimpleButton> = ({

@@ -1,14 +1,19 @@
-///استفاده نشده
+import { ICreateNewButton } from "../../../../configs/interfaces";
 
-import { IaddProjectButton } from "../../../../configs/interfaces";
-
-const addProjectButton: React.FC<IaddProjectButton> = ({ color }) => {
+const CreateNewButton: React.FC<ICreateNewButton> = ({
+  color,
+  label,
+  className,
+  labelClassName,
+}) => {
   return (
-    <button className="flex items-center justify-center cursor-pointer">
+    <button
+      className={`flex items-center justify-center cursor-pointer ${className}`}
+    >
       <div
         className={`w-full bg-gradient-to-bl from-${color}-primary to-${color}-primary/50 p-1 rounded-2xl`}
       >
-        <div className="flex items-center justify-center gap-x-2 bg-white py-6 px-5 rounded-2xl">
+        <div className="flex items-center justify-center gap-x-2 py-6 px-5 rounded-2xl">
           <svg
             width="24"
             height="24"
@@ -40,8 +45,8 @@ const addProjectButton: React.FC<IaddProjectButton> = ({ color }) => {
               strokeLinejoin="round"
             />
           </svg>
-          <span className={`text-2xl font-black text-${color}-primary`}>
-            ساختن پروژه جدید
+          <span className={`${labelClassName} text-${color}-primary`}>
+            {label}
           </span>
         </div>
       </div>
@@ -49,4 +54,4 @@ const addProjectButton: React.FC<IaddProjectButton> = ({ color }) => {
   );
 };
 
-export default addProjectButton;
+export default CreateNewButton;

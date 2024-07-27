@@ -1,3 +1,5 @@
+///استفاده نشده
+
 import { IRedButton } from "../../../../configs/interfaces";
 
 const RedColorButton: React.FC<IRedButton> = ({

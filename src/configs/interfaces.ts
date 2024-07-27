@@ -1,7 +1,15 @@
 import { ZodSchema } from "zod";
 //////commons coponent interfaces//
-export interface ILogoApp {
-  color: string;
+export interface ILogoTitle {
+  label: string;
+  logo: string;
+  className?: string;
+}
+
+export interface IIconInput {
+  placeholder: string;
+  icon: string | React.ReactNode;
+  className?: string;
 }
 
 //////buttons
@@ -53,6 +61,33 @@ export interface ISimpleButton {
 export interface IAddTaskCalenderButton {
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export interface ICreateNewButton {
+  color: string;
+  label: string;
+  className: string;
+  labelClassName: string;
+}
+
+//////Board component interfasces//
+export interface ISidebarDropdown {
+  title: string;
+  content: string | React.ReactNode;
+  className?: string;
+  titleClassName?: string;
+  contentlassName?: string;
+  iconType: string;
+}
+
+export interface IWorkspaceItem {
+  id: number;
+  name: string;
+  color: string;
+}
+
+export interface ISidbarWorkspaceList {
+  data: IWorkspaceItem[];
 }
 
 //////inputForm

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import InputForm from "../../../components/commons/forms/InputForm";
 import { resetPassword } from "../../../configs/APIs/accountApi";
 import { IField, IResetFormData } from "../../../configs/interfaces";
