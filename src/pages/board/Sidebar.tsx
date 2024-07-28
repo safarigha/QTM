@@ -27,12 +27,7 @@ const Sidbar: React.FC = () => {
         iconType="collapse-arrow"
         titleClassName="text-md font-bold"
         className="mt-4"
-      />
-      <CreateNewButton
-        color="#208D8E"
-        label="ساختن پروژه جدید"
-        className="w-[274px] h-[30px] rounded-[4px] mt-4 mr-auto ml-auto pr-2 text-sm border border-brand-primary bg-white"
-        labelClassName="text-sm"
+        contentlassName="my-[-15px]"
       />
     </div>
   );

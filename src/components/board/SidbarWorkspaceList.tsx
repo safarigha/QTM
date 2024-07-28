@@ -1,49 +1,95 @@
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../../configs/servers/store";
+import { fetchWorkspaces } from "../../configs/servers/workspaceSlice";
+import { fetchProjects } from "../../configs/servers/projectSlice";
 import { ISidbarWorkspaceList } from "../../configs/interfaces";
-
-const data = [
-  {
-    id: 643,
-    name: "کارهای شخصی",
-    color: "bg-orange-500",
-  },
-  {
-    id: 645,
-    name: "درس طراحی الگوریتم",
-    color: "bg-blue-500",
-  },
-  {
-    id: 642,
-    name: "درس مدیریت پروژه",
-    color: "bg-green-500",
-  },
-  {
-    id: 644,
-    name: "درس کامپایلر",
-    color: "bg-red-500",
-  },
-];
+import CreateNewButton from "../commons/UI/buttons/CreateNewButton";
 
 const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const {
+    workspaces,
+    status: workspacesStatus,
+    error: workspacesError,
+  } = useSelector((state: RootState) => state.workspaces);
+  const {
+    projectsByWorkspace,
+    status: projectsStatus,
+    error: projectsError,
+  } = useSelector((state: RootState) => state.projects);
+
+  useEffect(() => {
+    if (workspacesStatus === "idle") {
+      dispatch(fetchWorkspaces());
+    }
+  }, [workspacesStatus, dispatch]);
+
+  useEffect(() => {
+    if (workspaces.length > 0) {
+      workspaces.forEach((workspace) => {
+        if (!projectsByWorkspace[workspace.id]) {
+          dispatch(fetchProjects(workspace.id));
+        }
+      });
+    }
+  }, [workspaces, dispatch, projectsByWorkspace]);
+
+  if (workspacesStatus === "loading" || projectsStatus === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (workspacesError || projectsError) {
+    return <div>Error: {workspacesError || projectsError}</div>;
+  }
+
   return (
     <div className="bg-white flex flex-col">
-      {data.map((item) => (
-        <div key={item.id} className="collapse">
+      {workspaces.map((workspace) => (
+        <div key={workspace.id} className="collapse">
           <input
             type="checkbox"
-            id={`collapse-toggle-${item.id}`}
+            id={`collapse-toggle-${workspace.id}`}
             className="peer"
           />
-          <div className="collapse-title text-md font-medium">
+          <div className="collapse-title text-md font-medium ">
             <label
-              htmlFor={`collapse-toggle-${item.id}`}
-              className="cursor-pointer flex items-center"
+              htmlFor={`collapse-toggle-${workspace.id}`}
+              className="cursor-pointer flex items-center font-bold"
             >
-              <div className={`size-[20px] ml-2 rounded-[4px] ${item.color}`} />
-              {item.name}
+              <div
+                className={`size-[18px] ml-2 rounded-[4px]  ${workspace.color}`}
+              />
+              {workspace.name}
             </label>
           </div>
-          <div className="collapse-content">
-            <p>اطلاعات بیشتر درباره {item.name}...</p>
+          <div className="collapse-content my-[-10px]">
+            {projectsByWorkspace[workspace.id] &&
+            projectsByWorkspace[workspace.id].length > 0 ? (
+              projectsByWorkspace[workspace.id].map((project) => (
+                <button
+                  key={project.id}
+                  className="text-right w-full py-1 px-2 mb-1 mr-6 rounded hover:bg-gray-100"
+                >
+                  {project.name}
+                </button>
+              ))
+            ) : (
+              <div className="top-0 bottom-0 mr-6">
+                <p className="text-center text-xs text-gray-500">
+                  پروژه‌ای هنوز ثبت نشده است
+                </p>
+                <div />
+                <div className="flex justify-center">
+                  <CreateNewButton
+                    color="#6B7280"
+                    label="ساختن پروژه جدید"
+                    className="h-[30px] rounded-[4px] mt-2 text-xs border border-gray-500 bg-white text-gray-500"
+                    labelClassName="text-xs"
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       ))}

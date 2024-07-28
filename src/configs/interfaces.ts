@@ -182,3 +182,15 @@ export interface AuthState {
   token: string | null;
   expiresIn: number | null; // اضافه کردن expiresIn
 }
+
+export interface WorkspaceState {
+  workspaces: any[];
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
+}
+
+export interface ProjectsState {
+  projectsByWorkspace: { [key: string]: any[] };
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
+}

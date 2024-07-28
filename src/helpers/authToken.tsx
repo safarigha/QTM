@@ -1,12 +1,6 @@
 export const storeAccessToken = (accessToken: string) => {
   const issuedAt = Math.floor(Date.now() / 1000); // زمان کنونی برحسب ثانیه
-  localStorage.setItem(
-    "authToken",
-    JSON.stringify({
-      accessToken,
-      // issuedAt,
-    })
-  );
+  localStorage.setItem("accessToken", accessToken);
 };
 
 export const getAccessToken = () => {
