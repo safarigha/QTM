@@ -4,9 +4,10 @@ export const storeAccessToken = (accessToken: string) => {
 };
 
 export const getAccessToken = () => {
-  const token = localStorage.getItem("authToken");
+  const token = localStorage.getItem("accessToken");
   if (token) {
-    return JSON.parse(token).accessToken;
+    // return JSON.parse(token).accessToken;
+    return token;
   }
   return null;
 };
@@ -20,15 +21,36 @@ export const getRefreshToken = () => {
 };
 
 export const getTokenExpiryTime = () => {
-  const token = localStorage.getItem("authToken");
+  const token = localStorage.getItem("accessToken");
   if (token) {
-    const { issuedAt } = JSON.parse(token);
-    return issuedAt + 6 * 60 * 60; // انقضای ۶ ساعت
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      const issuedAt = payload.iat;
+      return issuedAt + 6 * 60 * 60;
+    } catch (error) {
+      console.error("Invalid token format", error);
+      return null;
+    }
   }
   return null;
 };
 
+export const getAccountDetailToken = (): { id: string | null } | null => {
+  const token = localStorage.getItem("accessToken");
+  console.log("Access Token 2:", token);
+  if (!token) return null;
+
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    console.log("Payload:", payload);
+    return { id: payload.user_id };
+  } catch (error) {
+    console.error("Invalid token format", error);
+    return null;
+  }
+};
+
 export const removeTokens = () => {
-  localStorage.removeItem("authToken");
+  localStorage.removeItem("accessToken");
   localStorage.removeItem("refreshToken");
 };

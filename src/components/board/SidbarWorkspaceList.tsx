@@ -36,11 +36,11 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
   }, [workspaces, dispatch, projectsByWorkspace]);
 
   if (workspacesStatus === "loading" || projectsStatus === "loading") {
-    return <div>Loading...</div>;
+    return <p>Loading...</p>;
   }
 
   if (workspacesError || projectsError) {
-    return <div>Error: {workspacesError || projectsError}</div>;
+    return <p>Error: {workspacesError || projectsError}</p>;
   }
 
   return (
@@ -52,7 +52,7 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
             id={`collapse-toggle-${workspace.id}`}
             className="peer"
           />
-          <div className="collapse-title text-md font-medium ">
+          <div className="collapse-title text-md font-medium">
             <label
               htmlFor={`collapse-toggle-${workspace.id}`}
               className="cursor-pointer flex items-center font-bold"
@@ -79,7 +79,6 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
                 <p className="text-center text-xs text-gray-500">
                   پروژه‌ای هنوز ثبت نشده است
                 </p>
-                <div />
                 <div className="flex justify-center">
                   <CreateNewButton
                     color="#6B7280"

@@ -22,7 +22,7 @@ const DropdownListList: React.FC<ISidebarDropdown> = ({
           </label>
         </div>
         <div className={`collapse-content ${contentlassName}`}>
-          <p>{content}</p>
+          <span>{content}</span>
         </div>
       </div>
     </div>

@@ -178,9 +178,23 @@ export type ISetPasswordFormData = {
 };
 
 //////RTK interfasces//
+// export interface AuthState {
+//   token: string | null;
+//   expiresIn: number | null; // اضافه کردن expiresIn
+// }
+
 export interface AuthState {
   token: string | null;
   expiresIn: number | null; // اضافه کردن expiresIn
+  account: {
+    id: number;
+    username: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    phone_number: string;
+    thumbnail: string;
+  } | null;
 }
 
 export interface WorkspaceState {
@@ -193,4 +207,17 @@ export interface ProjectsState {
   projectsByWorkspace: { [key: string]: any[] };
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
+}
+
+export interface AccountState {
+  data: any; // نوع مناسب برای داده‌های حساب کاربری
+  status: string;
+  error: string | null;
+}
+
+export interface RootState {
+  auth: AuthState;
+  workspaces: WorkspaceState;
+  projects: ProjectsState;
+  account: AccountState;
 }

@@ -1,5 +1,10 @@
 import apiClient from "../axiosConfig";
 
+// درخواست برای دریافت اطلاعات تمام حسابهای کاربری بر اساس شناسه
+export const getAllAccountDetails = () => {
+  return apiClient.get(`/accounts/`);
+};
+
 // درخواست برای دریافت اطلاعات حساب کاربری بر اساس شناسه
 export const getAccountDetails = (id: string) => {
   return apiClient.get(`/accounts/${id}`);

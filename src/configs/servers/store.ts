@@ -3,12 +3,14 @@ import authSlice from "./auth/authSlice";
 import { useDispatch } from "react-redux";
 import workspacesReducer from "./workspaceSlice";
 import projectsReducer from "./projectSlice";
+import accountReducer from "./accountSlice";
 
 const store = configureStore({
   reducer: {
     auth: authSlice,
     workspaces: workspacesReducer,
     projects: projectsReducer,
+    account: accountReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

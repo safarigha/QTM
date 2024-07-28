@@ -5,8 +5,17 @@ import { CiSearch } from "react-icons/ci";
 import CreateNewButton from "../../components/commons/UI/buttons/CreateNewButton";
 import DropdownListList from "../../components/commons/UI/DropdownListList";
 import SidbarWorkspaceList from "../../components/board/SidbarWorkspaceList";
+import SidebarDisplayAccount from "../../components/board/SidebarDisplayAccount";
+import { useEffect } from "react";
+import { fetchAccount } from "../../configs/servers/accountSlice";
+import { useAppDispatch } from "../../configs/servers/store";
 
 const Sidbar: React.FC = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAccount());
+  }, [dispatch]);
   return (
     <div className="bg-white mt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-primary">
       <LogoTitle label="کیوتی منیجر" logo={QTlogo} />
@@ -29,6 +38,7 @@ const Sidbar: React.FC = () => {
         className="mt-4"
         contentlassName="my-[-15px]"
       />
+      <SidebarDisplayAccount />
     </div>
   );
 };
