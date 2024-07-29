@@ -9,7 +9,10 @@ export const messagesToast = {
     success: "ایمیل بازیابی ارسال شد",
   },
   setPassword: {
-    success: "",
+    success: "پسورد جدید با موفقیت ثبت شد",
+  },
+  logout: {
+    success: "خروج با موفقیت انجام شد",
   },
 };
 

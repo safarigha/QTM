@@ -37,15 +37,12 @@ export const getTokenExpiryTime = () => {
 
 export const getAccountDetailToken = (): { id: string | null } | null => {
   const token = localStorage.getItem("accessToken");
-  console.log("Access Token 2:", token);
   if (!token) return null;
 
   try {
     const payload = JSON.parse(atob(token.split(".")[1]));
-    console.log("Payload:", payload);
     return { id: payload.user_id };
   } catch (error) {
-    console.error("Invalid token format", error);
     return null;
   }
 };

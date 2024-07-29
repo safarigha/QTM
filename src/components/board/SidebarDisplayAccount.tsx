@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../configs/servers/store";
 import { fetchAccount } from "../../configs/servers/accountSlice";
-
-interface ISidebarDisplayAccount {
-  selectedImage?: string;
-}
+import { ISidebarDisplayAccount } from "../../configs/interfaces";
 
 const SidebarDisplayAccount: React.FC<ISidebarDisplayAccount> = ({
   selectedImage,
@@ -24,7 +21,9 @@ const SidebarDisplayAccount: React.FC<ISidebarDisplayAccount> = ({
   }, [status, dispatch]);
 
   if (status === "loading") {
-    return <span className="flex justify-center text-xs">Loading...</span>;
+    return (
+      <span className="flex justify-center text-xs">در حال بارگزاری ...</span>
+    );
   }
 
   if (error) {
@@ -36,7 +35,7 @@ const SidebarDisplayAccount: React.FC<ISidebarDisplayAccount> = ({
   }
 
   return (
-    <div className="flex justify-center m-[32px]">
+    <div className="flex justify-right mr-[15px] ">
       <div className="w-[36px] h-[33px]  p-[9px 8px 7px 8px] rounded-full bg-yellow-100 text-orange-400 text-md font-bold flex items-center justify-center">
         {selectedImage ? (
           <img
@@ -50,8 +49,8 @@ const SidebarDisplayAccount: React.FC<ISidebarDisplayAccount> = ({
         )}
       </div>
       <div className="mr-2 justify-center items-center mt-2 font-bold text-sm">
-        {account.fist_name && account.last_name ? (
-          <span>{`${account.fist_name} ${account.last_name}`}</span>
+        {account.first_name && account.last_name ? (
+          <span>{`${account.first_name} ${account.last_name}`}</span>
         ) : (
           <span>{account.email}</span>
         )}

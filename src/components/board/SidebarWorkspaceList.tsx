@@ -13,6 +13,7 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
     status: workspacesStatus,
     error: workspacesError,
   } = useSelector((state: RootState) => state.workspaces);
+
   const {
     projectsByWorkspace,
     status: projectsStatus,
@@ -36,7 +37,7 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
   }, [workspaces, dispatch, projectsByWorkspace]);
 
   if (workspacesStatus === "loading" || projectsStatus === "loading") {
-    return <p>Loading...</p>;
+    return <p>در حال بارگزاری ...</p>;
   }
 
   if (workspacesError || projectsError) {

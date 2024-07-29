@@ -90,6 +90,10 @@ export interface ISidbarWorkspaceList {
   data: IWorkspaceItem[];
 }
 
+export interface ISidebarDisplayAccount {
+  selectedImage?: string;
+}
+
 //////inputForm
 export interface ITextField {
   id: string;
@@ -138,7 +142,7 @@ export interface IInputForm {
 //////Toastify//
 export interface IToast {
   showSuccess: (
-    type: "register" | "login" | "resetPassword" | "setPassword"
+    type: "register" | "login" | "resetPassword" | "setPassword" | "logout"
   ) => void;
   // showError: (type: "register" | "login") => void;
   showError: (message: string) => void;
@@ -178,14 +182,9 @@ export type ISetPasswordFormData = {
 };
 
 //////RTK interfasces//
-// export interface AuthState {
-//   token: string | null;
-//   expiresIn: number | null; // اضافه کردن expiresIn
-// }
-
 export interface AuthState {
   token: string | null;
-  expiresIn: number | null; // اضافه کردن expiresIn
+  expiresIn: number | null;
   account: {
     id: number;
     username: string;
@@ -209,8 +208,13 @@ export interface ProjectsState {
   error: string | null;
 }
 
+export interface FetchProjectsPayload {
+  workspaceId: string;
+  projects: any;
+}
+
 export interface AccountState {
-  data: any; // نوع مناسب برای داده‌های حساب کاربری
+  data: any;
   status: string;
   error: string | null;
 }

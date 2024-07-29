@@ -1,12 +1,25 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getProjects } from "../APIs/projectsApi";
-import { ProjectsState } from "../interfaces";
+import { FetchProjectsPayload, ProjectsState } from "../interfaces";
+import { getAccessToken } from "../../helpers/authToken";
 
-export const fetchProjects = createAsyncThunk(
+export const fetchProjects = createAsyncThunk<FetchProjectsPayload, string>(
   "projects/fetchProjects",
-  async (workspaceId: string) => {
-    const response = await getProjects(workspaceId);
-    return { workspaceId, projects: response.data };
+  async (workspaceId: string, { rejectWithValue }) => {
+    try {
+      const token = getAccessToken();
+      if (!token) {
+        return rejectWithValue("Access token is missing");
+      }
+      const response = await getProjects(workspaceId, token);
+      return { workspaceId, projects: response.data };
+    } catch (error) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      } else {
+        return rejectWithValue("An unexpected error occurred");
+      }
+    }
   }
 );
 
@@ -19,7 +32,13 @@ const initialState: ProjectsState = {
 const projectsSlice = createSlice({
   name: "projects",
   initialState,
-  reducers: {},
+  reducers: {
+    resetProjects: (state) => {
+      state.projectsByWorkspace = {};
+      state.status = "idle";
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProjects.pending, (state) => {
@@ -27,14 +46,15 @@ const projectsSlice = createSlice({
       })
       .addCase(fetchProjects.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.projectsByWorkspace[action.payload.workspaceId] =
-          action.payload.projects;
+        const payload = action.payload as FetchProjectsPayload;
+        state.projectsByWorkspace[payload.workspaceId] = payload.projects;
       })
       .addCase(fetchProjects.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message ?? null;
+        state.error = action.payload as string;
       });
   },
 });
+export const { resetProjects } = projectsSlice.actions;
 
 export default projectsSlice.reducer;

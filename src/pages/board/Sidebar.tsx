@@ -4,11 +4,12 @@ import IconInput from "../../components/commons/UI/IconInput";
 import { CiSearch } from "react-icons/ci";
 import CreateNewButton from "../../components/commons/UI/buttons/CreateNewButton";
 import DropdownListList from "../../components/commons/UI/DropdownListList";
-import SidbarWorkspaceList from "../../components/board/SidbarWorkspaceList";
+import SidbarWorkspaceList from "../../components/board/SidebarWorkspaceList";
 import SidebarDisplayAccount from "../../components/board/SidebarDisplayAccount";
 import { useEffect } from "react";
 import { fetchAccount } from "../../configs/servers/accountSlice";
 import { useAppDispatch } from "../../configs/servers/store";
+import SidebarLogoutAccount from "../../components/board/SidebarLogoutAccount";
 
 const Sidbar: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -39,6 +40,7 @@ const Sidbar: React.FC = () => {
         contentlassName="my-[-15px]"
       />
       <SidebarDisplayAccount />
+      <SidebarLogoutAccount />
     </div>
   );
 };

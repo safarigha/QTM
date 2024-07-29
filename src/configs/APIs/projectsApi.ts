@@ -1,8 +1,10 @@
 import apiClient from "../axiosConfig";
 
 // GET /workspaces/{workspace_id}/projects/
-export const getProjects = (workspaceId: string) => {
-  return apiClient.get(`/workspaces/${workspaceId}/projects/`);
+export const getProjects = (workspaceId: string, accessToken: string) => {
+  return apiClient.get(`/workspaces/${workspaceId}/projects/`, {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
 };
 
 // POST /workspaces/{workspace_id}/projects/

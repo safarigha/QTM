@@ -6,7 +6,6 @@ export const fetchAccount = createAsyncThunk(
   "account/fetchAccount",
   async () => {
     const accountDetail = getAccountDetailToken();
-    console.log("accountDetail" + accountDetail);
     if (!accountDetail || !accountDetail.id)
       return new Error("Account Details not found");
 
@@ -16,7 +15,7 @@ export const fetchAccount = createAsyncThunk(
 );
 
 const initialState = {
-  data: null as any, // یا به جای `any` نوع مشخصی تعریف کنید که شامل `null` نیز باشد
+  data: null as any,
   status: "idle",
   error: null as string | null,
 };

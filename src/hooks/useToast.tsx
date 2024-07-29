@@ -5,7 +5,7 @@ import { IToast } from "../configs/interfaces";
 
 const useToast = (): IToast => {
   const showSuccess = (
-    type: "register" | "login" | "resetPassword" | "setPassword"
+    type: "register" | "login" | "resetPassword" | "setPassword" | "logout"
   ) => {
     const message = messagesToast[type].success;
     toast.success(message, {
