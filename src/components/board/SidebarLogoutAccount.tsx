@@ -6,8 +6,13 @@ import useToast from "../../hooks/useToast";
 import { useDispatch } from "react-redux";
 import { resetProjects } from "../../configs/servers/projectSlice";
 import { resetWorkspaces } from "../../configs/servers/workspaceSlice";
+export interface ISidebarLogoutAccount {
+  className?: string;
+}
 
-const SidebarLogoutAccount = () => {
+const SidebarLogoutAccount: React.FC<ISidebarLogoutAccount> = ({
+  className,
+}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -29,7 +34,7 @@ const SidebarLogoutAccount = () => {
   return (
     <button
       onClick={handleLogout}
-      className="flex justify-center mt-4 text-brand-primary focus:outline-none"
+      className={`flex text-brand-primary focus:outline-none ${className}`}
     >
       <BiDoorOpen className="size-[30px]" />
       <span className="mr-[0.5px] justify-center items-center mt-1 font-bold text-md">

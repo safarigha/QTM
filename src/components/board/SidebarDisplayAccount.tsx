@@ -6,6 +6,7 @@ import { ISidebarDisplayAccount } from "../../configs/interfaces";
 
 const SidebarDisplayAccount: React.FC<ISidebarDisplayAccount> = ({
   selectedImage,
+  className,
 }) => {
   const dispatch = useDispatch<AppDispatch>();
   const {
@@ -35,7 +36,7 @@ const SidebarDisplayAccount: React.FC<ISidebarDisplayAccount> = ({
   }
 
   return (
-    <div className="flex justify-right mr-[15px] ">
+    <div className={`flex ${className}`}>
       <div className="w-[36px] h-[33px]  p-[9px 8px 7px 8px] rounded-full bg-yellow-100 text-orange-400 text-md font-bold flex items-center justify-center">
         {selectedImage ? (
           <img

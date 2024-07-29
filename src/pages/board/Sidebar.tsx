@@ -39,8 +39,8 @@ const Sidbar: React.FC = () => {
         className="mt-4"
         contentlassName="my-[-15px]"
       />
-      <SidebarDisplayAccount />
-      <SidebarLogoutAccount />
+      <SidebarDisplayAccount className="justify-right mr-[15px]" />
+      <SidebarLogoutAccount className="justify-right mr-[15px] mt-4" />
     </div>
   );
 };

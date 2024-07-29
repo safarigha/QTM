@@ -92,6 +92,7 @@ export interface ISidbarWorkspaceList {
 
 export interface ISidebarDisplayAccount {
   selectedImage?: string;
+  className?: string;
 }
 
 //////inputForm
