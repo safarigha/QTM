@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { fetchAccount } from "../../configs/servers/accountSlice";
 import { useAppDispatch } from "../../configs/servers/store";
 import SidebarLogoutAccount from "../../components/board/SidebarLogoutAccount";
+import SwitchModeTheme from "../../components/commons/UI/SwitchModeTheme";
 
 const Sidbar: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -40,7 +41,10 @@ const Sidbar: React.FC = () => {
         contentlassName="my-[-15px]"
       />
       <SidebarDisplayAccount className="justify-right mr-[15px]" />
-      <SidebarLogoutAccount className="justify-right mr-[15px] mt-4" />
+      <div className="flex items-center">
+        <SidebarLogoutAccount className="justify-right mr-[15px] mt-4" />
+        <SwitchModeTheme className="justify-left mr-auto ml-[15px] mt-4" />
+      </div>
     </div>
   );
 };
