@@ -1,5 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  mode: 'jit',
+  safelist: [
+    "bg-orange-500",
+    "bg-blue-500",
+    "bg-green-500",
+    "bg-red-500"
+  ],
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {

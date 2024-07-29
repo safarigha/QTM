@@ -13,7 +13,6 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
     status: workspacesStatus,
     error: workspacesError,
   } = useSelector((state: RootState) => state.workspaces);
-
   const {
     projectsByWorkspace,
     status: projectsStatus,
@@ -47,19 +46,19 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
   return (
     <div className="bg-white flex flex-col">
       {workspaces.map((workspace) => (
-        <div key={workspace.id} className="collapse">
+        <div key={workspace.name} className="collapse">
           <input
             type="checkbox"
-            id={`collapse-toggle-${workspace.id}`}
+            id={`collapse-toggle-${workspace.name}`}
             className="peer"
           />
           <div className="collapse-title text-md font-medium">
             <label
-              htmlFor={`collapse-toggle-${workspace.id}`}
+              htmlFor={`collapse-toggle-${workspace.name}`}
               className="cursor-pointer flex items-center font-bold"
             >
               <div
-                className={`size-[18px] ml-2 rounded-[4px]  ${workspace.color}`}
+                className={`size-[18px] ml-2 rounded-[4px] ${workspace.color}`}
               />
               {workspace.name}
             </label>

@@ -18,7 +18,7 @@ const Sidbar: React.FC = () => {
     dispatch(fetchAccount());
   }, [dispatch]);
   return (
-    <div className="bg-white mt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-primary">
+    <div className="bg-white mt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-200 overflow-y-auto">
       <LogoTitle label="کیوتی منیجر" logo={QTlogo} />
       <IconInput
         placeholder="جستجو کنید..."
