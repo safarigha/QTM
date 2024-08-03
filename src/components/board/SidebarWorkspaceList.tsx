@@ -44,7 +44,7 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
   }
 
   return (
-    <div className="bg-white flex flex-col">
+    <div className="flex flex-col">
       {workspaces.map((workspace) => (
         <div key={workspace.name} className="collapse">
           <input
@@ -69,7 +69,7 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
               projectsByWorkspace[workspace.id].map((project) => (
                 <button
                   key={project.id}
-                  className="text-right w-full py-1 px-2 mb-1 mr-6 rounded hover:bg-gray-100"
+                  className="text-right w-[250px] py-1 px-2 mb-1 mr-6 rounded-[10px] hover:bg-gray-200"
                 >
                   {project.name}
                 </button>
@@ -83,7 +83,7 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
                   <CreateNewButton
                     color="#6B7280"
                     label="ساختن پروژه جدید"
-                    className="h-[30px] rounded-[4px] mt-2 text-xs border border-gray-500 bg-white text-gray-500"
+                    className="h-[30px] rounded-[4px] mt-2 text-xs border border-gray-500 text-gray-500"
                     labelClassName="text-xs"
                   />
                 </div>

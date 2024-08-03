@@ -10,7 +10,7 @@ const DropdownListList: React.FC<ISidebarDropdown> = ({
   iconType = "",
 }) => {
   return (
-    <div className={`bg-white mt-2 W-full flex flex-col ${className}`}>
+    <div className={`mt-2 W-full flex flex-col ${className}`}>
       <div className={`collapse ${iconType}`}>
         <input type="checkbox" id="collapse-toggle" className="peer" />
         <div className="collapse-title text-xl font-medium">

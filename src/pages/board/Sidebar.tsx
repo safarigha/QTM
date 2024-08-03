@@ -19,17 +19,17 @@ const Sidbar: React.FC = () => {
     dispatch(fetchAccount());
   }, [dispatch]);
   return (
-    <div className="bg-white mt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-200 overflow-y-auto">
+    <div className=" mt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-200 overflow-y-auto">
       <LogoTitle label="کیوتی منیجر" logo={QTlogo} />
       <IconInput
         placeholder="جستجو کنید..."
         icon={<CiSearch className="size-6 ml-2" />}
-        className="w-[274px] h-[30px] rounded-[4px] mt-4 mr-auto ml-auto pr-2 text-sm"
+        className="w-[274px] h-[30px] rounded-[4px] mt-4 mr-auto ml-auto pr-2 text-sm "
       />
       <CreateNewButton
         color="#208D8E"
         label="ساختن فضای کاری جدید"
-        className="w-[274px] h-[30px] rounded-[4px] mt-6 mr-auto ml-auto pr-2 text-sm border border-brand-primary bg-white"
+        className="w-[274px] h-[30px] rounded-[4px] mt-6 mr-auto ml-auto pr-2 text-sm border border-brand-primary text-brand-primary"
         labelClassName="text-sm"
       />
       <DropdownListList

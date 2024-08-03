@@ -39,7 +39,7 @@ const SwitchModeTheme: React.FC<ISwitchModeTheme> = ({ className }) => {
             <div
               className={`swap-off ${
                 isLightMode ? "opacity-100" : "opacity-0"
-              } transition-opacity duration-500 ease-in-out mr-[3px] bg-white rounded-[8px] shadow-lg`}
+              } transition-opacity duration-500 ease-in-out mr-[3px] rounded-[8px] shadow-lg bg-white`}
             >
               <PiSunDimBold className="text-black size-[30px] p-1 text-center " />
             </div>
