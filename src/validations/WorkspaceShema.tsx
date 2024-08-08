@@ -1,15 +1,14 @@
 import { z } from "zod";
 
 const WorkspaceSchema = z.object({
-  id: z
-    .number({ required_error: "شناسه الزامی است" })
-    .int({ message: "شناسه باید یک عدد صحیح باشد" }),
   name: z
-    .string({ required_error: "نام الزامی است" })
-    .max(255, { message: "نام باید حداکثر ۲۵۵ کاراکتر باشد" }),
+    .string()
+    .nonempty({ message: "عنوان فضای کاری الزامی است" })
+    .min(6, { message: "نام کاربری باید حداقل 6 کاراکتر باشد" })
+    .max(255, { message: "عنوان فضای کاری باید حداکثر ۲۵۵ کاراکتر باشد" }),
   color: z
     .string()
-    .max(256, { message: "رنگ باید حداکثر ۲۵۶ کاراکتر باشد" })
+    .nonempty({ message: " انتخاب رنگ لیبل فضای کاری الزامی است" })
     .optional(),
 });
 

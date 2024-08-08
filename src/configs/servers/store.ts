@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import workspacesReducer from "./workspaceSlice";
 import projectsReducer from "./projectSlice";
 import accountReducer from "./accountSlice";
+import formNewWorkspaceSlice from "./formNewWorkspaceSlice";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     workspaces: workspacesReducer,
     projects: projectsReducer,
     account: accountReducer,
+    formNewWorkspace: formNewWorkspaceSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

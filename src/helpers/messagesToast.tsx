@@ -14,6 +14,9 @@ export const messagesToast = {
   logout: {
     success: "خروج با موفقیت انجام شد",
   },
+  created: {
+    success: "با موفقیت ثبت شد",
+  },
 };
 
 export const errorMessages = {

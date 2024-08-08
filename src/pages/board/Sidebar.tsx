@@ -6,31 +6,39 @@ import CreateNewButton from "../../components/commons/UI/buttons/CreateNewButton
 import DropdownListList from "../../components/commons/UI/DropdownListList";
 import SidbarWorkspaceList from "../../components/board/SidebarWorkspaceList";
 import SidebarDisplayAccount from "../../components/board/SidebarDisplayAccount";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchAccount } from "../../configs/servers/accountSlice";
 import { useAppDispatch } from "../../configs/servers/store";
 import SidebarLogoutAccount from "../../components/board/SidebarLogoutAccount";
 import SwitchModeTheme from "../../components/commons/UI/SwitchModeTheme";
+import New from "../../components/workspace/New";
+import ModalView from "../../components/commons/UI/ModalView";
 
 const Sidbar: React.FC = () => {
   const dispatch = useAppDispatch();
 
+  const [isOpenNewWorkspace, setIsOpenNewWorkspace] = useState(false);
+  const openNewWorkspace = () => setIsOpenNewWorkspace(true);
+  const closeNewWorkspace = () => setIsOpenNewWorkspace(false);
+
   useEffect(() => {
     dispatch(fetchAccount());
   }, [dispatch]);
+
   return (
-    <div className=" mt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-200 overflow-y-auto">
+    <div className=" mt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-200 overflow-y-auto scrollbar-gutter-stable">
       <LogoTitle label="کیوتی منیجر" logo={QTlogo} />
       <IconInput
         placeholder="جستجو کنید..."
         icon={<CiSearch className="size-6 ml-2" />}
-        className="w-[274px] h-[30px] rounded-[4px] mt-4 mr-auto ml-auto pr-2 text-sm "
+        className=" w-[274px] h-[30px] rounded-[4px] mt-4 mr-auto ml-auto pr-2 text-sm "
       />
       <CreateNewButton
         color="#208D8E"
         label="ساختن فضای کاری جدید"
         className="w-[274px] h-[30px] rounded-[4px] mt-6 mr-auto ml-auto pr-2 text-sm border border-brand-primary text-brand-primary"
         labelClassName="text-sm"
+        onClick={openNewWorkspace}
       />
       <DropdownListList
         title="لیست فضای کاری"
@@ -45,6 +53,9 @@ const Sidbar: React.FC = () => {
         <SidebarLogoutAccount className="justify-right mr-[15px] mt-4" />
         <SwitchModeTheme className="justify-left mr-auto ml-[15px] mt-4" />
       </div>
+      <ModalView isOpen={isOpenNewWorkspace} onClose={closeNewWorkspace}>
+        <New onClose={closeNewWorkspace} />
+      </ModalView>
     </div>
   );
 };

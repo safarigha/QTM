@@ -44,9 +44,20 @@ export default {
       fontFamily: {
         IranYekan: ["Iranyekan", "sans-serif"],
       },
+      scrollbarGutter: {
+        stable: 'stable',
+      },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"),
+  function ({ addUtilities }) {
+    addUtilities({
+      '.scrollbar-gutter-stable': {
+        'scrollbar-gutter': 'stable',
+      },
+    });
+  },
+  ],
   daisyui: {
     themes: ["light", "dark"],
   },

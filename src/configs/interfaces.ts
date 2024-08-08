@@ -12,6 +12,24 @@ export interface IIconInput {
   className?: string;
 }
 
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}
+
+export interface CheckboxProps {
+  checked: boolean;
+  onChange: () => void;
+  colorClass: string;
+  className?: string;
+}
+
+export interface ColorCheckboxesListProps {
+  className?: string;
+  onColorChange: (color: string, name: string) => void;
+}
+
 //////buttons
 export interface IBrandColorButton {
   text: React.ReactNode;
@@ -68,6 +86,7 @@ export interface ICreateNewButton {
   label: string;
   className: string;
   labelClassName: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 //////Board component interfasces//
@@ -95,14 +114,31 @@ export interface ISidebarDisplayAccount {
   className?: string;
 }
 
+//////Workspace component interfasces//
+export interface INewWorkspaceFormData {
+  name?: string;
+  color?: string;
+}
+
+export interface INewWorkspaceSteps {
+  onNext: (data: INewWorkspaceFormData) => void;
+}
+
+export interface NewWorkspaceProps {
+  onClose: () => void;
+}
+
+export interface INewlabelColor {
+  onNext: (data: INewWorkspaceFormData) => void;
+}
+
 //////inputForm
-export interface ITextField {
+interface ITextField {
   id: string;
   label: string;
   type: "text";
   name?: string;
   value?: string;
-  // register: ReturnType<UseFormRegister<any>>;
 }
 
 export interface IEmailField {
@@ -111,7 +147,6 @@ export interface IEmailField {
   type: "email";
   name?: string;
   value?: string;
-  // register: ReturnType<UseFormRegister<any>>;
 }
 
 export interface IPasswordField {
@@ -120,7 +155,6 @@ export interface IPasswordField {
   type: "password";
   name?: string;
   value?: string;
-  // register: ReturnType<UseFormRegister<any>>;
 }
 
 export type IField = ITextField | IEmailField | IPasswordField;
@@ -143,7 +177,13 @@ export interface IInputForm {
 //////Toastify//
 export interface IToast {
   showSuccess: (
-    type: "register" | "login" | "resetPassword" | "setPassword" | "logout"
+    type:
+      | "register"
+      | "login"
+      | "resetPassword"
+      | "setPassword"
+      | "logout"
+      | "created"
   ) => void;
   // showError: (type: "register" | "login") => void;
   showError: (message: string) => void;

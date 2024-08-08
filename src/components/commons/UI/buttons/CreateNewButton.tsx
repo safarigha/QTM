@@ -5,9 +5,11 @@ const CreateNewButton: React.FC<ICreateNewButton> = ({
   label,
   className,
   labelClassName,
+  onClick,
 }) => {
   return (
     <button
+      onClick={onClick}
       className={`flex items-center justify-center cursor-pointer ${className}`}
     >
       <div
