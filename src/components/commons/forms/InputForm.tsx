@@ -45,7 +45,7 @@ const InputForm: React.FC<IInputForm> = ({
           <input
             type="checkbox"
             {...register("isCheckedRule")}
-            className="size-4 ml-1 toggle toggle-red"
+            className="size-5 ml-1 checkbox brand-bg-checkbox"
           />
           <button className="underline font-medium" onClick={onclick}>
             قوانین و مقررات
