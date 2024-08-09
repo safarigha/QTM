@@ -17,7 +17,7 @@ const useToast = (): IToast => {
     toast.success(message, {
       position: "top-center",
       rtl: false,
-      autoClose: 3000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -35,7 +35,7 @@ const useToast = (): IToast => {
     toast.error(message, {
       position: "top-center",
       rtl: false,
-      autoClose: 3000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -53,7 +53,7 @@ const useToast = (): IToast => {
     toast.info(message, {
       position: "top-center",
       rtl: false,
-      autoClose: 3000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -71,7 +71,7 @@ const useToast = (): IToast => {
     toast.warn(message, {
       position: "top-center",
       rtl: false,
-      autoClose: 3000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
