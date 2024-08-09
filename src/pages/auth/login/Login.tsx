@@ -7,10 +7,19 @@ import useToast from "../../../hooks/useToast";
 import UserLoginSchema from "../../../validations/UserLoginShema";
 import { useAppDispatch } from "../../../configs/servers/store";
 import { setToken } from "../../../configs/servers/auth/authSlice";
+import { useEffect, useState } from "react";
 
 const Login: React.FC = () => {
+  const [theme, setTheme] = useState("light");
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setTheme(storedTheme);
+    }
+  }, []);
 
   const { showSuccess, showError } = useToast();
 
@@ -50,7 +59,11 @@ const Login: React.FC = () => {
   ];
   return (
     <div className="flex items-center justify-center">
-      <div className="flex bg-white flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
+      <div
+        className={`flex flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl ${
+          theme === "dark" ? "bg-black" : "bg-white"
+        }`}
+      >
         <p className="font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px]">
           خوش اومدی! بیا کارهات رو شروع کن
         </p>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import InputForm from "../../../components/commons/forms/InputForm";
 import { IField, IRegisterFormData } from "../../../configs/interfaces";
@@ -9,8 +9,16 @@ import useToast from "../../../hooks/useToast";
 import { getErrorMessage } from "../../../helpers/errorMessages";
 
 const Register: React.FC = () => {
+  const [theme, setTheme] = useState("light");
   const navigate = useNavigate();
   const { showSuccess, showError } = useToast();
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+      setTheme(storedTheme);
+    }
+  }, []);
 
   const handleRegisterSubmit = async (data: IRegisterFormData) => {
     try {
@@ -48,7 +56,11 @@ const Register: React.FC = () => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="flex bg-white flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
+      <div
+        className={`flex flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl ${
+          theme === "dark" ? "bg-black" : "bg-white"
+        }`}
+      >
         <p className="font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px]">
           همین حالا ثبت‌نام کن
         </p>

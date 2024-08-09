@@ -31,7 +31,7 @@ const InputForm: React.FC<IInputForm> = ({
           <input
             type={field.type}
             {...register(field.id)}
-            className="bg-white mt-2 block w-full h-10 rounded-lg border border-gray-primary px-4 focus:outline-none focus:border-blue-primary"
+            className="bg-taransparent mt-2 block w-full h-10 rounded-lg border border-gray-primary px-4 focus:outline-none focus:border-blue-primary"
           />
           {errors[field.id] && (
             <p className="text-red-500 text-xs mt-2 mb-2">
