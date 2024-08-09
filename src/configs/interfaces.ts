@@ -138,6 +138,15 @@ export interface NewDisplayDataProps {
   onPrevious: () => void;
 }
 
+//////Project component interfasces//
+export interface NewProjectProps {
+  onClose: () => void;
+}
+
+export interface INewProjectFormData {
+  name: string;
+}
+
 //////inputForm
 interface ITextField {
   id: string;
@@ -245,6 +254,7 @@ export interface AuthState {
 
 export interface WorkspaceState {
   workspaces: any[];
+  currentWorkspaceId: string | null;
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
@@ -271,4 +281,9 @@ export interface RootState {
   workspaces: WorkspaceState;
   projects: ProjectsState;
   account: AccountState;
+}
+
+//////Helpers interfasces//
+export interface TailwindColorMap {
+  [key: string]: string;
 }

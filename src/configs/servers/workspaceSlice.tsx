@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { getWorkspaces } from "../APIs/workspacesApi";
 import { WorkspaceState } from "../interfaces";
 import { getAccessToken } from "../../helpers/authToken";
@@ -17,6 +17,7 @@ export const fetchWorkspaces = createAsyncThunk(
 
 const initialState: WorkspaceState = {
   workspaces: [],
+  currentWorkspaceId: null,
   status: "idle",
   error: null,
 };
@@ -27,8 +28,12 @@ const workspacesSlice = createSlice({
   reducers: {
     resetWorkspaces: (state) => {
       state.workspaces = [];
+      state.currentWorkspaceId = null;
       state.status = "idle";
       state.error = null;
+    },
+    setCurrentWorkspaceId: (state, action: PayloadAction<string>) => {
+      state.currentWorkspaceId = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -47,5 +52,6 @@ const workspacesSlice = createSlice({
   },
 });
 
-export const { resetWorkspaces } = workspacesSlice.actions;
+export const { resetWorkspaces, setCurrentWorkspaceId } =
+  workspacesSlice.actions;
 export default workspacesSlice.reducer;

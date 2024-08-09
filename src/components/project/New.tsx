@@ -1,24 +1,58 @@
 import {
   IField,
-  INewWorkspaceFormData,
-  INewWorkspaceSteps,
+  INewProjectFormData,
+  NewProjectProps,
 } from "../../configs/interfaces";
 import InputForm from "../commons/forms/InputForm";
-import WorkspaceSchema from "../../validations/WorkspaceShema";
-import { setWorkspaceName } from "../../configs/servers/formNewWorkspaceSlice";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../configs/servers/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../configs/servers/store";
+import ProjectSchema from "../../validations/ProjectShema";
+import useToast from "../../hooks/useToast";
+import { getErrorMessage } from "../../helpers/errorMessages";
+import { createProject } from "../../configs/APIs/projectsApi";
+import CloseButton from "../commons/UI/buttons/CloseButton";
+import { useNavigate } from "react-router-dom";
+import { fetchProjects } from "../../configs/servers/projectSlice";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
-const nameWorkspaceSchema = WorkspaceSchema.pick({ name: true });
+const nameProjectSchema = ProjectSchema.pick({ name: true });
 
-const New: React.FC<INewWorkspaceSteps> = ({ onNext }) => {
+const New: React.FC<NewProjectProps> = ({ onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
-  const handleContinueSubmit = async (data: INewWorkspaceFormData) => {
-    const workspaceName = data.name || "";
-    dispatch(setWorkspaceName(workspaceName));
-    onNext(data);
+  const { showSuccess, showError } = useToast();
+  const workspaceId = useSelector(
+    (state: RootState) => state.workspaces.currentWorkspaceId
+  );
+  const workspace = useSelector((state: RootState) =>
+    state.workspaces.workspaces.find((ws) => ws.id === workspaceId)
+  );
+  const { reset } = useForm<INewProjectFormData>();
+
+  const handleProjectSubmit = async (data: INewProjectFormData) => {
+    try {
+      if (!workspaceId) {
+        return "فضای کاری مورد نطر یافت نمیشود";
+      }
+      const response = await createProject(workspaceId, data);
+      showSuccess("created");
+      dispatch(fetchProjects(workspaceId));
+      onClose();
+      navigate("/board");
+    } catch (error: any) {
+      const statusCode = error.response?.status;
+      const errorMessage = getErrorMessage("server", statusCode);
+      showError(errorMessage);
+    }
   };
+
+  useEffect(() => {
+    return () => {
+      reset();
+    };
+  }, [reset]);
 
   const fields: IField[] = [
     {
@@ -31,14 +65,18 @@ const New: React.FC<INewWorkspaceSteps> = ({ onNext }) => {
   return (
     <div className="flex items-center justify-center">
       <div className="flex border flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
+        <CloseButton
+          className="transform -translate-y-[8px] translate-x-[290px]"
+          onClick={onClose}
+        />
         <p className="font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px]">
-          ایجاد پروژه جدید
+          ایجاد پروژه جدید در "{workspace?.name}"
         </p>
         <InputForm
           fields={fields}
           submitText="ثبت"
-          schema={nameWorkspaceSchema}
-          onSubmit={handleContinueSubmit}
+          schema={nameProjectSchema}
+          onSubmit={handleProjectSubmit}
         />
       </div>
     </div>

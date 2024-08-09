@@ -27,13 +27,14 @@ export interface InternalAxiosRequestConfig extends AxiosRequestConfig {
 // ایجاد یک نمونه Axios برای ارتباط با API
 export const apiClient = axios.create({
   baseURL: "http://185.8.174.74:8000",
+
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 // تنظیم تایم‌اوت پیش‌فرض برای درخواست‌ها
-apiClient.defaults.timeout = 10000;
+apiClient.defaults.timeout = 20000;
 
 // اضافه کردن یک interceptor برای اضافه کردن توکن به درخواست‌ها
 apiClient.interceptors.request.use(

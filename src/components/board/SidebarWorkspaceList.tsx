@@ -1,12 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../configs/servers/store";
 import { fetchWorkspaces } from "../../configs/servers/workspaceSlice";
 import { fetchProjects } from "../../configs/servers/projectSlice";
 import { ISidbarWorkspaceList } from "../../configs/interfaces";
 import CreateNewButton from "../commons/UI/buttons/CreateNewButton";
+import ModalView from "../commons/UI/ModalView";
+import New from "../project/New";
+import { setCurrentWorkspaceId } from "../../configs/servers/workspaceSlice";
+import { getHexColor } from "../../helpers/getHexColor";
 
 const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
+  const [isOpenNewProject, setIsOpenNewProject] = useState(false);
+  const openNewProject = () => setIsOpenNewProject(true);
+  const closeNewProject = () => setIsOpenNewProject(false);
+
   const dispatch = useDispatch<AppDispatch>();
   const {
     workspaces,
@@ -35,6 +43,15 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
     }
   }, [workspaces, dispatch, projectsByWorkspace]);
 
+  const handleWorkspaceSelect = (workspaceId: string) => {
+    dispatch(setCurrentWorkspaceId(workspaceId));
+  };
+
+  const handleNewProject = (id: string) => {
+    handleWorkspaceSelect(id);
+    openNewProject();
+  };
+
   if (workspacesStatus === "loading" || projectsStatus === "loading") {
     return <p>در حال بارگزاری ...</p>;
   }
@@ -52,7 +69,10 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
             id={`collapse-toggle-${workspace.id}`}
             className="peer"
           />
-          <div className="collapse-title text-md font-medium">
+          <div
+            className="collapse-title text-md font-medium"
+            onClick={() => handleWorkspaceSelect(workspace.id)}
+          >
             <label
               htmlFor={`collapse-toggle-${workspace.id}`}
               className="cursor-pointer flex items-center font-bold"
@@ -69,24 +89,39 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
               projectsByWorkspace[workspace.id].map((project) => (
                 <button
                   key={project.id}
-                  className="text-right w-[250px] py-1 px-2 mb-1 mr-6 rounded-[10px] hover:bg-gray-200"
+                  className={`text-right ${workspace.color.replace(
+                    "bg",
+                    "text"
+                  )} w-[250px] py-1 px-2 mb-1 mr-6 rounded-[10px] hover:bg-gray-200`}
                 >
                   {project.name}
                 </button>
               ))
             ) : (
               <div className="top-0 bottom-0 mr-6">
-                <p className="text-center text-xs text-gray-500">
+                <p
+                  className={`text-center text-xs ${workspace.color.replace(
+                    "bg-",
+                    "text-"
+                  )}`}
+                >
                   پروژه‌ای هنوز ثبت نشده است
                 </p>
                 <div className="flex justify-center">
                   <CreateNewButton
-                    color="#6B7280"
+                    color={getHexColor(workspace.color)}
                     label="ساختن پروژه جدید"
-                    className="h-[30px] rounded-[4px] mt-2 text-xs border border-gray-500 text-gray-500"
+                    className={`h-[30px] rounded-[4px] mt-2 text-xs border ${workspace.color.replace(
+                      "bg",
+                      "border"
+                    )} ${workspace.color.replace("bg", "text")}`}
                     labelClassName="text-xs"
+                    onClick={() => handleNewProject(workspace.id)}
                   />
                 </div>
+                <ModalView isOpen={isOpenNewProject} onClose={closeNewProject}>
+                  <New onClose={closeNewProject} />
+                </ModalView>
               </div>
             )}
           </div>

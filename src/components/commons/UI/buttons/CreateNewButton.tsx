@@ -13,7 +13,8 @@ const CreateNewButton: React.FC<ICreateNewButton> = ({
       className={`flex items-center justify-center cursor-pointer ${className}`}
     >
       <div
-        className={`w-full bg-gradient-to-bl from-${color}-primary to-${color}-primary/50 p-1 rounded-2xl`}
+        // className={`w-full bg-gradient-to-bl from-${color}-primary to-${color}-primary/50 p-1 rounded-2xl`}
+        className={`w-full bg-gradient-to-bl from-[${color}] to-[${color}]/50 p-1 rounded-2xl`}
       >
         <div className="flex items-center justify-center gap-x-2 py-6 px-5 rounded-2xl">
           <svg
@@ -47,9 +48,7 @@ const CreateNewButton: React.FC<ICreateNewButton> = ({
               strokeLinejoin="round"
             />
           </svg>
-          <span className={`${labelClassName} text-${color}-primary`}>
-            {label}
-          </span>
+          <span className={`${labelClassName} text-[${color}]`}>{label}</span>
         </div>
       </div>
     </button>
