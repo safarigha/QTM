@@ -130,10 +130,12 @@ export interface NewWorkspaceProps {
 
 export interface INewlabelColor {
   onNext: (data: INewWorkspaceFormData) => void;
+  onPrevious: () => void;
 }
 
 export interface NewDisplayDataProps {
   onSuccess: () => void;
+  onPrevious: () => void;
 }
 
 //////inputForm

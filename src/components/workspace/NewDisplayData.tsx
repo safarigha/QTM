@@ -14,8 +14,12 @@ import {
 } from "../../configs/interfaces";
 import { fetchWorkspaces } from "../../configs/servers/workspaceSlice";
 import { setLabelColor } from "../../configs/servers/formNewWorkspaceSlice";
+import { GrLinkPrevious } from "react-icons/gr";
 
-const NewDisplayData: React.FC<NewDisplayDataProps> = ({ onSuccess }) => {
+const NewDisplayData: React.FC<NewDisplayDataProps> = ({
+  onSuccess,
+  onPrevious,
+}) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const workspaceName = useSelector(
@@ -58,6 +62,10 @@ const NewDisplayData: React.FC<NewDisplayDataProps> = ({ onSuccess }) => {
       className="flex items-center justify-center"
     >
       <div className="flex border flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
+        <GrLinkPrevious
+          onClick={onPrevious}
+          className="size-4 transform -translate-x-[287px] -translate-y-[6px]"
+        />
         <h2 className="font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px] mb-[30px]">
           مرور اطلاعات
         </h2>

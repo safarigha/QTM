@@ -14,10 +14,11 @@ import {
 } from "../../configs/servers/formNewWorkspaceSlice";
 import { AppDispatch, RootState } from "../../configs/servers/store";
 import { useDispatch, useSelector } from "react-redux";
+import { GrLinkPrevious } from "react-icons/gr";
 
 const colorWorkspaceSchema = WorkspaceSchema.pick({ color: true });
 
-const NewlabelColor: React.FC<INewlabelColor> = ({ onNext }) => {
+const NewlabelColor: React.FC<INewlabelColor> = ({ onNext, onPrevious }) => {
   const dispatch = useDispatch<AppDispatch>();
   const [selectedColor, setSelectedColor] = useState<string>("bg-gray-500");
   const [colorName, setColorName] = useState<string>("پیش‌فرض");
@@ -50,6 +51,11 @@ const NewlabelColor: React.FC<INewlabelColor> = ({ onNext }) => {
     <form onSubmit={handleSubmit(handleFormSubmit)} className="w-full">
       <div className="flex items-center justify-center">
         <div className="flex border flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
+          <GrLinkPrevious
+            onClick={onPrevious}
+            className="size-4 transform -translate-x-[287px] -translate-y-[6px]"
+          />
+
           <p className="font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px]">
             انتخاب رنگ لیبل فضای کاری جدید
           </p>

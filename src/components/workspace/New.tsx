@@ -15,6 +15,11 @@ const New: React.FC<NewWorkspaceProps> = ({ onClose }) => {
   const handleNext = (data: INewWorkspaceFormData) => {
     setStep(step + 1);
   };
+  const handlePrevious = () => {
+    if (step > 1) {
+      setStep(step - 1);
+    }
+  };
   const handleSuccess = () => {
     onClose();
     navigate("/board");
@@ -27,8 +32,12 @@ const New: React.FC<NewWorkspaceProps> = ({ onClose }) => {
         onClick={onClose}
       />
       {step === 1 && <NewTitle onNext={handleNext} />}
-      {step === 2 && <NewlabelColor onNext={handleNext} />}
-      {step === 3 && <NewDisplayData onSuccess={handleSuccess} />}
+      {step === 2 && (
+        <NewlabelColor onNext={handleNext} onPrevious={handlePrevious} />
+      )}
+      {step === 3 && (
+        <NewDisplayData onSuccess={handleSuccess} onPrevious={handlePrevious} />
+      )}
     </>
   );
 };
