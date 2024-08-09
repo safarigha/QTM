@@ -9,6 +9,7 @@ import Login from "../pages/auth/login/Login";
 import Board from "../pages/board/Board";
 import ResetPassword from "../pages/auth/forgetPassword/ResetPassword";
 import SetPassword from "../pages/auth/forgetPassword/SetPassword";
+import Profile from "../pages/profile/Profile";
 // import NewBoard from "../pages/newBoard/newBoard.tsx";
 // import ComponentT from "../components/component-T/ComponentT.tsx";
 // import Profile from "../pages/profile/profile.tsx";
@@ -60,10 +61,10 @@ export const routes = createBrowserRouter([
     element: <Board />,
   },
 
-  // {
-  //   path: "/profile",
-  //   element: <Profile />,
-  // },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
   // {
   //   path: "/workspaces-projects",
   //   element: <View />,
