@@ -46,15 +46,15 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
   return (
     <div className="flex flex-col">
       {workspaces.map((workspace) => (
-        <div key={workspace.name} className="collapse">
+        <div key={workspace.id} className="collapse">
           <input
             type="checkbox"
-            id={`collapse-toggle-${workspace.name}`}
+            id={`collapse-toggle-${workspace.id}`}
             className="peer"
           />
           <div className="collapse-title text-md font-medium">
             <label
-              htmlFor={`collapse-toggle-${workspace.name}`}
+              htmlFor={`collapse-toggle-${workspace.id}`}
               className="cursor-pointer flex items-center font-bold"
             >
               <div
