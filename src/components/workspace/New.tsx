@@ -7,12 +7,17 @@ import {
 import CloseButton from "../commons/UI/buttons/CloseButton";
 import NewlabelColor from "./NewlabelColor";
 import NewDisplayData from "./NewDisplayData";
+import { useNavigate } from "react-router-dom";
 
 const New: React.FC<NewWorkspaceProps> = ({ onClose }) => {
   const [step, setStep] = useState(1);
-
+  const navigate = useNavigate();
   const handleNext = (data: INewWorkspaceFormData) => {
     setStep(step + 1);
+  };
+  const handleSuccess = () => {
+    onClose();
+    navigate("/board");
   };
 
   return (
@@ -23,7 +28,7 @@ const New: React.FC<NewWorkspaceProps> = ({ onClose }) => {
       />
       {step === 1 && <NewTitle onNext={handleNext} />}
       {step === 2 && <NewlabelColor onNext={handleNext} />}
-      {step === 3 && <NewDisplayData />}
+      {step === 3 && <NewDisplayData onSuccess={handleSuccess} />}
     </>
   );
 };

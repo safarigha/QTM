@@ -1,19 +1,23 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../configs/servers/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../configs/servers/store";
 import BrandColorButton from "../commons/UI/buttons/BrandColorButton";
 import { createWorkspace } from "../../configs/APIs/workspacesApi";
-import { createWorkspaceMember } from "../../configs/APIs/workspacesMembersApi";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import WorkspaceSchema from "../../validations/WorkspaceShema";
 import useToast from "../../hooks/useToast";
 import { getErrorMessage } from "../../helpers/errorMessages";
-import WorkspaceMemberSchema from "../../validations/WorkspaceMemberShema";
-import { z } from "zod";
-import { toast } from "react-toastify";
+import {
+  INewWorkspaceFormData,
+  NewDisplayDataProps,
+} from "../../configs/interfaces";
+import { fetchWorkspaces } from "../../configs/servers/workspaceSlice";
+import { setLabelColor } from "../../configs/servers/formNewWorkspaceSlice";
 
-const NewDisplayData: React.FC = () => {
+const NewDisplayData: React.FC<NewDisplayDataProps> = ({ onSuccess }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const workspaceName = useSelector(
     (state: RootState) => state.formNewWorkspace.workspaceName
   );
@@ -26,45 +30,28 @@ const NewDisplayData: React.FC = () => {
 
   const { showSuccess, showError } = useToast();
 
-  const { handleSubmit } = useForm({
+  const { handleSubmit } = useForm<INewWorkspaceFormData>({
     resolver: zodResolver(WorkspaceSchema),
+    defaultValues: {
+      name: workspaceName,
+      color: labelColor || "bg-gray-500",
+    },
   });
 
-  const handleFormSubmit = async () => {
+  const handleFormSubmit = async (data: INewWorkspaceFormData) => {
     try {
-      // اعتبارسنجی داده‌های فضای کاری
-      WorkspaceSchema.parse({ name: workspaceName, color: labelColor });
-
-      const workspaceResponse = await createWorkspace({
-        name: workspaceName,
-        color: labelColor,
-      });
-      console.log(`Workspace created: ${workspaceResponse.data}`);
-
-      const workspaceId = workspaceResponse.data.id;
-
-      // اعتبارسنجی داده‌های عضو فضای کاری
-      WorkspaceMemberSchema.parse({
-        user: creatorName,
-        is_super_access: true,
-      });
-
-      await createWorkspaceMember(workspaceId, {
-        user: creatorName,
-        is_super_access: true,
-      });
-      console.log(`Workspace member created for: ${creatorName}`);
-
+      const response = await createWorkspace(data);
       showSuccess("created");
+      dispatch(fetchWorkspaces());
+      dispatch(setLabelColor("bg-gray-500"));
+      onSuccess();
     } catch (error: any) {
       const statusCode = error.response?.status;
       const errorMessage = getErrorMessage("server", statusCode);
       showError(errorMessage);
-      console.log(
-        `statusCode: ${statusCode} aaand errorMessage: ${errorMessage}`
-      );
     }
   };
+
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}

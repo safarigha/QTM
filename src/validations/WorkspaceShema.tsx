@@ -8,8 +8,7 @@ const WorkspaceSchema = z.object({
     .max(255, { message: "عنوان فضای کاری باید حداکثر ۲۵۵ کاراکتر باشد" }),
   color: z
     .string()
-    .nonempty({ message: " انتخاب رنگ لیبل فضای کاری الزامی است" })
-    .optional(),
+    .nonempty({ message: " انتخاب رنگ لیبل فضای کاری الزامی است" }),
 });
 
 export default WorkspaceSchema;

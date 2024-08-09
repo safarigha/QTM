@@ -132,6 +132,10 @@ export interface INewlabelColor {
   onNext: (data: INewWorkspaceFormData) => void;
 }
 
+export interface NewDisplayDataProps {
+  onSuccess: () => void;
+}
+
 //////inputForm
 interface ITextField {
   id: string;

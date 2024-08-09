@@ -8,17 +8,12 @@ import WorkspaceSchema from "../../validations/WorkspaceShema";
 import { setWorkspaceName } from "../../configs/servers/formNewWorkspaceSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../configs/servers/store";
-import { useForm } from "react-hook-form";
 
 const nameWorkspaceSchema = WorkspaceSchema.pick({ name: true });
 
 const NewTitle: React.FC<INewWorkspaceSteps> = ({ onNext }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { handleSubmit, register } = useForm<INewWorkspaceFormData>({
-    defaultValues: {
-      name: "",
-    },
-  });
+
   const handleContinueSubmit = async (data: INewWorkspaceFormData) => {
     const workspaceName = data.name || "";
     dispatch(setWorkspaceName(workspaceName));

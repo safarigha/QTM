@@ -7,23 +7,27 @@ import DropdownListList from "../../components/commons/UI/DropdownListList";
 import SidbarWorkspaceList from "../../components/board/SidebarWorkspaceList";
 import SidebarDisplayAccount from "../../components/board/SidebarDisplayAccount";
 import { useEffect, useState } from "react";
-import { fetchAccount } from "../../configs/servers/accountSlice";
-import { useAppDispatch } from "../../configs/servers/store";
+import { RootState, useAppDispatch } from "../../configs/servers/store";
 import SidebarLogoutAccount from "../../components/board/SidebarLogoutAccount";
 import SwitchModeTheme from "../../components/commons/UI/SwitchModeTheme";
 import New from "../../components/workspace/New";
 import ModalView from "../../components/commons/UI/ModalView";
+import { useSelector } from "react-redux";
+import { fetchWorkspaces } from "../../configs/servers/workspaceSlice";
 
 const Sidbar: React.FC = () => {
   const dispatch = useAppDispatch();
+  const workspaces = useSelector(
+    (state: RootState) => state.workspaces.workspaces
+  );
 
   const [isOpenNewWorkspace, setIsOpenNewWorkspace] = useState(false);
   const openNewWorkspace = () => setIsOpenNewWorkspace(true);
   const closeNewWorkspace = () => setIsOpenNewWorkspace(false);
 
   useEffect(() => {
-    dispatch(fetchAccount());
-  }, [dispatch]);
+    dispatch(fetchWorkspaces());
+  }, [dispatch, workspaces.length]);
 
   return (
     <div className=" mt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-200 overflow-y-auto scrollbar-gutter-stable">
