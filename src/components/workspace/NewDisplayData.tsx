@@ -70,7 +70,7 @@ const NewDisplayData: React.FC = () => {
       onSubmit={handleSubmit(handleFormSubmit)}
       className="flex items-center justify-center"
     >
-      <div className="flex bg-white flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
+      <div className="flex border flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
         <h2 className="font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px] mb-[30px]">
           مرور اطلاعات
         </h2>

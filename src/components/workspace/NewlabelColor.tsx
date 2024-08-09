@@ -49,7 +49,7 @@ const NewlabelColor: React.FC<INewlabelColor> = ({ onNext }) => {
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className="w-full">
       <div className="flex items-center justify-center">
-        <div className="flex bg-white flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
+        <div className="flex border flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
           <p className="font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px]">
             انتخاب رنگ لیبل فضای کاری جدید
           </p>
