@@ -12,14 +12,15 @@ import { useNavigate } from "react-router-dom";
 const New: React.FC<NewWorkspaceProps> = ({ onClose }) => {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
+
   const handleNext = (data: INewWorkspaceFormData) => {
     setStep(step + 1);
   };
+
   const handlePrevious = () => {
-    if (step > 1) {
-      setStep(step - 1);
-    }
+    if (step > 1) setStep(step - 1);
   };
+
   const handleSuccess = () => {
     onClose();
     navigate("/board");
