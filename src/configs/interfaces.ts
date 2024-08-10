@@ -299,3 +299,8 @@ export type IPersonalFormData = {
   phone_number: string;
   thumbnail?: string | null;
 };
+
+export type IAccountFormData = {
+  username: string;
+  email: string;
+};
