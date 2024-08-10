@@ -14,7 +14,7 @@ const Profile: React.FC = () => {
       <div className="col-span-1 w-[340px]">
         <Sidebar onComponentChange={handleComponentChange} />
       </div>
-      <div className="col-span-3 flex justify-center mt-[100px]">
+      <div className="col-span-3 flex justify-center mt-[70px]">
         {activeComponent === "personal" && <Personal />}
         {activeComponent === "account" && <Account />}
         {activeComponent === "setting" && <Settings />}

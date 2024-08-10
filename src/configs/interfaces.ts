@@ -292,3 +292,10 @@ export interface TailwindColorMap {
 export interface SidebarProfileProps {
   onComponentChange: (type: string) => void;
 }
+
+export type IPersonalFormData = {
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+  thumbnail?: string | null;
+};
