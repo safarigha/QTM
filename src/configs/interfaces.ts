@@ -32,7 +32,7 @@ export interface ColorCheckboxesListProps {
 
 //////buttons
 export interface IBrandColorButton {
-  text: React.ReactNode;
+  text: string | React.ReactNode;
   classNames?: string;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
@@ -286,4 +286,9 @@ export interface RootState {
 //////Helpers interfasces//
 export interface TailwindColorMap {
   [key: string]: string;
+}
+
+//////Profile interfaces//
+export interface SidebarProfileProps {
+  onComponentChange: (type: string) => void;
 }

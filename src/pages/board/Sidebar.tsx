@@ -30,8 +30,8 @@ const Sidbar: React.FC = () => {
   }, [dispatch, workspaces.length]);
 
   return (
-    <div className=" mt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-200 overflow-y-auto scrollbar-gutter-stable">
-      <LogoTitle label="کیوتی منیجر" logo={QTlogo} />
+    <div className=" pt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-200 overflow-y-auto scrollbar-gutter-stable">
+      <LogoTitle className="pt-2" label="کیوتی منیجر" logo={QTlogo} />
       <IconInput
         placeholder="جستجو کنید..."
         icon={<CiSearch className="size-6 ml-2" />}
