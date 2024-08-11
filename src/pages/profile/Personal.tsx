@@ -27,8 +27,7 @@ const Personal: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const { showSuccess, showError } = useToast();
-  const { uploadImage, uploading, error: uploadError } = useUploadFile();
-  const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
+  const { uploadImage } = useUploadFile();
 
   useEffect(() => {
     if (status === "idle") {
@@ -80,13 +79,13 @@ const Personal: React.FC = () => {
       // }
 
       const response = await updateAccount(account.id, formData);
-      console.log("Response from API:", response);
+      await dispatch(fetchAccount());
+
       showSuccess("created");
     } catch (error: any) {
       const statusCode = error.response?.status;
       const errorMessage = getErrorMessage("server", statusCode);
       showError(errorMessage);
-      console.error("Error during form submission:", errorMessage);
     }
   };
 

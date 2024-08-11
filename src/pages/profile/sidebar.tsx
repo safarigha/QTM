@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BrandColorButton from "../../components/commons/UI/buttons/BrandColorButton";
 import LogoTitle from "../../components/commons/UI/LogoTitle";
 import { QTlogo } from "../../assets/images/images";
@@ -12,6 +12,8 @@ import {
 } from "react-icons/tb";
 
 const Sidebar: React.FC<SidebarProfileProps> = ({ onComponentChange }) => {
+  const navigate = useNavigate();
+
   const handleItemClick = (type: string) => {
     onComponentChange(type);
   };
@@ -38,12 +40,11 @@ const Sidebar: React.FC<SidebarProfileProps> = ({ onComponentChange }) => {
     <div className=" pt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-200 overflow-y-auto scrollbar-gutter-stable">
       <LogoTitle className="pb-5 pt-2" label="کیوتی منیجر" logo={QTlogo} />
       <BrandColorButton
-        classNames="w-[135px] h-9 h-10 flex ml-auto mr-auto mt-4"
+        classNames="w-[135px] h-10 flex ml-auto mr-auto mt-4"
         type="submit"
         text={
           <>
-            <div className="text-red"></div>
-            <TbArrowNarrowRight className="size-6" />
+            <TbArrowNarrowRight className="size-6 mr-2" />
             <Link to={"/board"}>
               <span>بازگشت</span>
             </Link>

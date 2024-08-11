@@ -60,6 +60,7 @@ const Account: React.FC = () => {
         new_password1: data.new_password1,
       };
       await changePassword(formDataSetPassword);
+      await dispatch(fetchAccount());
 
       showSuccess("created");
     } catch (error: any) {
