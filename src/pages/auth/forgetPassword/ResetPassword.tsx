@@ -1,45 +1,13 @@
-import { useState } from "react";
+import useResetToken from "../../../hooks/useResetToken";
 import InputForm from "../../../components/commons/forms/InputForm";
-import { resetPassword } from "../../../configs/APIs/accountApi";
 import { IField, IResetFormData } from "../../../configs/interfaces";
-import { getErrorMessage } from "../../../helpers/errorMessages";
-import useToast from "../../../hooks/useToast";
 import ResetPasswordSchema from "../../../validations/ResetPasswordShema";
-import useSendEmail from "../../../hooks/useSendEmail";
-import { baseUrlApp } from "../../../configs/URLsPath";
 
 const ResetPassword: React.FC = () => {
-  const [isValidEmail, setIsValidEmail] = useState<boolean>(false);
-  const { showSuccess, showError } = useToast();
-  const { isSending, error, success, sendEmail } = useSendEmail();
+  const { requestResetToken, isValidEmail } = useResetToken();
 
   const handleResetSubmit = async (data: IResetFormData) => {
-    try {
-      const response = await resetPassword(data);
-      const resetUrl = response.data.url;
-      const url = new URL(resetUrl);
-      const token = url.searchParams.get("token");
-
-      if (token) {
-        localStorage.setItem("resetToken", token);
-        const resetEmailUrl = `${baseUrlApp}/set-password?token=${token}`;
-
-        await sendEmail(data.email, resetEmailUrl);
-        if (success) {
-          showSuccess("resetPassword");
-          setIsValidEmail(true);
-        }
-        if (error) {
-          showError(error);
-        }
-      } else {
-        return new Error("لطفا مجددا اقدام نمایید");
-      }
-    } catch (error: any) {
-      const statusCode = error.response?.status;
-      const errorMessage = getErrorMessage("server", statusCode);
-      showError(errorMessage);
-    }
+    await requestResetToken(data.email);
   };
 
   const fields: IField[] = [
@@ -50,6 +18,7 @@ const ResetPassword: React.FC = () => {
       name: "user_email",
     },
   ];
+
   return (
     <div className="flex items-center justify-center">
       {!isValidEmail ? (
@@ -81,4 +50,5 @@ const ResetPassword: React.FC = () => {
     </div>
   );
 };
+
 export default ResetPassword;

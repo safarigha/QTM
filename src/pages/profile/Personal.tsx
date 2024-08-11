@@ -9,12 +9,13 @@ import UserSchema from "../../validations/UserShema";
 import { useEffect, useState } from "react";
 import FileManager from "../../helpers/FileManager";
 import { fetchAccount } from "../../configs/servers/accountSlice";
+import useUploadFile from "../../hooks/useUploadFile";
 
 const PersonalSchema = UserSchema.pick({
   first_name: true,
   last_name: true,
   phone_number: true,
-  // thumbnail: true,
+  thumbnail: true,
 });
 
 const Personal: React.FC = () => {
@@ -26,6 +27,8 @@ const Personal: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const { showSuccess, showError } = useToast();
+  const { uploadImage, uploading, error: uploadError } = useUploadFile();
+  const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
 
   useEffect(() => {
     if (status === "idle") {
@@ -46,31 +49,35 @@ const Personal: React.FC = () => {
   if (!account || !account.username) {
     return (
       <span className="flex justify-center text-xs">
-        اطلاعات کاربر در حال بارگزاری ...
+        اطلاعات کاربر شخصی در حال بارگزاری ...
       </span>
     );
   }
 
   const handleFormSubmit = async (data: IPersonalFormData) => {
     try {
+      let uploadedUrl = null;
+
+      if (selectedFile) {
+        uploadedUrl = await uploadImage(selectedFile, "image");
+      }
+
       const formData = new FormData();
       formData.append("username", account.username);
       formData.append("email", account.email);
       formData.append("first_name", data.first_name);
       formData.append("last_name", data.last_name);
       formData.append("phone_number", data.phone_number);
-
-      // if (selectedFile) {
-      //   formData.append("thumbnail", selectedFile || null);
-      // } else {
-      //   console.error("No file selected for thumbnail");
-      //   showError("No file selected for thumbnail");
-      //   return;
-      // }
+      formData.append("thumbnail", uploadedUrl || "");
+      // if (selectedFile) formData.append("thumbnail", selectedFile);
 
       formData.forEach((value, key) => {
         console.log(`${key}:`, value);
       });
+
+      // if (selectedFile) {
+      //   console.log("Selected file type:", selectedFile.type);
+      // }
 
       const response = await updateAccount(account.id, formData);
       console.log("Response from API:", response);
@@ -94,16 +101,19 @@ const Personal: React.FC = () => {
       id: "first_name",
       type: "text",
       label: "نام",
+      defaultValue: account.first_name,
     },
     {
       id: "last_name",
       type: "text",
       label: "نام خانوادگی",
+      defaultValue: account.last_name,
     },
     {
       id: "phone_number",
       type: "text",
       label: "شماره موبایل",
+      defaultValue: account.phone_number,
     },
   ];
   return (

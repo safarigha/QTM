@@ -182,6 +182,7 @@ export interface IInputForm {
     label: string;
     name?: string;
     value?: string;
+    defaultValue?: string;
   }[];
   submitText: string;
   schema: ZodSchema<any>;
@@ -303,4 +304,11 @@ export type IPersonalFormData = {
 export type IAccountFormData = {
   username: string;
   email: string;
+  old_password: string;
+  new_password: string;
+  new_password1: string;
+  first_name?: string;
+  last_name?: string;
+  phone_number?: string;
+  thumbnail?: string;
 };

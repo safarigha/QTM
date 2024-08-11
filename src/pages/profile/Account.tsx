@@ -1,18 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import InputForm from "../../components/commons/forms/InputForm";
-import { updateAccount } from "../../configs/APIs/accountApi";
+import { changePassword, updateAccount } from "../../configs/APIs/accountApi";
 import { IAccountFormData } from "../../configs/interfaces";
 import { AppDispatch, RootState } from "../../configs/servers/store";
 import { getErrorMessage } from "../../helpers/errorMessages";
 import useToast from "../../hooks/useToast";
-import UserSchema from "../../validations/UserShema";
 import { useEffect } from "react";
 import { fetchAccount } from "../../configs/servers/accountSlice";
-
-const AccountSchema = UserSchema.pick({
-  username: true,
-  email: true,
-});
+import ProfileAccountShema from "../../validations/ProfileAccountShema";
 
 const Account: React.FC = () => {
   const {
@@ -36,27 +31,41 @@ const Account: React.FC = () => {
   }
 
   if (error) {
-    return <span>Error: {error}</span>;
+    return <span className="flex justify-center text-xs">Error: {error}</span>;
   }
 
   if (!account || !account.username) {
-    return <span>Account details not available</span>;
+    return (
+      <span className="flex justify-center text-xs">
+        اطلاعات حساب کاربر در حال بارگزاری ...
+      </span>
+    );
   }
 
   const handleFormSubmit = async (data: IAccountFormData) => {
     try {
       const formData = new FormData();
-      formData.append("username", account.username);
+      formData.append("username", data.username);
       formData.append("email", data.email);
+      formData.append("firstname", account.first_name);
+      formData.append("lastname", account.last_name);
+      formData.append("phonenumber", account.phone_number);
+      if (account.thumbnail) formData.append("thumbnail", account.thumbnail);
 
-      const response = await updateAccount(account.id, formData);
-      console.log("Response from API:", response);
+      await updateAccount(account.id, formData);
+
+      const formDataSetPassword = {
+        old_password: data.old_password,
+        new_password: data.new_password,
+        new_password1: data.new_password1,
+      };
+      await changePassword(formDataSetPassword);
+
       showSuccess("created");
     } catch (error: any) {
       const statusCode = error.response?.status;
       const errorMessage = getErrorMessage("server", statusCode);
       showError(errorMessage);
-      console.error("Error during form submission:", errorMessage);
     }
   };
 
@@ -64,27 +73,29 @@ const Account: React.FC = () => {
     {
       id: "email",
       label: "ایمیل",
-      type: "email" as const,
+      type: "email",
+      defaultValue: account.email,
     },
     {
       id: "username",
       label: "نام کاربری",
-      type: "text" as const,
+      type: "text",
+      defaultValue: account.username,
     },
     {
-      id: "currentPassword",
+      id: "old_password",
       label: "رمز عبور فعلی",
-      type: "password" as const,
+      type: "password",
     },
     {
-      id: "NewPassword",
+      id: "new_password",
       label: "رمز عبور جدید",
-      type: "password" as const,
+      type: "password",
     },
     {
-      id: "reNewPassword",
+      id: "new_password1",
       label: "تکرار رمز عبور جدید",
-      type: "password" as const,
+      type: "password",
     },
   ];
 
@@ -96,7 +107,7 @@ const Account: React.FC = () => {
       <InputForm
         fields={fields}
         submitText="ثبت تغییرات"
-        schema={AccountSchema}
+        schema={ProfileAccountShema}
         onSubmit={handleFormSubmit}
       />
     </div>

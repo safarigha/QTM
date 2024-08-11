@@ -1,7 +1,6 @@
-import { z, ZodType } from "zod";
-import { IRegisterFormData } from "../configs/interfaces";
+import { z } from "zod";
 
-const UserRegisterSchema: ZodType<IRegisterFormData> = z.object({
+const UserRegisterSchema = z.object({
   username: z
     .string()
     .nonempty({ message: "وارد کردن نام کاربری الزامی است" })

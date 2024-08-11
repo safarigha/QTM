@@ -30,6 +30,8 @@ const InputForm: React.FC<IInputForm> = ({
           <label className="text-brand-primary">{field.label}</label>
           <input
             type={field.type}
+            value={field.value}
+            defaultValue={field.defaultValue}
             {...register(field.id)}
             className="bg-taransparent mt-2 block w-full h-10 rounded-lg border border-gray-primary px-4 focus:outline-none focus:border-blue-primary"
           />
