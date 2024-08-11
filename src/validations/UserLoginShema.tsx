@@ -1,7 +1,7 @@
-import { z, ZodType } from "zod";
-import { ILoginFormData } from "../configs/interfaces";
+import { z } from "zod";
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/;
 
-const UserLoginSchema: ZodType<ILoginFormData> = z.object({
+const UserLoginSchema = z.object({
   username: z
     .string()
     .nonempty({ message: "وارد کردن نام کاربری الزامی است" })
@@ -11,7 +11,11 @@ const UserLoginSchema: ZodType<ILoginFormData> = z.object({
     .string()
     .nonempty({ message: "وارد کردن رمز عبور الزامی است" })
     .min(8, { message: "رمز عبور باید حداقل 8 کاراکتر باشد" })
-    .max(12, { message: "رمز عبور باید حداکثر 12 کاراکتر باشد" }),
+    .max(12, { message: "رمز عبور باید حداکثر 12 کاراکتر باشد" })
+    .regex(passwordRegex, {
+      message:
+        "رمز عبور شما حداقل دارای یک حرف کوچک، یک حرف بزرگ، یک عدد و یک علامت خاص می باشد",
+    }),
 });
 
 export default UserLoginSchema;
