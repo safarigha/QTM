@@ -16,20 +16,11 @@ export const registerAccount = (data: any) => {
 };
 
 // درخواست برای به روزرسانی حساب کاربری بر اساس شناسه
-export const updateAccount = (
-  id: string,
-  data: any,
-  isFile: boolean = false
-) => {
-  if (isFile) {
-    return apiClient.patch(`/accounts/${id}`, data, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-  }
+
+export const updateAccount = (id: string, data: any) => {
   return apiClient.patch(`/accounts/${id}`, data);
 };
+
 // export const updateAccount = (id: string, data: any) => {
 //   return apiClient.patch(`/accounts/${id}`, data);
 // };

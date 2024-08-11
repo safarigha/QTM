@@ -36,11 +36,7 @@ const UserSchema = z.object({
     })
     .max(11, { message: "تلفن همراه باید حداکثر ۱۱ کاراکتر باشد" })
     .nullable(),
-  thumbnail: z
-    .string()
-    .url({ message: "تصویر پروفایل باید یک URL معتبر باشد" })
-    .nullable()
-    .optional(),
+  thumbnail: z.string().url().optional().nullable(),
 });
 
 export default UserSchema;

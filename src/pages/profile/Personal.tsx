@@ -14,7 +14,7 @@ const PersonalSchema = UserSchema.pick({
   first_name: true,
   last_name: true,
   phone_number: true,
-  thumbnail: true,
+  // thumbnail: true,
 });
 
 const Personal: React.FC = () => {
@@ -40,24 +40,33 @@ const Personal: React.FC = () => {
   }
 
   if (error) {
-    return <span>Error: {error}</span>;
+    return <span className="flex justify-center text-xs">Error: {error}</span>;
   }
 
   if (!account || !account.username) {
-    return <span>Account details not available</span>;
+    return (
+      <span className="flex justify-center text-xs">
+        اطلاعات کاربر در حال بارگزاری ...
+      </span>
+    );
   }
 
   const handleFormSubmit = async (data: IPersonalFormData) => {
     try {
       const formData = new FormData();
       formData.append("username", account.username);
+      formData.append("email", account.email);
       formData.append("first_name", data.first_name);
       formData.append("last_name", data.last_name);
       formData.append("phone_number", data.phone_number);
 
-      if (selectedFile) {
-        formData.append("thumbnail", selectedFile);
-      }
+      // if (selectedFile) {
+      //   formData.append("thumbnail", selectedFile || null);
+      // } else {
+      //   console.error("No file selected for thumbnail");
+      //   showError("No file selected for thumbnail");
+      //   return;
+      // }
 
       formData.forEach((value, key) => {
         console.log(`${key}:`, value);
