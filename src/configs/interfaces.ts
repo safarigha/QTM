@@ -114,6 +114,10 @@ export interface ISidebarDisplayAccount {
   className?: string;
 }
 
+export interface ISidebarLogoutAccount {
+  className?: string;
+}
+
 //////Workspace component interfasces//
 export interface INewWorkspaceFormData {
   name?: string;

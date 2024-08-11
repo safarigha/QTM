@@ -52,10 +52,10 @@ const Sidbar: React.FC = () => {
         className="mt-4"
         contentlassName="my-[-15px]"
       />
-      <SidebarDisplayAccount className="justify-right mr-[15px]" />
+      <SidebarDisplayAccount className="justify-right mr-[30px] mt-[30px]" />
       <div className="flex items-center">
-        <SidebarLogoutAccount className="justify-right mr-[15px] mt-4" />
-        <SwitchModeTheme className="justify-left mr-auto ml-[15px] mt-4" />
+        <SidebarLogoutAccount className="justify-right mr-[30px] mt-4 mb-6" />
+        <SwitchModeTheme className="justify-left mr-auto ml-[30px] mt-4 mb-6" />
       </div>
       <ModalView isOpen={isOpenNewWorkspace} onClose={closeNewWorkspace}>
         <New onClose={closeNewWorkspace} />

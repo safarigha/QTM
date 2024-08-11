@@ -53,7 +53,7 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
   };
 
   if (workspacesStatus === "loading" || projectsStatus === "loading") {
-    return <p>در حال بارگزاری ...</p>;
+    <span className="flex justify-center text-xs">در حال بارگزاری ...</span>;
   }
 
   if (workspacesError || projectsError) {
@@ -92,13 +92,13 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
                   className={`text-right ${workspace.color.replace(
                     "bg",
                     "text"
-                  )} w-[250px] py-1 px-2 mb-1 mr-6 rounded-[10px] hover:bg-gray-200`}
+                  )} w-[250px] py-1 px-2 mr-6 rounded-[10px] hover:bg-gray-200`}
                 >
                   {project.name}
                 </button>
               ))
             ) : (
-              <div className="top-0 bottom-0 mr-6">
+              <div className="top-0 bottom-0">
                 <p
                   className={`text-center text-xs ${workspace.color.replace(
                     "bg-",
@@ -107,23 +107,23 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
                 >
                   پروژه‌ای هنوز ثبت نشده است
                 </p>
-                <div className="flex justify-center">
-                  <CreateNewButton
-                    color={getHexColor(workspace.color)}
-                    label="ساختن پروژه جدید"
-                    className={`h-[30px] rounded-[4px] mt-2 text-xs border ${workspace.color.replace(
-                      "bg",
-                      "border"
-                    )} ${workspace.color.replace("bg", "text")}`}
-                    labelClassName="text-xs"
-                    onClick={() => handleNewProject(workspace.id)}
-                  />
-                </div>
                 <ModalView isOpen={isOpenNewProject} onClose={closeNewProject}>
                   <New onClose={closeNewProject} />
                 </ModalView>
               </div>
             )}
+            <div className="flex justify-center">
+              <CreateNewButton
+                color={getHexColor(workspace.color)}
+                label="ساختن پروژه جدید"
+                className={`h-[30px] rounded-[4px] mt-2 text-xs border ${workspace.color.replace(
+                  "bg",
+                  "border"
+                )} ${workspace.color.replace("bg", "text")}`}
+                labelClassName="text-xs"
+                onClick={() => handleNewProject(workspace.id)}
+              />
+            </div>
           </div>
         </div>
       ))}

@@ -6,23 +6,33 @@ import useToast from "../../hooks/useToast";
 import { useDispatch } from "react-redux";
 import { resetProjects } from "../../configs/servers/projectSlice";
 import { resetWorkspaces } from "../../configs/servers/workspaceSlice";
-export interface ISidebarLogoutAccount {
-  className?: string;
-}
+import { AppDispatch } from "../../configs/servers/store";
+import { ISidebarLogoutAccount } from "../../configs/interfaces";
+import { resetAccounts } from "../../configs/servers/accountSlice";
+
+const clearUserSessionData = () => {
+  localStorage.clear();
+  sessionStorage.clear();
+  document.cookie.split(";").forEach((cookie) => {
+    const [name] = cookie.split("=");
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+  });
+};
 
 const SidebarLogoutAccount: React.FC<ISidebarLogoutAccount> = ({
   className,
 }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
+  const dispatch = useDispatch<AppDispatch>();
   const { showSuccess, showError } = useToast();
 
   const handleLogout = () => {
     try {
       removeTokens();
+      clearUserSessionData();
       dispatch(resetProjects());
       dispatch(resetWorkspaces());
+      dispatch(resetAccounts());
       showSuccess("logout");
       navigate("/login");
     } catch (error: any) {
@@ -36,10 +46,8 @@ const SidebarLogoutAccount: React.FC<ISidebarLogoutAccount> = ({
       onClick={handleLogout}
       className={`flex text-brand-primary focus:outline-none ${className}`}
     >
-      <BiDoorOpen className="size-[30px]" />
-      <span className="mr-[0.5px] justify-center items-center mt-1 font-bold text-md">
-        خروج
-      </span>
+      <BiDoorOpen className="size-[40px]" />
+      <span className="mr-1 mt-1 items-center font-bold text-xl">خروج</span>
     </button>
   );
 };

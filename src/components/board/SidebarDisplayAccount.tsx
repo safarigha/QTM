@@ -65,13 +65,6 @@ const SidebarDisplayAccount: React.FC<ISidebarDisplayAccount> = ({
           <span>{account.email}</span>
         )}
       </button>
-      {/* <div className="mr-2 justify-center items-center mt-2 font-bold text-sm">
-        {account.first_name && account.last_name ? (
-          <span>{`${account.first_name} ${account.last_name}`}</span>
-        ) : (
-          <span>{account.email}</span>
-        )}
-      </div> */}
     </div>
   );
 };
