@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import BrandColorButton from "../UI/buttons/BrandColorButton";
 import { IInputForm } from "../../../configs/interfaces";
 import alignmentHelper from "../../../helpers/alignmentHelper";
+import useThemeColor from "../../../hooks/useThemeColor";
 
 const InputForm: React.FC<IInputForm> = ({
   onSubmit,
@@ -12,6 +13,8 @@ const InputForm: React.FC<IInputForm> = ({
   includeCheckbox = false,
   onclick,
 }) => {
+  const { textColor } = useThemeColor();
+
   const {
     register,
     handleSubmit,
@@ -28,7 +31,7 @@ const InputForm: React.FC<IInputForm> = ({
     <form onSubmit={handleSubmit(handleFormSubmit)} className="w-full">
       {fields.map((field) => (
         <div className="mt-2" key={field.id}>
-          <label className="text-brand-primary">{field.label}</label>
+          <label className={textColor}>{field.label}</label>
           <input
             type={field.type}
             value={field.value}
@@ -47,7 +50,7 @@ const InputForm: React.FC<IInputForm> = ({
         </div>
       ))}
       {includeCheckbox && (
-        <div className="text-brand-primary flex w-full gap-1 mt-6 items-center">
+        <div className={`${textColor} flex w-full gap-1 mt-6 items-center`}>
           <input
             type="checkbox"
             {...register("isCheckedRule")}

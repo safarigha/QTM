@@ -8,8 +8,11 @@ import useToast from "../../hooks/useToast";
 import { useEffect } from "react";
 import { fetchAccount } from "../../configs/servers/accountSlice";
 import ProfileAccountShema from "../../validations/ProfileAccountShema";
+import useThemeColor from "../../hooks/useThemeColor";
 
 const Account: React.FC = () => {
+  const { textColor } = useThemeColor();
+
   const {
     data: account,
     status,
@@ -102,7 +105,9 @@ const Account: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-center w-[354px] text-brand-primary text-3xl font-bold mb-6">
+      <h1
+        className={`text-center w-[354px] ${textColor} text-3xl font-bold mb-6`}
+      >
         اطلاعات حساب
       </h1>
       <InputForm

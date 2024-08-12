@@ -15,11 +15,14 @@ import {
 import { fetchWorkspaces } from "../../configs/servers/workspaceSlice";
 import { setLabelColor } from "../../configs/servers/formNewWorkspaceSlice";
 import { GrLinkPrevious } from "react-icons/gr";
+import useThemeColor from "../../hooks/useThemeColor";
 
 const NewDisplayData: React.FC<NewDisplayDataProps> = ({
   onSuccess,
   onPrevious,
 }) => {
+  const { textColor, themeColor } = useThemeColor();
+
   const dispatch = useDispatch<AppDispatch>();
 
   const workspaceName = useSelector(
@@ -47,7 +50,7 @@ const NewDisplayData: React.FC<NewDisplayDataProps> = ({
       const response = await createWorkspace(data);
       showSuccess("created");
       dispatch(fetchWorkspaces());
-      dispatch(setLabelColor("bg-gray-500"));
+      dispatch(setLabelColor({ colorClass: themeColor, colorName: "" }));
       onSuccess();
     } catch (error: any) {
       const statusCode = error.response?.status;
@@ -66,7 +69,9 @@ const NewDisplayData: React.FC<NewDisplayDataProps> = ({
           onClick={onPrevious}
           className="size-4 transform -translate-x-[287px] -translate-y-[6px]"
         />
-        <h2 className="font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px] mb-[30px]">
+        <h2
+          className={`font-extrabold ${textColor} justify-center w-fit pb-2 text-[32px] mb-[30px]`}
+        >
           مرور اطلاعات
         </h2>
         <div className="w-[453px] border rounded-[8px]">

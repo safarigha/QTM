@@ -14,8 +14,11 @@ import New from "../../components/workspace/New";
 import ModalView from "../../components/commons/UI/ModalView";
 import { useSelector } from "react-redux";
 import { fetchWorkspaces } from "../../configs/servers/workspaceSlice";
+import useThemeColor from "../../hooks/useThemeColor";
 
 const Sidbar: React.FC = () => {
+  const { textColor } = useThemeColor();
+
   const dispatch = useAppDispatch();
   const workspaces = useSelector(
     (state: RootState) => state.workspaces.workspaces
@@ -40,7 +43,7 @@ const Sidbar: React.FC = () => {
       <CreateNewButton
         color="#208D8E"
         label="ساختن فضای کاری جدید"
-        className="w-[274px] h-[30px] rounded-[4px] mt-6 mr-auto ml-auto pr-2 text-sm border border-brand-primary text-brand-primary"
+        className={`w-[274px] h-[30px] rounded-[4px] mt-6 mr-auto ml-auto pr-2 text-sm border border-brand-primary ${textColor}`}
         labelClassName="text-sm"
         onClick={openNewWorkspace}
       />

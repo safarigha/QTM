@@ -15,10 +15,13 @@ import { useNavigate } from "react-router-dom";
 import { fetchProjects } from "../../configs/servers/projectSlice";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import useThemeColor from "../../hooks/useThemeColor";
 
 const nameProjectSchema = ProjectSchema.pick({ name: true });
 
 const New: React.FC<NewProjectProps> = ({ onClose }) => {
+  const { textColor } = useThemeColor();
+
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
@@ -69,7 +72,9 @@ const New: React.FC<NewProjectProps> = ({ onClose }) => {
           className="transform -translate-y-[8px] translate-x-[290px]"
           onClick={onClose}
         />
-        <p className="font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px]">
+        <p
+          className={`font-extrabold ${textColor} justify-center w-fit pb-2 text-[32px]`}
+        >
           ایجاد پروژه جدید در "{workspace?.name}"
         </p>
         <InputForm

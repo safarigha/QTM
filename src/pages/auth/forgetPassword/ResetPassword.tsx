@@ -2,8 +2,11 @@ import useResetToken from "../../../hooks/useResetToken";
 import InputForm from "../../../components/commons/forms/InputForm";
 import { IField, IResetFormData } from "../../../configs/interfaces";
 import ResetPasswordSchema from "../../../validations/ResetPasswordShema";
+import useThemeColor from "../../../hooks/useThemeColor";
 
 const ResetPassword: React.FC = () => {
+  const { textColor } = useThemeColor();
+
   const { requestResetToken, isValidEmail } = useResetToken();
 
   const handleResetSubmit = async (data: IResetFormData) => {
@@ -23,7 +26,9 @@ const ResetPassword: React.FC = () => {
     <div className="flex items-center justify-center">
       {!isValidEmail ? (
         <div className="flex bg-white flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
-          <p className="font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px]">
+          <p
+            className={`font-extrabold ${textColor} justify-center w-fit pb-2 text-[32px]`}
+          >
             فراموشی رمز عبور
           </p>
           <InputForm
@@ -35,7 +40,9 @@ const ResetPassword: React.FC = () => {
         </div>
       ) : (
         <div className="flex bg-white flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
-          <p className="font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px]">
+          <p
+            className={`font-extrabold ${textColor} justify-center w-fit pb-2 text-[32px]`}
+          >
             فراموشی رمز عبور
           </p>
           <p className="mt-2 text-md font-base text-center">

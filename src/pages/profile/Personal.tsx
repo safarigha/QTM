@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import FileManager from "../../helpers/FileManager";
 import { fetchAccount } from "../../configs/servers/accountSlice";
 import useUploadFile from "../../hooks/useUploadFile";
+import useThemeColor from "../../hooks/useThemeColor";
 
 const PersonalSchema = UserSchema.pick({
   first_name: true,
@@ -19,6 +20,8 @@ const PersonalSchema = UserSchema.pick({
 });
 
 const Personal: React.FC = () => {
+  const { textColor } = useThemeColor();
+
   const {
     data: account,
     status,
@@ -117,7 +120,7 @@ const Personal: React.FC = () => {
   ];
   return (
     <div>
-      <h1 className="text-center text-brand-primary text-3xl font-bold mb-6">
+      <h1 className={`text-center ${textColor} text-3xl font-bold mb-6`}>
         اطلاعات فردی
       </h1>
       <div className="mb-4 flex items-center">
@@ -142,7 +145,7 @@ const Personal: React.FC = () => {
             acceptFormat="image/*"
             onFileChange={handleImageUpload}
             buttonLabel="ویرایش تصویر پروفایل"
-            buttonClassName="border border-brand-primary bg-transparent text-center text-brand-primary font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-[212px] mb-2"
+            buttonClassName={`border border-brand-primary bg-transparent text-center ${textColor} font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-[212px] mb-2`}
             inputClassName="hidden"
             showSelectedFilePreview={false}
           />

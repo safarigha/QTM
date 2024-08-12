@@ -8,8 +8,11 @@ import UserLoginSchema from "../../../validations/UserLoginShema";
 import { useAppDispatch } from "../../../configs/servers/store";
 import { setToken } from "../../../configs/servers/auth/authSlice";
 import { useEffect, useState } from "react";
+import useThemeColor from "../../../hooks/useThemeColor";
 
 const Login: React.FC = () => {
+  const { textColor } = useThemeColor();
+
   const [theme, setTheme] = useState("light");
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -64,7 +67,9 @@ const Login: React.FC = () => {
           theme === "dark" ? "bg-black" : "bg-white"
         }`}
       >
-        <p className="font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px]">
+        <p
+          className={`font-extrabold ${textColor} justify-center w-fit pb-2 text-[32px]`}
+        >
           خوش اومدی! بیا کارهات رو شروع کن
         </p>
         <InputForm
@@ -73,7 +78,7 @@ const Login: React.FC = () => {
           schema={UserLoginSchema}
           onSubmit={handleLoginSubmit}
         />
-        <div className="mt-4 text-brand-primary text-sm font-bold ">
+        <div className={`mt-4 ${textColor} text-sm font-bold`}>
           <Link to="/reset-password">رمز عبور خود را فراموش کردم</Link>
         </div>
       </div>

@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./auth/authSlice";
 import { useDispatch } from "react-redux";
+import authSlice from "./auth/authSlice";
 import workspacesReducer from "./workspaceSlice";
 import projectsReducer from "./projectSlice";
 import accountReducer from "./accountSlice";
-import formNewWorkspaceSlice from "./formNewWorkspaceSlice";
+import formNewWorkspaceReducer from "./formNewWorkspaceSlice";
+import colorReducer from "./colorSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,7 +13,8 @@ const store = configureStore({
     workspaces: workspacesReducer,
     projects: projectsReducer,
     account: accountReducer,
-    formNewWorkspace: formNewWorkspaceSlice,
+    formNewWorkspace: formNewWorkspaceReducer,
+    color: colorReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

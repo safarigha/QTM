@@ -1,44 +1,53 @@
-import React, { useState } from "react";
+import React from "react";
 import BrandColorButton from "../../components/commons/UI/buttons/BrandColorButton";
 import ColorCheckboxesList from "../../components/commons/UI/checkbox/ColorCheckboxesList";
 import SwitchModeTheme from "../../components/commons/UI/SwitchModeTheme";
-//
-const Setting: React.FC = () => {
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+import { useDispatch, useSelector } from "react-redux";
+import {
+  resetThemeColor,
+  setThemeColor,
+} from "../../configs/servers/colorSlice";
+import { AppDispatch, RootState } from "../../configs/servers/store";
+import useThemeColor from "../../hooks/useThemeColor";
 
-  const handleColorChange = (color: string | null) => {
-    setSelectedColor(color);
+const Setting: React.FC = () => {
+  const { textColor } = useThemeColor();
+  const dispatch = useDispatch<AppDispatch>();
+  // const { themeColor } = useSelector((state: RootState) => state.color);
+
+  const handleColorChange = (colorClass: string, colorName: string) => {
+    dispatch(setThemeColor({ colorClass, colorName }));
   };
 
+  const handleColorDefault = () => {
+    dispatch(resetThemeColor());
+  };
   return (
     <form className="h-[252px]">
-      <h1 className="text-right text-2xl font-bold mb-8">تنظیمات</h1>
-      <span className="mb-2 text-[14px]">انتخاب تم</span>
+      <h1 className={`text-center ${textColor} text-3xl font-bold mb-6`}>
+        تنظیمات
+      </h1>
+      <span className="mb-2 text-[14px] font-bold">انتخاب رنگ قالب پوسته</span>
       <ColorCheckboxesList
-        className="mt-2 mb-2"
+        className="mt-2 mb-4"
         onColorChange={handleColorChange}
       />
-
-      <SwitchModeTheme />
-      <BrandColorButton
-        type="submit"
-        classNames={`mt-6 w-[354px] h-10 ${
-          selectedColor
-            ? `${selectedColor} hover:${selectedColor}/90`
-            : "bg-brand-500 hover:bg-brand-500/90"
-        }  text-white font-semibold shadow-inner shadow-white/10 focus:outline-none`}
-        text="ثبت تغییرات"
-      />
-      {/* <Buttons
-        type="submit"
-        classNames={`mt-6 w-[354px] h-10 ${
-          selectedColor
-            ? `${selectedColor} hover:${selectedColor}/90`
-            : "bg-brand-500 hover:bg-brand-500/90"
-        }  text-white font-semibold shadow-inner shadow-white/10 focus:outline-none`}
-      >
-        ثبت تغییرات
-      </Buttons> */}
+      <div className="flex items-center">
+        <SwitchModeTheme />
+        <BrandColorButton
+          type="submit"
+          classNames={`h-[35px] mb-2 mr-auto text-white font-semibold shadow-inner shadow-white/10 focus:outline-none`}
+          text="بازنشانی به حالت اولیه"
+          onClick={() => handleColorDefault()}
+        />
+      </div>
+      <div className="text-center">
+        <BrandColorButton
+          type="submit"
+          classNames={`mt-6 w-[354px] h-10 text-white font-semibold shadow-inner shadow-white/10 focus:outline-none`}
+          text="ثبت تغییرات"
+        />
+      </div>
     </form>
   );
 };

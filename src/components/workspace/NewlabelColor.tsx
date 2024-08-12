@@ -1,7 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import ColorCheckboxesList from "../commons/UI/checkbox/ColorCheckboxesList";
-import { useState } from "react";
 import BrandColorButton from "../commons/UI/buttons/BrandColorButton";
 import {
   INewlabelColor,
@@ -15,13 +14,17 @@ import {
 import { AppDispatch, RootState } from "../../configs/servers/store";
 import { useDispatch, useSelector } from "react-redux";
 import { GrLinkPrevious } from "react-icons/gr";
+import useThemeColor from "../../hooks/useThemeColor";
 
 const colorWorkspaceSchema = WorkspaceSchema.pick({ color: true });
 
 const NewlabelColor: React.FC<INewlabelColor> = ({ onNext, onPrevious }) => {
+  const { textColor } = useThemeColor();
+
   const dispatch = useDispatch<AppDispatch>();
-  const [selectedColor, setSelectedColor] = useState<string>("bg-gray-500");
-  const [colorName, setColorName] = useState<string>("پیش‌فرض");
+  const { labelColor, labelColorName } = useSelector(
+    (state: RootState) => state.color
+  );
   const creatorName = useSelector(
     (state: RootState) => state.account.data.username
   );
@@ -36,10 +39,8 @@ const NewlabelColor: React.FC<INewlabelColor> = ({ onNext, onPrevious }) => {
   });
 
   const handleColorChange = (color: string, name: string) => {
-    setSelectedColor(color);
-    setColorName(name);
     setValue("color", color);
-    dispatch(setLabelColor(color));
+    dispatch(setLabelColor({ colorClass: color, colorName: name }));
     dispatch(setCreatorName(creatorName));
   };
 
@@ -56,20 +57,22 @@ const NewlabelColor: React.FC<INewlabelColor> = ({ onNext, onPrevious }) => {
             className="size-4 transform -translate-x-[287px] -translate-y-[6px]"
           />
 
-          <p className="font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px]">
+          <p
+            className={`font-extrabold ${textColor} justify-center w-fit pb-2 text-[32px]`}
+          >
             انتخاب رنگ لیبل فضای کاری جدید
           </p>
 
           <div className="mt-2 flex items-center">
             <div
-              className={`w-[80px] h-[80px] flex items-center justify-center rounded-[12px] ml-4 ${selectedColor}`}
+              className={`w-[80px] h-[80px] flex items-center justify-center rounded-[12px] ml-4 ${labelColor}`}
             >
               <p className="text-white text-center text-sm p-4">
-                رنگ {colorName}
+                رنگ {labelColorName}
               </p>
             </div>
             <div>
-              <label className="text-brand-primary">رنگ فضای کاری</label>
+              <label className={`${textColor}`}>رنگ فضای کاری</label>
               <ColorCheckboxesList
                 className="mt-2"
                 onColorChange={handleColorChange}
@@ -79,7 +82,7 @@ const NewlabelColor: React.FC<INewlabelColor> = ({ onNext, onPrevious }) => {
           <input
             type="hidden"
             {...register("color")}
-            value={selectedColor || ""}
+            value={labelColor || ""}
           />
           <BrandColorButton
             text="ادامه"

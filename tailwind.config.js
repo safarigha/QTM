@@ -43,6 +43,7 @@ export default {
     "border-lime-500",
     "border-yellow-500",
     "border-orange-500",
+
   ],
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {

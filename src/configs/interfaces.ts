@@ -2,7 +2,7 @@ import { ZodSchema } from "zod";
 //////commons coponent interfaces//
 export interface ILogoTitle {
   label: string;
-  logo: string;
+  logo: string | React.ReactNode;
   className?: string;
 }
 

@@ -15,6 +15,7 @@ const tailwindColorMap: TailwindColorMap = {
   "bg-yellow-500": "#EAB308",
   "bg-orange-500": "#F97316",
   "bg-gray-500": "#6B7280",
+  "bg-brand-primary": "#208D8E",
 };
 
 export const getHexColor = (tailwindColor: string): string => {

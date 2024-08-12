@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { IRules } from "../../../configs/interfaces";
 import CloseButton from "../../../components/commons/UI/buttons/CloseButton";
+import useThemeColor from "../../../hooks/useThemeColor";
 
 const Rules: React.FC<IRules> = ({ onClose }) => {
+  const { textColor } = useThemeColor();
+
   const [theme, setTheme] = useState("light");
   const [isOpen, setIsOpen] = useState(true);
 
@@ -27,9 +30,7 @@ const Rules: React.FC<IRules> = ({ onClose }) => {
       <dialog
         open={isOpen}
         className={`p-6 border flex flex-col rounded-lg ${
-          theme === "dark"
-            ? "bg-black text-brand-primary"
-            : "bg-white text-black"
+          theme === "dark" ? `bg-black ${textColor}` : `bg-white text-black`
         }`}
       >
         <h2 className="font-extrabold text-center">

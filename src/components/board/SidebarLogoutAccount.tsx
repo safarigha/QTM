@@ -9,6 +9,7 @@ import { resetWorkspaces } from "../../configs/servers/workspaceSlice";
 import { AppDispatch } from "../../configs/servers/store";
 import { ISidebarLogoutAccount } from "../../configs/interfaces";
 import { resetAccounts } from "../../configs/servers/accountSlice";
+import useThemeColor from "../../hooks/useThemeColor";
 
 const clearUserSessionData = () => {
   localStorage.clear();
@@ -22,6 +23,7 @@ const clearUserSessionData = () => {
 const SidebarLogoutAccount: React.FC<ISidebarLogoutAccount> = ({
   className,
 }) => {
+  const { textColor } = useThemeColor();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { showSuccess, showError } = useToast();
@@ -44,7 +46,7 @@ const SidebarLogoutAccount: React.FC<ISidebarLogoutAccount> = ({
   return (
     <button
       onClick={handleLogout}
-      className={`flex text-brand-primary focus:outline-none ${className}`}
+      className={`flex ${textColor} focus:outline-none ${className}`}
     >
       <BiDoorOpen className="size-[40px]" />
       <span className="mr-1 mt-1 items-center font-bold text-xl">خروج</span>

@@ -28,7 +28,7 @@ export const routes = createBrowserRouter([
     path: "/login",
     element: (
       <Layout isSignIn={true}>
-        <Login />,
+        <Login />
       </Layout>
     ),
   },
