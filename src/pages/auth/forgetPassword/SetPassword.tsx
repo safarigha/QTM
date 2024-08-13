@@ -5,11 +5,8 @@ import { IField, ISetPasswordFormData } from "../../../configs/interfaces";
 import { getErrorMessage } from "../../../helpers/errorMessages";
 import useToast from "../../../hooks/useToast";
 import SetPasswordSchema from "../../../validations/SetPasswordShema";
-import useThemeColor from "../../../hooks/useThemeColor";
 
 const SetPassword: React.FC = () => {
-  const { textColor } = useThemeColor();
-
   const navigate = useNavigate();
 
   const { showSuccess, showError } = useToast();
@@ -47,7 +44,7 @@ const SetPassword: React.FC = () => {
     <div className="flex items-center justify-center">
       <div className="flex bg-white flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
         <p
-          className={`font-extrabold ${textColor} justify-center w-fit pb-2 text-[32px]`}
+          className={`font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px]`}
         >
           تغییر رمز عبور
         </p>

@@ -7,11 +7,8 @@ import Rules from "./Rules";
 import { registerAccount } from "../../../configs/APIs/accountApi";
 import useToast from "../../../hooks/useToast";
 import { getErrorMessage } from "../../../helpers/errorMessages";
-import useThemeColor from "../../../hooks/useThemeColor";
 
 const Register: React.FC = () => {
-  const { textColor } = useThemeColor();
-
   const [theme, setTheme] = useState("light");
   const navigate = useNavigate();
   const { showSuccess, showError } = useToast();
@@ -65,7 +62,7 @@ const Register: React.FC = () => {
         }`}
       >
         <p
-          className={`font-extrabold ${textColor} justify-center w-fit pb-2 text-[32px]`}
+          className={`font-extrabold text-brand-primary justify-center w-fit pb-2 text-[32px]`}
         >
           همین حالا ثبت‌نام کن
         </p>

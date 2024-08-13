@@ -1,4 +1,3 @@
-import useThemeColor from "../../../../hooks/useThemeColor";
 import { getHexColor } from "../../../../helpers/getHexColor";
 
 interface IBackgroundAuth {
@@ -6,8 +5,6 @@ interface IBackgroundAuth {
 }
 
 const BackgroundAuth: React.FC<IBackgroundAuth> = ({ className }) => {
-  const { themeColor } = useThemeColor();
-
   return (
     <svg
       className={`absolute bottom-0 right-0 left-0 ${className}`}
@@ -27,14 +24,12 @@ const BackgroundAuth: React.FC<IBackgroundAuth> = ({ className }) => {
           y2="287"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color={getHexColor(themeColor)} />
+          <stop stop-color={getHexColor("bg-brand-primary")} />
           <stop
             offset="50%"
-            stopColor={getHexColor(themeColor)}
+            stopColor={getHexColor("bg-brand-primary")}
             stopOpacity="0.60"
           />
-
-          {/* <stop offset="1" stop-color="#ffffff" /> */}
         </linearGradient>
       </defs>
     </svg>

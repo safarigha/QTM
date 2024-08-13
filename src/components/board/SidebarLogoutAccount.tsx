@@ -10,6 +10,7 @@ import { AppDispatch } from "../../configs/servers/store";
 import { ISidebarLogoutAccount } from "../../configs/interfaces";
 import { resetAccounts } from "../../configs/servers/accountSlice";
 import useThemeColor from "../../hooks/useThemeColor";
+import { resetThemeColor } from "../../configs/servers/colorSlice";
 
 const clearUserSessionData = () => {
   localStorage.clear();
@@ -18,6 +19,8 @@ const clearUserSessionData = () => {
     const [name] = cookie.split("=");
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
   });
+  document.documentElement.setAttribute("data-theme", "light");
+  localStorage.removeItem("theme");
 };
 
 const SidebarLogoutAccount: React.FC<ISidebarLogoutAccount> = ({
@@ -35,6 +38,7 @@ const SidebarLogoutAccount: React.FC<ISidebarLogoutAccount> = ({
       dispatch(resetProjects());
       dispatch(resetWorkspaces());
       dispatch(resetAccounts());
+      dispatch(resetThemeColor());
       showSuccess("logout");
       navigate("/login");
     } catch (error: any) {
