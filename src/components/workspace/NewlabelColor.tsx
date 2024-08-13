@@ -15,6 +15,7 @@ import { AppDispatch, RootState } from "../../configs/servers/store";
 import { useDispatch, useSelector } from "react-redux";
 import { GrLinkPrevious } from "react-icons/gr";
 import useThemeColor from "../../hooks/useThemeColor";
+import { useState } from "react";
 
 const colorWorkspaceSchema = WorkspaceSchema.pick({ color: true });
 
@@ -22,8 +23,8 @@ const NewlabelColor: React.FC<INewlabelColor> = ({ onNext, onPrevious }) => {
   const { textColor } = useThemeColor();
 
   const dispatch = useDispatch<AppDispatch>();
-  const { labelColor, labelColorName } = useSelector(
-    (state: RootState) => state.color
+  const { labelColor, colorName } = useSelector(
+    (state: RootState) => state.formNewWorkspace
   );
   const creatorName = useSelector(
     (state: RootState) => state.account.data.username
@@ -68,7 +69,7 @@ const NewlabelColor: React.FC<INewlabelColor> = ({ onNext, onPrevious }) => {
               className={`w-[80px] h-[80px] flex items-center justify-center rounded-[12px] ml-4 ${labelColor}`}
             >
               <p className="text-white text-center text-sm p-4">
-                رنگ {labelColorName}
+                رنگ {colorName}
               </p>
             </div>
             <div>
