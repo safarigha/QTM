@@ -27,7 +27,6 @@ const Login: React.FC = () => {
     try {
       const response = await loginAccount(data);
       const { access, refresh, expires_in } = response.data;
-
       dispatch(
         setToken({
           accessToken: access,

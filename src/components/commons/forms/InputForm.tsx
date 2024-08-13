@@ -2,8 +2,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import BrandColorButton from "../UI/buttons/BrandColorButton";
 import { IInputForm } from "../../../configs/interfaces";
-import alignmentHelper from "../../../helpers/alignmentHelper";
 import useThemeColor from "../../../hooks/useThemeColor";
+import { useState } from "react";
+import alignmentHelper from "../../../helpers/alignmentHelper";
 
 const InputForm: React.FC<IInputForm> = ({
   onSubmit,
@@ -38,9 +39,8 @@ const InputForm: React.FC<IInputForm> = ({
             defaultValue={field.defaultValue}
             {...register(field.id)}
             className={`bg-taransparent mt-2 block w-full h-10 rounded-lg border border-gray-primary px-4 focus:outline-none focus:border-blue-primary ${alignmentHelper(
-              field.defaultValue || "",
-              field.type
-            )}`}
+              field.value || field.defaultValue || ""
+            )}}`}
           />
           {errors[field.id] && (
             <p className="text-red-500 text-xs mt-2 mb-2">
