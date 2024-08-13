@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import BrandColorButton from "../../components/commons/UI/buttons/BrandColorButton";
 import LogoTitle from "../../components/commons/UI/LogoTitle";
-import { QTlogo } from "../../assets/images/images";
+import QTlogo from "../../components/commons/UI/svgs/QTlogo";
 import { SidebarProfileProps } from "../../configs/interfaces";
 import {
   TbUserEdit,
@@ -12,8 +12,6 @@ import {
 } from "react-icons/tb";
 
 const Sidebar: React.FC<SidebarProfileProps> = ({ onComponentChange }) => {
-  const navigate = useNavigate();
-
   const handleItemClick = (type: string) => {
     onComponentChange(type);
   };
@@ -38,7 +36,11 @@ const Sidebar: React.FC<SidebarProfileProps> = ({ onComponentChange }) => {
 
   return (
     <div className=" pt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-200 overflow-y-auto scrollbar-gutter-stable">
-      <LogoTitle className="pb-5 pt-2" label="کیوتی منیجر" logo={QTlogo} />
+      <LogoTitle
+        className="pb-5 pt-2"
+        label="کیوتی منیجر"
+        logo={<QTlogo className={`size-[60px]`} />}
+      />
       <BrandColorButton
         classNames="w-[135px] h-10 flex ml-auto mr-auto mt-4"
         type="submit"

@@ -1,5 +1,4 @@
 import LogoTitle from "../../components/commons/UI/LogoTitle";
-import { QTlogo } from "../../assets/images/images";
 import IconInput from "../../components/commons/UI/IconInput";
 import { CiSearch } from "react-icons/ci";
 import CreateNewButton from "../../components/commons/UI/buttons/CreateNewButton";
@@ -15,6 +14,7 @@ import ModalView from "../../components/commons/UI/ModalView";
 import { useSelector } from "react-redux";
 import { fetchWorkspaces } from "../../configs/servers/workspaceSlice";
 import useThemeColor from "../../hooks/useThemeColor";
+import QTlogo from "../../components/commons/UI/svgs/QTlogo";
 
 const Sidbar: React.FC = () => {
   const { textColor } = useThemeColor();
@@ -34,7 +34,11 @@ const Sidbar: React.FC = () => {
 
   return (
     <div className=" pt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-200 overflow-y-auto scrollbar-gutter-stable">
-      <LogoTitle className="pt-2" label="کیوتی منیجر" logo={QTlogo} />
+      <LogoTitle
+        className="pt-2"
+        label="کیوتی منیجر"
+        logo={<QTlogo className={`size-[60px]`} />}
+      />
       <IconInput
         placeholder="جستجو کنید..."
         icon={<CiSearch className="size-6 ml-2" />}
