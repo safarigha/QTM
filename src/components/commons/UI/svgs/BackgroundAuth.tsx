@@ -1,8 +1,5 @@
+import { IBackgroundAuth } from "../../../../configs/interfaces";
 import { getHexColor } from "../../../../helpers/getHexColor";
-
-interface IBackgroundAuth {
-  className?: string;
-}
 
 const BackgroundAuth: React.FC<IBackgroundAuth> = ({ className }) => {
   return (

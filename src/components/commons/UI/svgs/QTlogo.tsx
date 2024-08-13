@@ -1,9 +1,7 @@
+import { IQTlogo } from "../../../../configs/interfaces";
 import { getHexColor } from "../../../../helpers/getHexColor";
 import useThemeColor from "../../../../hooks/useThemeColor";
 
-interface IQTlogo {
-  className?: string;
-}
 const QTlogo: React.FC<IQTlogo> = ({ className }) => {
   const { themeColor } = useThemeColor();
 

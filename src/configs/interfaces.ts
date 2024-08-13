@@ -30,6 +30,14 @@ export interface ColorCheckboxesListProps {
   onColorChange: (color: string, name: string) => void;
 }
 
+export interface IQTlogo {
+  className?: string;
+}
+
+export interface IBackgroundAuth {
+  className?: string;
+}
+
 //////buttons
 export interface IBrandColorButton {
   text: string | React.ReactNode;
