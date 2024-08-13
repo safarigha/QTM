@@ -21,7 +21,7 @@ const BackgroundAuth: React.FC<IBackgroundAuth> = ({ className }) => {
           y2="287"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color={getHexColor("bg-brand-primary")} />
+          <stop stopColor={getHexColor("bg-brand-primary")} />
           <stop
             offset="50%"
             stopColor={getHexColor("bg-brand-primary")}
