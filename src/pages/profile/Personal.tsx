@@ -20,7 +20,7 @@ const PersonalSchema = UserSchema.pick({
 });
 
 const Personal: React.FC = () => {
-  const { textColor } = useThemeColor();
+  const { textColor, borderColor } = useThemeColor();
 
   const {
     data: account,
@@ -145,7 +145,7 @@ const Personal: React.FC = () => {
             acceptFormat="image/*"
             onFileChange={handleImageUpload}
             buttonLabel="ویرایش تصویر پروفایل"
-            buttonClassName={`border border-brand-primary bg-transparent text-center ${textColor} font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-[212px] mb-2`}
+            buttonClassName={`border bg-transparent text-center ${textColor} ${borderColor} font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-[212px] mb-2`}
             inputClassName="hidden"
             showSelectedFilePreview={false}
           />

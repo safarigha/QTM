@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import { IInputButton } from "../../../../configs/interfaces";
+import useThemeColor from "../../../../hooks/useThemeColor";
 
 const InputButton: React.FC<IInputButton> = ({ onSubmit, className = "" }) => {
+  const { borderColor } = useThemeColor();
+
   const [email, setEmail] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +25,7 @@ const InputButton: React.FC<IInputButton> = ({ onSubmit, className = "" }) => {
         <form onSubmit={handleSubmit} className="w-full flex">
           <input
             type="email"
-            className="flex items-center justify-center font-normal text-sm w-[339px] h-10 pr-[11px] text-gray-primary rounded-r-lg bg-gray-secondary focus:outline-none focus:border-2 focus:border-brand-primary"
+            className={`flex items-center justify-center font-normal text-sm w-[339px] h-10 pr-[11px] text-gray-primary rounded-r-lg bg-gray-secondary focus:outline-none focus:border-2 focus:${borderColor}`}
             placeholder="دعوت با ایمیل"
             value={email}
             onChange={handleInputChange}

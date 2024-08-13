@@ -15,9 +15,10 @@ import { useSelector } from "react-redux";
 import { fetchWorkspaces } from "../../configs/servers/workspaceSlice";
 import useThemeColor from "../../hooks/useThemeColor";
 import QTlogo from "../../components/commons/UI/svgs/QTlogo";
+import { getHexColor } from "../../helpers/getHexColor";
 
 const Sidbar: React.FC = () => {
-  const { textColor } = useThemeColor();
+  const { textColor, borderColor, themeColor } = useThemeColor();
 
   const dispatch = useAppDispatch();
   const workspaces = useSelector(
@@ -45,9 +46,9 @@ const Sidbar: React.FC = () => {
         className=" w-[274px] h-[30px] rounded-[4px] mt-4 mr-auto ml-auto pr-2 text-sm "
       />
       <CreateNewButton
-        color="#208D8E"
+        color={getHexColor(themeColor)}
         label="ساختن فضای کاری جدید"
-        className={`w-[274px] h-[30px] rounded-[4px] mt-6 mr-auto ml-auto pr-2 text-sm border border-brand-primary ${textColor}`}
+        className={`w-[274px] h-[30px] rounded-[4px] mt-6 mr-auto ml-auto pr-2 text-sm border ${borderColor} ${textColor}`}
         labelClassName="text-sm"
         onClick={openNewWorkspace}
       />
