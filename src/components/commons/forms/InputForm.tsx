@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import BrandColorButton from "../UI/buttons/BrandColorButton";
 import { IInputForm } from "../../../configs/interfaces";
 import useThemeColor from "../../../hooks/useThemeColor";
-import { useState } from "react";
 import alignmentHelper from "../../../helpers/alignmentHelper";
 
 const InputForm: React.FC<IInputForm> = ({
