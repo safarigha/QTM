@@ -19,16 +19,17 @@ const useThemeSettings = () => {
       mode === "LM" ? "light" : "dark"
     );
 
-    dispatch(setThemeColor({ colorClass: colorWithHash, colorName: "" } || ""));
+    dispatch(setThemeColor({ colorClass: colorWithHash, colorName: "" }));
   };
 
   const fetchAndApplyThemeSettings = async () => {
     try {
       const settingsResponse = await getSettings();
-      const responseTheme = settingsResponse.data[0]?.theme || "";
-      applyThemeSettings(responseTheme);
+      const responseColorTheme = settingsResponse.data[0]?.theme || "";
+      applyThemeSettings(responseColorTheme);
+      return responseColorTheme;
     } catch (error) {
-      console.error("Failed to fetch theme settings:", error);
+      return "اعمال تنظیمات پوسته به مشکل خورده است";
     }
   };
 

@@ -62,6 +62,7 @@ const Setting: React.FC = () => {
     const currentTheme = `${
       selectedColor ? selectedColor.split(",")[0] : "208D8E"
     }`;
+
     setTheme(currentTheme);
   };
 
