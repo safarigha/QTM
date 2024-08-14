@@ -75,7 +75,7 @@ const New: React.FC<NewProjectProps> = ({ onClose }) => {
         <p
           className={`font-extrabold ${textColor} justify-center w-fit pb-2 text-[32px]`}
         >
-          ایجاد پروژه جدید در "{workspace?.name}"
+          ایجاد پروژه جدید
         </p>
         <InputForm
           fields={fields}

@@ -107,9 +107,6 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
                 >
                   پروژه‌ای هنوز ثبت نشده است
                 </p>
-                <ModalView isOpen={isOpenNewProject} onClose={closeNewProject}>
-                  <New onClose={closeNewProject} />
-                </ModalView>
               </div>
             )}
             <div className="flex justify-center">
@@ -124,6 +121,9 @@ const SidbarWorkspaceList: React.FC<ISidbarWorkspaceList> = () => {
                 onClick={() => handleNewProject(workspace.id)}
               />
             </div>
+            <ModalView isOpen={isOpenNewProject} onClose={closeNewProject}>
+              <New onClose={closeNewProject} />
+            </ModalView>
           </div>
         </div>
       ))}
