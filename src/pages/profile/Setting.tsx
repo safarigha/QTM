@@ -68,8 +68,6 @@ const Setting: React.FC = () => {
   const handleFormSubmit = async (data: ISettingsFormData) => {
     try {
       await updateSettings(data);
-      console.log(`handleFormSubmit: ${data}`);
-
       showSuccess("created");
     } catch (error: any) {
       const statusCode = error.response?.status;

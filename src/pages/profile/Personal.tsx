@@ -73,9 +73,9 @@ const Personal: React.FC = () => {
       formData.append("thumbnail", uploadedUrl || "");
       // if (selectedFile) formData.append("thumbnail", selectedFile);
 
-      formData.forEach((value, key) => {
-        console.log(`${key}:`, value);
-      });
+      // formData.forEach((value, key) => {
+      //   console.log(`${key}:`, value);
+      // });
 
       // if (selectedFile) {
       //   console.log("Selected file type:", selectedFile.type);
