@@ -49,18 +49,6 @@ const SidebarLogoutAccount: React.FC<ISidebarLogoutAccount> = ({
     }
   };
 
-  useEffect(() => {
-    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-      handleLogout();
-      event.preventDefault();
-      event.returnValue = "";
-    };
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
-
   return (
     <button
       onClick={handleLogout}
