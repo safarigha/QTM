@@ -38,6 +38,11 @@ export interface IBackgroundAuth {
   className?: string;
 }
 
+export interface ISwitchModeTheme {
+  className?: string;
+  onClick?: () => void;
+}
+
 //////buttons
 export interface IBrandColorButton {
   text: string | React.ReactNode;

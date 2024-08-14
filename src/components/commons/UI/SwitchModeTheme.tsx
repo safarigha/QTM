@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { PiMoonBold, PiSunDimBold } from "react-icons/pi";
-
-interface ISwitchModeTheme {
-  className?: string;
-  onClick?: () => void;
-}
+import { ISwitchModeTheme } from "../../../configs/interfaces";
 
 const SwitchModeTheme: React.FC<ISwitchModeTheme> = ({
   className,
