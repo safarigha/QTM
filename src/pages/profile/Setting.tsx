@@ -17,6 +17,7 @@ import SettingsThemeSchema from "../../validations/SettingsThemeShema";
 import { updateSettings } from "../../configs/APIs/settingsApi";
 import { getHexColor } from "../../helpers/getHexColor";
 import getThemeMode from "../../helpers/getThemeMode";
+import { ISettingsFormData } from "../../configs/interfaces";
 
 const Setting: React.FC = () => {
   const { textColor } = useThemeColor();
@@ -28,7 +29,7 @@ const Setting: React.FC = () => {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm({
+  } = useForm<ISettingsFormData>({
     resolver: zodResolver(SettingsThemeSchema),
   });
 
@@ -64,7 +65,7 @@ const Setting: React.FC = () => {
     setTheme(currentTheme);
   };
 
-  const handleFormSubmit = async (data: any) => {
+  const handleFormSubmit = async (data: ISettingsFormData) => {
     try {
       await updateSettings(data);
       console.log(`handleFormSubmit: ${data}`);

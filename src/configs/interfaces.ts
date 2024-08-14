@@ -329,3 +329,7 @@ export type IAccountFormData = {
   phone_number?: string;
   thumbnail?: string;
 };
+
+export interface ISettingsFormData {
+  theme: string;
+}
