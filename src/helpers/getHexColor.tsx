@@ -21,3 +21,10 @@ const tailwindColorMap: TailwindColorMap = {
 export const getHexColor = (tailwindColor: string): string => {
   return tailwindColorMap[tailwindColor] || "#6B7280";
 };
+
+export const getTailwindColor = (hexColor: string): string => {
+  const tailwindColor = Object.keys(tailwindColorMap).find(
+    (key) => tailwindColorMap[key] === hexColor
+  );
+  return tailwindColor || "bg-gray-500";
+};

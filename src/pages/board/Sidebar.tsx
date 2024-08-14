@@ -16,6 +16,7 @@ import { fetchWorkspaces } from "../../configs/servers/workspaceSlice";
 import useThemeColor from "../../hooks/useThemeColor";
 import QTlogo from "../../components/commons/UI/svgs/QTlogo";
 import { getHexColor } from "../../helpers/getHexColor";
+import getThemeMode from "../../helpers/getThemeMode";
 
 const Sidbar: React.FC = () => {
   const { textColor, borderColor, themeColor } = useThemeColor();

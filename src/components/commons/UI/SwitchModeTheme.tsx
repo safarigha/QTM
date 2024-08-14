@@ -3,23 +3,36 @@ import { PiMoonBold, PiSunDimBold } from "react-icons/pi";
 
 interface ISwitchModeTheme {
   className?: string;
+  onClick?: () => void;
 }
 
-const SwitchModeTheme: React.FC<ISwitchModeTheme> = ({ className }) => {
+const SwitchModeTheme: React.FC<ISwitchModeTheme> = ({
+  className,
+  onClick,
+}) => {
   const [isLightMode, setIsLightMode] = useState(
     localStorage.getItem("theme") !== "dark"
   );
 
-  // Update local storage and html attribute when theme changes
   useEffect(() => {
     const theme = isLightMode ? "light" : "dark";
     localStorage.setItem("theme", theme);
     document.documentElement.setAttribute("data-theme", theme);
   }, [isLightMode]);
 
-  // Handle theme change
   const handleToggle = () => {
-    setIsLightMode(!isLightMode);
+    setIsLightMode((prevMode) => {
+      const newMode = !prevMode;
+      const theme = newMode ? "light" : "dark";
+      localStorage.setItem("theme", theme);
+      document.documentElement.setAttribute("data-theme", theme);
+
+      if (onClick) {
+        onClick();
+      }
+
+      return newMode;
+    });
   };
 
   return (

@@ -1,29 +1,85 @@
-import React from "react";
+import React, { useState } from "react";
 import BrandColorButton from "../../components/commons/UI/buttons/BrandColorButton";
 import ColorCheckboxesList from "../../components/commons/UI/checkbox/ColorCheckboxesList";
 import SwitchModeTheme from "../../components/commons/UI/SwitchModeTheme";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   resetThemeColor,
   setThemeColor,
 } from "../../configs/servers/colorSlice";
-import { AppDispatch, RootState } from "../../configs/servers/store";
+import { AppDispatch } from "../../configs/servers/store";
 import useThemeColor from "../../hooks/useThemeColor";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import useToast from "../../hooks/useToast";
+import { getErrorMessage } from "../../helpers/errorMessages";
+import SettingsThemeSchema from "../../validations/SettingsThemeShema";
+import { updateSettings } from "../../configs/APIs/settingsApi";
+import { getHexColor } from "../../helpers/getHexColor";
+import getThemeMode from "../../helpers/getThemeMode";
 
 const Setting: React.FC = () => {
   const { textColor } = useThemeColor();
   const dispatch = useDispatch<AppDispatch>();
-  // const { themeColor } = useSelector((state: RootState) => state.color);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const { showSuccess, showError } = useToast();
+  // const themeMode = getThemeMode();
+
+  const {
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(SettingsThemeSchema),
+  });
+
+  const setTheme = (color: string) => {
+    const updatedTheme = `${color},${getThemeMode()}`;
+    setSelectedColor(updatedTheme);
+    setValue("theme", updatedTheme);
+  };
 
   const handleColorChange = (colorClass: string, colorName: string) => {
+    const hexColor = `${getHexColor(colorClass).split("#")[1]}`;
+    setTheme(hexColor);
     dispatch(setThemeColor({ colorClass, colorName }));
   };
 
-  const handleColorDefault = () => {
+  const handleColorDefault = async () => {
+    const defaultColor = `208D8E`;
+    setTheme(defaultColor);
     dispatch(resetThemeColor());
+    try {
+      await handleSubmit(handleFormSubmit)();
+    } catch (error: any) {
+      const statusCode = error.response?.status;
+      const errorMessage = getErrorMessage("server", statusCode);
+      showError(errorMessage);
+    }
   };
+
+  const handleSwitchModeTheme = () => {
+    const currentTheme = `${
+      selectedColor ? selectedColor.split(",")[0] : "208D8E"
+    }`;
+    setTheme(currentTheme);
+  };
+
+  const handleFormSubmit = async (data: any) => {
+    try {
+      await updateSettings(data);
+      console.log(`handleFormSubmit: ${data}`);
+
+      showSuccess("created");
+    } catch (error: any) {
+      const statusCode = error.response?.status;
+      const errorMessage = getErrorMessage("server", statusCode);
+      showError(errorMessage);
+    }
+  };
+
   return (
-    <form className="h-[252px]">
+    <form className="h-[252px]" onSubmit={handleSubmit(handleFormSubmit)}>
       <h1 className={`text-center ${textColor} text-3xl font-bold mb-6`}>
         تنظیمات
       </h1>
@@ -33,12 +89,12 @@ const Setting: React.FC = () => {
         onColorChange={handleColorChange}
       />
       <div className="flex items-center">
-        <SwitchModeTheme />
+        <SwitchModeTheme onClick={handleSwitchModeTheme} />
         <BrandColorButton
-          type="submit"
+          type="button"
           classNames={`h-[35px] mb-2 mr-auto text-white font-semibold shadow-inner shadow-white/10 focus:outline-none`}
           text="بازنشانی به حالت اولیه"
-          onClick={() => handleColorDefault()}
+          onClick={handleColorDefault}
         />
       </div>
       <div className="text-center">
@@ -48,8 +104,69 @@ const Setting: React.FC = () => {
           text="ثبت تغییرات"
         />
       </div>
+      {errors.theme && (
+        <p className="text-red-500 text-xs mt-2">
+          {errors.theme.message as string}
+        </p>
+      )}
     </form>
   );
 };
 
 export default Setting;
+
+// import React from "react";
+// import BrandColorButton from "../../components/commons/UI/buttons/BrandColorButton";
+// import ColorCheckboxesList from "../../components/commons/UI/checkbox/ColorCheckboxesList";
+// import SwitchModeTheme from "../../components/commons/UI/SwitchModeTheme";
+// import { useDispatch, useSelector } from "react-redux";
+// import {
+//   resetThemeColor,
+//   setThemeColor,
+// } from "../../configs/servers/colorSlice";
+// import { AppDispatch, RootState } from "../../configs/servers/store";
+// import useThemeColor from "../../hooks/useThemeColor";
+
+// const Setting: React.FC = () => {
+//   const { textColor } = useThemeColor();
+//   const dispatch = useDispatch<AppDispatch>();
+//   // const { themeColor } = useSelector((state: RootState) => state.color);
+
+//   const handleColorChange = (colorClass: string, colorName: string) => {
+//     dispatch(setThemeColor({ colorClass, colorName }));
+//   };
+
+//   const handleColorDefault = () => {
+//     dispatch(resetThemeColor());
+//   };
+//   return (
+//     <form className="h-[252px]">
+//       <h1 className={`text-center ${textColor} text-3xl font-bold mb-6`}>
+//         تنظیمات
+//       </h1>
+//       <span className="mb-2 text-[14px] font-bold">انتخاب رنگ قالب پوسته</span>
+//       <ColorCheckboxesList
+//         className="mt-2 mb-4"
+//         onColorChange={handleColorChange}
+//       />
+//       <div className="flex items-center">
+//         <SwitchModeTheme />
+//         <BrandColorButton
+//           type="submit"
+//           classNames={`h-[35px] mb-2 mr-auto text-white font-semibold shadow-inner shadow-white/10 focus:outline-none`}
+//           text="بازنشانی به حالت اولیه"
+//           onClick={() => handleColorDefault()}
+//         />
+//       </div>
+//       <div className="text-center">
+//         <BrandColorButton
+//           type="submit"
+//           classNames={`mt-6 w-[354px] h-10 text-white font-semibold shadow-inner shadow-white/10 focus:outline-none`}
+//           text="ثبت تغییرات"
+//         />
+//       </div>
+//     </form>
+//   );
+// };
+
+// export default Setting;
