@@ -11,6 +11,7 @@ import { ISidebarLogoutAccount } from "../../configs/interfaces";
 import { resetAccounts } from "../../configs/servers/accountSlice";
 import useThemeColor from "../../hooks/useThemeColor";
 import { resetThemeColor } from "../../configs/servers/colorSlice";
+import { useEffect } from "react";
 
 const clearUserSessionData = () => {
   localStorage.clear();
@@ -47,6 +48,19 @@ const SidebarLogoutAccount: React.FC<ISidebarLogoutAccount> = ({
       showError(errorMessage);
     }
   };
+
+  useEffect(() => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      handleLogout();
+      event.preventDefault();
+      event.returnValue = "";
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
   return (
     <button
       onClick={handleLogout}
