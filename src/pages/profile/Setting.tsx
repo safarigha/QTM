@@ -39,16 +39,12 @@ const Setting: React.FC = () => {
     setValue("theme", updatedTheme);
     const colorWithHash = getTailwindColor(`#${color}`);
     localStorage.setItem("color", colorWithHash.split("-")[1]);
-    console.log(
-      `color : ${color} -- updatedTheme: ${updatedTheme} -- colorWithHash: ${colorWithHash}`
-    );
   };
 
   const handleColorChange = (colorClass: string, colorName: string) => {
     const hexColor = `${getHexColor(colorClass).split("#")[1]}`;
     setTheme(hexColor);
     dispatch(setThemeColor({ colorClass, colorName }));
-    console.log(`colorClass:${colorClass} -- hexColor: ${hexColor}`);
   };
 
   const handleColorDefault = async () => {
@@ -68,13 +64,13 @@ const Setting: React.FC = () => {
     const currentTheme = getHexColor(themeColor).split("#")[1];
     dispatch(setThemeColor({ colorClass: themeColor, colorName: "" }));
     setTheme(currentTheme);
-    console.log(`themeColor:${themeColor} -- hexColor: ${currentTheme}`);
   };
 
   const handleFormSubmit = async (data: ISettingsFormData) => {
     try {
       await updateSettings(data);
       showSuccess("created");
+      window.location.reload();
     } catch (error: any) {
       const statusCode = error.response?.status;
       const errorMessage = getErrorMessage("server", statusCode);
