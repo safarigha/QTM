@@ -42,8 +42,8 @@ const Sidbar: React.FC = () => {
       />
       <IconInput
         placeholder="جستجو کنید..."
-        icon={<CiSearch className="size-6 ml-2" />}
-        className=" w-[274px] h-[30px] rounded-[4px] mt-4 mr-auto ml-auto pr-2 text-sm "
+        icon={<CiSearch className={`size-6 ml-2 ${textColor}`} />}
+        className={`w-[274px] h-[30px] rounded-[4px] mt-4 mr-auto ml-auto pr-2 text-sm ${textColor}`}
       />
       <CreateNewButton
         color={getHexColor(themeColor)}

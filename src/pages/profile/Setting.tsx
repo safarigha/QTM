@@ -15,12 +15,12 @@ import useToast from "../../hooks/useToast";
 import { getErrorMessage } from "../../helpers/errorMessages";
 import SettingsThemeSchema from "../../validations/SettingsThemeShema";
 import { updateSettings } from "../../configs/APIs/settingsApi";
-import { getHexColor } from "../../helpers/getHexColor";
+import { getHexColor, getTailwindColor } from "../../helpers/getHexColor";
 import getThemeMode from "../../helpers/getThemeMode";
 import { ISettingsFormData } from "../../configs/interfaces";
 
 const Setting: React.FC = () => {
-  const { textColor } = useThemeColor();
+  const { textColor, themeColor } = useThemeColor();
   const dispatch = useDispatch<AppDispatch>();
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const { showSuccess, showError } = useToast();
@@ -37,12 +37,18 @@ const Setting: React.FC = () => {
     const updatedTheme = `${color},${getThemeMode()}`;
     setSelectedColor(updatedTheme);
     setValue("theme", updatedTheme);
+    const colorWithHash = getTailwindColor(`#${color}`);
+    localStorage.setItem("color", colorWithHash.split("-")[1]);
+    console.log(
+      `color : ${color} -- updatedTheme: ${updatedTheme} -- colorWithHash: ${colorWithHash}`
+    );
   };
 
   const handleColorChange = (colorClass: string, colorName: string) => {
     const hexColor = `${getHexColor(colorClass).split("#")[1]}`;
     setTheme(hexColor);
     dispatch(setThemeColor({ colorClass, colorName }));
+    console.log(`colorClass:${colorClass} -- hexColor: ${hexColor}`);
   };
 
   const handleColorDefault = async () => {
@@ -59,11 +65,10 @@ const Setting: React.FC = () => {
   };
 
   const handleSwitchModeTheme = () => {
-    const currentTheme = `${
-      selectedColor ? selectedColor.split(",")[0] : "208D8E"
-    }`;
-
+    const currentTheme = getHexColor(themeColor).split("#")[1];
+    dispatch(setThemeColor({ colorClass: themeColor, colorName: "" }));
     setTheme(currentTheme);
+    console.log(`themeColor:${themeColor} -- hexColor: ${currentTheme}`);
   };
 
   const handleFormSubmit = async (data: ISettingsFormData) => {

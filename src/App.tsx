@@ -1,10 +1,16 @@
 import Register from "./pages/auth/register/Register";
-import LoadingPage from "./components/commons/UI/LoadingPage";
+import { useEffect } from "react";
+import useThemeSettings from "./hooks/useThemeSetting";
 
 const App: React.FC = () => {
+  const { loadThemeFromLocalStorage } = useThemeSettings();
+
+  useEffect(() => {
+    loadThemeFromLocalStorage();
+  }, [loadThemeFromLocalStorage]);
+
   return (
     <div>
-      <LoadingPage />
       <Register />
     </div>
   );

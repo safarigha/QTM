@@ -2,6 +2,7 @@
 export default {
   mode: 'jit',
   safelist: [
+    "bg-brand-primary",
     "bg-red-500",
     "bg-pink-500",
     "bg-purple-500",
@@ -16,6 +17,7 @@ export default {
     "bg-yellow-500",
     "bg-orange-500",
 
+    "text-brand-primary",
     "text-red-500",
     "text-pink-500",
     "text-purple-500",
@@ -30,6 +32,7 @@ export default {
     "text-yellow-500",
     "text-orange-500",
 
+    "border-brand-primary",
     "border-red-500",
     "border-pink-500",
     "border-purple-500",
