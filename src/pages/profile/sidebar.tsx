@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BrandColorButton from "../../components/commons/UI/buttons/BrandColorButton";
-import LogoTitle from "../../components/commons/UI/LogoTitle";
+import IconTitle from "../../components/commons/UI/IconTitle";
 import QTlogo from "../../components/commons/UI/svgs/QTlogo";
 import { SidebarProfileProps } from "../../configs/interfaces";
 import {
@@ -36,8 +36,8 @@ const Sidebar: React.FC<SidebarProfileProps> = ({ onComponentChange }) => {
 
   return (
     <div className=" pt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-200 overflow-y-auto scrollbar-gutter-stable">
-      <LogoTitle
-        className="pb-5 pt-2"
+      <IconTitle
+        className="flex-col pb-5 pt-2 font-black text-2xl"
         label="کیوتی منیجر"
         logo={<QTlogo className={`size-[60px]`} />}
       />

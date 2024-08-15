@@ -1,4 +1,4 @@
-import LogoTitle from "../../components/commons/UI/LogoTitle";
+import IconTitle from "../../components/commons/UI/IconTitle";
 import IconInput from "../../components/commons/UI/IconInput";
 import { CiSearch } from "react-icons/ci";
 import CreateNewButton from "../../components/commons/UI/buttons/CreateNewButton";
@@ -35,15 +35,15 @@ const Sidbar: React.FC = () => {
 
   return (
     <div className=" pt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-200 overflow-y-auto scrollbar-gutter-stable">
-      <LogoTitle
-        className="pt-2"
+      <IconTitle
+        className="flex-col pt-2 font-black text-2xl "
         label="کیوتی منیجر"
         logo={<QTlogo className={`size-[60px]`} />}
       />
       <IconInput
         placeholder="جستجو کنید..."
-        icon={<CiSearch className={`size-6 ml-2 ${textColor}`} />}
-        className={`w-[274px] h-[30px] rounded-[4px] mt-4 mr-auto ml-auto pr-2 text-sm ${textColor}`}
+        icon={<CiSearch className={`size-4 ml-1 ${textColor}`} />}
+        className={`w-[274px] h-[30px] rounded-[4px] mt-4 mr-auto ml-auto pr-2 text-xs font-normal ${textColor} border ${borderColor}`}
       />
       <CreateNewButton
         color={getHexColor(themeColor)}

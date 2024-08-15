@@ -5,7 +5,7 @@ const IconInput: React.FC<IIconInput> = ({ placeholder, icon, className }) => {
   const { borderColor } = useThemeColor();
   return (
     <div
-      className={` flex items-center bg-transparent focus:outline-brand-primary border ${borderColor} rounded-[4px] ${className}`}
+      className={` flex items-center bg-transparent focus:outline-brand-primary  rounded-[4px] ${className}`}
     >
       {icon}
       <input

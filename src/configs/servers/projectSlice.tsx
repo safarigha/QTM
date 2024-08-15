@@ -25,6 +25,7 @@ export const fetchProjects = createAsyncThunk<FetchProjectsPayload, string>(
 
 const initialState: ProjectsState = {
   projectsByWorkspace: {},
+  currentProject: null,
   status: "idle",
   error: null,
 };
@@ -35,8 +36,12 @@ const projectsSlice = createSlice({
   reducers: {
     resetProjects: (state) => {
       state.projectsByWorkspace = {};
+      state.currentProject = null;
       state.status = "idle";
       state.error = null;
+    },
+    setCurrentProject: (state, action) => {
+      state.currentProject = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -55,6 +60,6 @@ const projectsSlice = createSlice({
       });
   },
 });
-export const { resetProjects } = projectsSlice.actions;
+export const { resetProjects, setCurrentProject } = projectsSlice.actions;
 
 export default projectsSlice.reducer;

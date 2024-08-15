@@ -1,6 +1,6 @@
 import { ZodSchema } from "zod";
 //////commons coponent interfaces//
-export interface ILogoTitle {
+export interface IIconTitle {
   label: string;
   logo: string | React.ReactNode;
   className?: string;
@@ -41,6 +41,22 @@ export interface IBackgroundAuth {
 export interface ISwitchModeTheme {
   className?: string;
   onClick?: () => void;
+}
+
+export interface Tab {
+  id: string;
+  name?: string;
+  label: string;
+  content: string | React.ReactNode;
+  icon?: React.ReactNode;
+}
+
+export interface TabsFormProps {
+  fields: Tab[];
+  className?: string;
+  middleContent?: React.ReactNode;
+  middleClassName?: string;
+  onChange?: (id: string) => void;
 }
 
 //////buttons
@@ -158,9 +174,11 @@ export interface NewDisplayDataProps {
 //////Project component interfasces//
 export interface NewProjectProps {
   onClose: () => void;
+  workspaceId: string;
 }
 
 export interface INewProjectFormData {
+  id: string;
   name: string;
 }
 
@@ -276,9 +294,14 @@ export interface WorkspaceState {
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
+export interface Project {
+  id: string;
+  name: string;
+}
 
 export interface ProjectsState {
-  projectsByWorkspace: { [key: string]: any[] };
+  projectsByWorkspace: { [key: string]: Project[] };
+  currentProject: Project | null;
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
@@ -332,4 +355,20 @@ export type IAccountFormData = {
 
 export interface ISettingsFormData {
   theme: string;
+}
+
+export interface IColumnView {
+  className?: string;
+}
+
+export interface IListView {
+  className?: string;
+}
+
+export interface IFooter {
+  className?: string;
+}
+
+export interface IHeader {
+  className?: string;
 }

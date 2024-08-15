@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useAppDispatch } from "../../configs/servers/store";
 import { refreshAccessToken } from "../../configs/servers/auth/authSlice";
 import { getAccessToken } from "../../helpers/authToken";
-import Sidbar from "./Sidebar";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
 
 const Board: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -14,9 +15,9 @@ const Board: React.FC = () => {
     }
   }, [dispatch]);
   return (
-    <div>
-      {/* board */}
-      <Sidbar />
+    <div className="flex items-start mt-[30px] ml-[40px] mb-[39px] mr-[16px]">
+      <Sidebar />
+      <Header />
     </div>
   );
 };

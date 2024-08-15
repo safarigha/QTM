@@ -19,16 +19,16 @@ import useThemeColor from "../../hooks/useThemeColor";
 
 const nameProjectSchema = ProjectSchema.pick({ name: true });
 
-const New: React.FC<NewProjectProps> = ({ onClose }) => {
+const New: React.FC<NewProjectProps> = ({ onClose, workspaceId }) => {
   const { textColor } = useThemeColor();
 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const { showSuccess, showError } = useToast();
-  const workspaceId = useSelector(
-    (state: RootState) => state.workspaces.currentWorkspaceId
-  );
+  // const workspaceId = useSelector(
+  //   (state: RootState) => state.workspaces.currentWorkspaceId
+  // );
   const workspace = useSelector((state: RootState) =>
     state.workspaces.workspaces.find((ws) => ws.id === workspaceId)
   );
