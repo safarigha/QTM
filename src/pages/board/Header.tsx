@@ -1,35 +1,38 @@
 import TabsForm from "../../components/commons/forms/TabsForm";
-import IconTitle from "../../components/commons/UI/IconTitle";
 import { IHeader } from "../../configs/interfaces";
 import {
   IoCalendarOutline,
   IoListOutline,
   IoGridOutline,
-  IoShareSocialOutline,
 } from "react-icons/io5";
 import List from "./views/List";
 import Column from "./views/Column";
-import { useSelector } from "react-redux";
-import { RootState } from "../../configs/servers/store";
-// import IconInput from "../../components/commons/UI/IconInput";
-// import { CiSearch } from "react-icons/ci";
-// import useThemeColor from "../../hooks/useThemeColor";
+import IconInput from "../../components/commons/UI/IconInput";
+import { CiSearch } from "react-icons/ci";
+import useThemeColor from "../../hooks/useThemeColor";
+import { useState } from "react";
+import IconTitle from "../../components/commons/UI/IconTitle";
+import { CiFilter } from "react-icons/ci";
+import RestoreTaskButton from "../../components/commons/UI/buttons/RestoreTaskButton";
 
 const fields = [
   {
-    id: "ListView",
+    id: 1,
+    name: "ListView",
     label: "نمایش لیستی",
     icon: <IoListOutline className="size-6 ml-2" />,
     content: <List />,
   },
   {
-    id: "columnView",
+    id: 2,
+    name: "columnView",
     label: "نمایش ستونی",
     icon: <IoGridOutline className="size-6 ml-2" />,
     content: <Column />,
   },
   {
-    id: "calenderView",
+    id: 3,
+    name: "calenderView",
     label: "تقویم",
     icon: <IoCalendarOutline className="size-6 ml-2" />,
     content: "Tab content 3",
@@ -37,41 +40,43 @@ const fields = [
 ];
 
 const Header: React.FC<IHeader> = ({ className }) => {
-  // const { textColor } = useThemeColor();
-  const currentProject = useSelector(
-    (state: RootState) => state.projects.currentProject
+  const { textColor, borderColor } = useThemeColor();
+  const [activeTab, setActiveTab] = useState<string>("");
+  const middleContent = activeTab !== "calenderView" && (
+    <div className="flex items-center justify-between">
+      <div className="flex items-center pr-4">
+        <IconInput
+          placeholder="جستجو بین تسکها"
+          icon={<CiSearch className={`size-4 ml-1 ${textColor}`} />}
+          className={`w-[274px] h-[30px] text-xs mt-2 font-normal ${textColor}`}
+        />
+        <span className="px-4 mt-2">|</span>
+        <IconTitle
+          logo={
+            <CiFilter className="size-[23px] font-normal text-xs mt-2 cursor-pointer" />
+          }
+          label="فیلتر"
+        />
+      </div>
+      <RestoreTaskButton
+        labelClassName="font-normal text-xs pl-2"
+        label="بازگردانی تسکهای آرشیو شده"
+        className={`border rounded-[8px] pr-2 pl-2 ${textColor} ${borderColor} mt-3`}
+      />
+    </div>
   );
 
   return (
-    <div
-      className={`flex items-center w-[900px] mr-[16px] ml-[50px] ${className}  `}
-    >
-      <div className="flex items-center">
-        <h2 className="-translate-y-[76px] ml-2 text-xl	font-extrabold	">
-          {currentProject?.name}
-        </h2>
-        <div>
-          <TabsForm
-            fields={fields}
-            className="font-medium text-base"
-            // middleContent={
-            //   <IconInput
-            //     placeholder="جستجو بین تسکها"
-            //     icon={<CiSearch className={`size-4 ml-1 ${textColor}`} />}
-            //     className={`w-[274px] h-[30px] rounded-[4px] mt-4 mr-auto ml-auto pr-2 text-xs font-normal ${textColor}`}
-            //   />
-            // }
-            // middleClassName="border-b w-full"
-          />
-        </div>
+    <div className={`flex items-center w-[1050px] mr-[16px] ${className}`}>
+      <div className="flex-grow">
+        <TabsForm
+          fields={fields}
+          className="font-medium text-base"
+          onTabChange={(name) => setActiveTab(name)}
+          middleContent={middleContent}
+          middleClassName="mb-4"
+        />
       </div>
-      <IconTitle
-        logo={
-          <IoShareSocialOutline className="font-medium text-base mt-2 ml-[0.5px]" />
-        }
-        label="اشتراک‌گذاری"
-        className="items-center -translate-y-[76px] mr-auto"
-      />
     </div>
   );
 };

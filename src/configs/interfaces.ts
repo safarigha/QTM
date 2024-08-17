@@ -44,8 +44,8 @@ export interface ISwitchModeTheme {
 }
 
 export interface Tab {
-  id: string;
-  name?: string;
+  id: number;
+  name: string;
   label: string;
   content: string | React.ReactNode;
   icon?: React.ReactNode;
@@ -56,7 +56,7 @@ export interface TabsFormProps {
   className?: string;
   middleContent?: React.ReactNode;
   middleClassName?: string;
-  onChange?: (id: string) => void;
+  onTabChange?: (name: string) => void;
 }
 
 //////buttons
@@ -112,6 +112,13 @@ export interface IAddTaskCalenderButton {
 
 export interface ICreateNewButton {
   color: string;
+  label: string;
+  className: string;
+  labelClassName: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export interface IRestoreTaskButton {
   label: string;
   className: string;
   labelClassName: string;
