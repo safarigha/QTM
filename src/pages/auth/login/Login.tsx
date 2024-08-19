@@ -29,7 +29,7 @@ const Login: React.FC = () => {
 
       await fetchAndApplyThemeSettings();
       showSuccess("login");
-      navigate("/board");
+      navigate("/dashboard");
     } catch (error: any) {
       const statusCode = error.response?.status;
       const errorMessage = getErrorMessage("server", statusCode);

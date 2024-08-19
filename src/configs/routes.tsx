@@ -6,10 +6,10 @@ import App from "../App";
 import Layout from "../Layout";
 import Register from "../pages/auth/register/Register";
 import Login from "../pages/auth/login/Login";
-import Board from "../pages/board/Board";
 import ResetPassword from "../pages/auth/forgetPassword/ResetPassword";
 import SetPassword from "../pages/auth/forgetPassword/SetPassword";
 import Profile from "../pages/profile/Profile";
+import Dashboard from "../pages/board/Dashboard";
 // import NewBoard from "../pages/newBoard/newBoard.tsx";
 // import ComponentT from "../components/component-T/ComponentT.tsx";
 // import Profile from "../pages/profile/profile.tsx";
@@ -57,8 +57,8 @@ export const routes = createBrowserRouter([
     ),
   },
   {
-    path: "/board",
-    element: <Board />,
+    path: "/dashboard",
+    element: <Dashboard />,
   },
 
   {

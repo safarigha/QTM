@@ -43,7 +43,7 @@ const New: React.FC<NewProjectProps> = ({ onClose, workspaceId }) => {
       showSuccess("created");
       dispatch(fetchProjects(workspaceId));
       onClose();
-      navigate("/board");
+      navigate("/dashboard");
     } catch (error: any) {
       const statusCode = error.response?.status;
       const errorMessage = getErrorMessage("server", statusCode);

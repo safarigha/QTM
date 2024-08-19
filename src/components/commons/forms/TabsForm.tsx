@@ -11,6 +11,7 @@ const TabsForm: React.FC<TabsFormProps> = ({
   middleClassName,
   children,
   onTabChange,
+  defaultValue,
 }) => {
   const [activeTab, setActiveTab] = useState<string>(fields[0].name);
   const { textColor } = useThemeColor();
@@ -30,7 +31,11 @@ const TabsForm: React.FC<TabsFormProps> = ({
     <>
       <div className="flex items-center w-[1050px] mr-[16px] border-b-[2px] border-[#D2D4D7] ">
         <h2 className=" ml-2 pb-1 text-xl font-extrabold">
-          {currentProject?.name}
+          {activeTab !== "managementView"
+            ? currentProject?.name
+              ? currentProject?.name
+              : defaultValue
+            : ""}
         </h2>
         <div className="translate-y-[3px]">
           <div className={`tabs tabs-bordered`}>
@@ -51,7 +56,7 @@ const TabsForm: React.FC<TabsFormProps> = ({
         <div className=" mr-auto ml-2 pb-1 cursor-pointer">{children}</div>
       </div>
       <div className={middleClassName}>{middleContent}</div>
-      <div className="p-10 bg-red-500">{selectedField?.content}</div>
+      <div className="p-10">{selectedField?.content}</div>
     </>
   );
 };

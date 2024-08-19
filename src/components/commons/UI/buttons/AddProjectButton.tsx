@@ -1,14 +1,23 @@
 ///استفاده نشده
 
 import { IaddProjectButton } from "../../../../configs/interfaces";
+import { getTailwindColor } from "../../../../helpers/getHexColor";
 
 const addProjectButton: React.FC<IaddProjectButton> = ({ color }) => {
+  const setColor = (color: string) => {
+    const parts = color.split("-");
+    return `${parts[1]}-${parts[2]}`;
+  };
   return (
-    <button className="flex items-center justify-center cursor-pointer">
+    <button
+      className={`flex items-center justify-center cursor-pointer border-4 rounded-2xl border-${
+        getTailwindColor(color).split("-")[1]
+      }-${getTailwindColor(color).split("-")[2]}`}
+    >
       <div
-        className={`w-full bg-gradient-to-bl from-${color}-primary to-${color}-primary/50 p-1 rounded-2xl`}
+        className={`w-full bg-gradient-to-bl from-${color}-primary to-${color}-primary/50 `}
       >
-        <div className="flex items-center justify-center gap-x-2 py-6 px-5 rounded-2xl">
+        <div className="flex items-center justify-center py-4 px-2 rounded-2xl">
           <svg
             width="24"
             height="24"
@@ -40,7 +49,11 @@ const addProjectButton: React.FC<IaddProjectButton> = ({ color }) => {
               strokeLinejoin="round"
             />
           </svg>
-          <span className={`text-2xl font-black text-${color}-primary`}>
+          <span
+            className={`text-md font-black text-${
+              getTailwindColor(color).split("-")[1]
+            }-${getTailwindColor(color).split("-")[2]}`}
+          >
             ساختن پروژه جدید
           </span>
         </div>

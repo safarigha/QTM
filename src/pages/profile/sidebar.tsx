@@ -47,7 +47,7 @@ const Sidebar: React.FC<SidebarProfileProps> = ({ onComponentChange }) => {
         text={
           <>
             <TbArrowNarrowRight className="size-6 mr-2" />
-            <Link to={"/board"}>
+            <Link to={"/dashboard"}>
               <span>بازگشت</span>
             </Link>
           </>

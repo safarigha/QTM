@@ -2,6 +2,36 @@
 export default {
   mode: 'jit',
   safelist: [
+
+    "from-red-500",
+    "from-pink-500",
+    "from-purple-500",
+    "from-violet-500",
+    "from-indigo-500",
+    "from-blue-500",
+    "from-cyan-500",
+    "from-teal-500",
+    "from-emerald-500",
+    "from-green-500",
+    "from-lime-500",
+    "from-yellow-500",
+    "from-orange-500",
+
+    "to-red-300",
+    "to-pink-300",
+    "to-purple-300",
+    "to-violet-300",
+    "to-indigo-300",
+    "to-blue-300",
+    "to-cyan-300",
+    "to-teal-300",
+    "to-emerald-300",
+    "to-green-300",
+    "to-lime-300",
+    "to-yellow-300",
+    "to-orange-300",
+
+
     "bg-brand-primary",
     "bg-red-500",
     "bg-pink-500",
@@ -103,5 +133,7 @@ export default {
     themes: ["light", "dark"],
   },
 };
+
+
 
 

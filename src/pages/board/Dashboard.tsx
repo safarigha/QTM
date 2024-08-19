@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const Board: React.FC = () => {
+const Dashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>("ListView");
 
   const dispatch = useAppDispatch();
@@ -18,16 +18,16 @@ const Board: React.FC = () => {
     }
   }, [dispatch]);
   return (
-    <div className="flex items-start mt-[30px] ml-[40px] mb-[39px] mr-[16px]">
+    <div className="flex h-screen items-start mt-[30px] ml-[40px] mb-[39px] mr-[16px]">
       <Sidebar />
       <div className="flex-grow">
         <Header onTabChange={(name) => setActiveTab(name)} />
-        {activeTab !== "calenderView" && <Footer />}
+        {activeTab !== "calenderView" && activeTab !== "managementView" && (
+          <Footer />
+        )}
       </div>
-      {/* <Header />
-      <Footer /> */}
     </div>
   );
 };
 
-export default Board;
+export default Dashboard;

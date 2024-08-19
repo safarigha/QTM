@@ -23,7 +23,7 @@ const New: React.FC<NewWorkspaceProps> = ({ onClose }) => {
 
   const handleSuccess = () => {
     onClose();
-    navigate("/board");
+    navigate("/dashboard");
   };
 
   return (

@@ -58,6 +58,7 @@ export interface TabsFormProps {
   middleClassName?: string;
   onTabChange?: (name: string) => void;
   children?: React.ReactNode;
+  defaultValue: string;
 }
 
 //////buttons
@@ -366,6 +367,10 @@ export interface ISettingsFormData {
 }
 
 export interface IColumnView {
+  className?: string;
+}
+
+export interface IManagementView {
   className?: string;
 }
 
