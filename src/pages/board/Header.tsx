@@ -40,9 +40,17 @@ const fields = [
   },
 ];
 
-const Header: React.FC<IHeader> = ({ className }) => {
+const Header: React.FC<IHeader> = ({ className, onTabChange }) => {
   const { textColor, borderColor } = useThemeColor();
-  const [activeTab, setActiveTab] = useState<string>("");
+  const [activeTab, setActiveTab] = useState<string>(fields[0].name);
+  const handleTabChange = (name: string) => {
+    setActiveTab(name);
+    console.log(name);
+    console.log(activeTab);
+    if (onTabChange) {
+      onTabChange(name);
+    }
+  };
   const shareProject = (
     <IconTitle
       logo={<IoShareSocialOutline className="font-medium text-base mt-2" />}
@@ -81,7 +89,7 @@ const Header: React.FC<IHeader> = ({ className }) => {
         <TabsForm
           fields={fields}
           className="font-medium text-base"
-          onTabChange={(name) => setActiveTab(name)}
+          onTabChange={handleTabChange}
           children={shareProject}
           middleContent={middleContent}
           middleClassName="mb-4"

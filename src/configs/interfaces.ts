@@ -379,4 +379,5 @@ export interface IFooter {
 
 export interface IHeader {
   className?: string;
+  onTabChange?: (name: string) => void;
 }

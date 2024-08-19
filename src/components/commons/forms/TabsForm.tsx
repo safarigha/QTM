@@ -10,12 +10,21 @@ const TabsForm: React.FC<TabsFormProps> = ({
   middleContent,
   middleClassName,
   children,
+  onTabChange,
 }) => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState<string>(fields[0].name);
   const { textColor } = useThemeColor();
   const currentProject = useSelector(
     (state: RootState) => state.projects.currentProject
   );
+  const selectedField = fields.find((field) => field.name === activeTab);
+
+  const handleTabClick = (name: string) => {
+    setActiveTab(name);
+    if (onTabChange) {
+      onTabChange(name);
+    }
+  };
 
   return (
     <>
@@ -25,12 +34,12 @@ const TabsForm: React.FC<TabsFormProps> = ({
         </h2>
         <div className="translate-y-[3px]">
           <div className={`tabs tabs-bordered`}>
-            {fields.map((field, index) => (
+            {fields.map((field) => (
               <div
                 key={field.id}
-                onClick={() => setActiveTab(index)}
+                onClick={() => handleTabClick(field.name)}
                 className={`tab ${
-                  activeTab === index ? `tab-active ${textColor}` : ""
+                  activeTab === field.name ? `tab-active ${textColor}` : ""
                 } ${className} `}
               >
                 {field.icon}
@@ -42,7 +51,7 @@ const TabsForm: React.FC<TabsFormProps> = ({
         <div className=" mr-auto ml-2 pb-1 cursor-pointer">{children}</div>
       </div>
       <div className={middleClassName}>{middleContent}</div>
-      <div className="p-10 bg-red-500">{fields[activeTab]?.content}</div>
+      <div className="p-10 bg-red-500">{selectedField?.content}</div>
     </>
   );
 };

@@ -15,7 +15,7 @@ const Footer: React.FC<IFooter> = () => {
       <CreateNewButton
         color="#FFFFFF"
         label="تسک جدید"
-        className={`w-[150px] h-[40px] rounded-[6px] text-sm border ${themeColor} text-white`}
+        className={`w-[150px] h-[40px] rounded-[6px] text-sm  ${themeColor} text-white`}
         labelClassName="text-sx"
         onClick={openNewTask}
       />
