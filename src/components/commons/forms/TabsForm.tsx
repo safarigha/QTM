@@ -3,14 +3,13 @@ import { TabsFormProps } from "../../../configs/interfaces";
 import useThemeColor from "../../../hooks/useThemeColor";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../configs/servers/store";
-import IconTitle from "../UI/IconTitle";
-import { IoShareSocialOutline } from "react-icons/io5";
 
 const TabsForm: React.FC<TabsFormProps> = ({
   fields,
   className,
   middleContent,
   middleClassName,
+  children,
 }) => {
   const [activeTab, setActiveTab] = useState(0);
   const { textColor } = useThemeColor();
@@ -40,14 +39,7 @@ const TabsForm: React.FC<TabsFormProps> = ({
             ))}
           </div>
         </div>
-        <div className=" mr-auto ml-2 pb-1 cursor-pointer">
-          <IconTitle
-            logo={
-              <IoShareSocialOutline className="font-medium text-base mt-2" />
-            }
-            label="اشتراک‌گذاری"
-          />
-        </div>
+        <div className=" mr-auto ml-2 pb-1 cursor-pointer">{children}</div>
       </div>
       <div className={middleClassName}>{middleContent}</div>
       <div className="p-10 bg-red-500">{fields[activeTab]?.content}</div>

@@ -57,6 +57,7 @@ export interface TabsFormProps {
   middleContent?: React.ReactNode;
   middleClassName?: string;
   onTabChange?: (name: string) => void;
+  children?: React.ReactNode;
 }
 
 //////buttons
