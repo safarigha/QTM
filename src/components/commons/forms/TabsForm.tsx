@@ -29,7 +29,7 @@ const TabsForm: React.FC<TabsFormProps> = ({
 
   return (
     <>
-      <div className="flex items-center w-[1050px] mr-[16px] border-b-[2px] border-[#D2D4D7] ">
+      <div className="flex items-center w-[1050px]  border-b-[2px] border-[#D2D4D7] ">
         <h2 className=" ml-2 pb-1 text-xl font-extrabold">
           {activeTab !== "managementView"
             ? currentProject?.name
@@ -56,7 +56,7 @@ const TabsForm: React.FC<TabsFormProps> = ({
         <div className=" mr-auto ml-2 pb-1 cursor-pointer">{children}</div>
       </div>
       <div className={middleClassName}>{middleContent}</div>
-      <div className="p-10">{selectedField?.content}</div>
+      <div className="p-6">{selectedField?.content}</div>
     </>
   );
 };

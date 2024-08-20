@@ -7,7 +7,6 @@ import AddProjectButton from "../../../components/commons/UI/buttons/AddProjectB
 import ProjectsButtonsColorfull from "../../../components/commons/UI/buttons/ProjectsButtonsColorfull";
 import { IManagementView } from "../../../configs/interfaces";
 import { getHexColor } from "../../../helpers/getHexColor";
-import useThemeColor from "../../../hooks/useThemeColor";
 
 const Management: React.FC<IManagementView> = () => {
   const dispatch = useDispatch<AppDispatch>();
