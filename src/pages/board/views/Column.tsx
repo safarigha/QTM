@@ -1,11 +1,8 @@
 import { IColumnView } from "../../../configs/interfaces";
+import New from "../New";
 
 const Column: React.FC<IColumnView> = () => {
-  return (
-    <div>
-      <p>Column</p>
-    </div>
-  );
+  return <New />;
 };
 
 export default Column;
