@@ -2,7 +2,6 @@ import IconTitle from "../../components/commons/UI/IconTitle";
 import IconInput from "../../components/commons/UI/IconInput";
 import { CiSearch } from "react-icons/ci";
 import CreateNewButton from "../../components/commons/UI/buttons/CreateNewButton";
-import DropdownListList from "../../components/commons/UI/DropdownListList";
 import SidbarWorkspaceList from "../../components/board/SidebarWorkspaceList";
 import SidebarDisplayAccount from "../../components/board/SidebarDisplayAccount";
 import { useEffect, useState } from "react";
@@ -16,6 +15,7 @@ import { fetchWorkspaces } from "../../configs/servers/workspaceSlice";
 import useThemeColor from "../../hooks/useThemeColor";
 import QTlogo from "../../components/commons/UI/svgs/QTlogo";
 import { getHexColor } from "../../helpers/getHexColor";
+import AccordionList from "../../components/commons/UI/AccordionList";
 
 const Sidbar: React.FC = () => {
   const { textColor, borderColor, themeColor } = useThemeColor();
@@ -52,7 +52,7 @@ const Sidbar: React.FC = () => {
         labelClassName="text-sm"
         onClick={openNewWorkspace}
       />
-      <DropdownListList
+      <AccordionList
         title="لیست فضای کاری"
         content={<SidbarWorkspaceList data={[]} />}
         iconType="collapse-arrow"

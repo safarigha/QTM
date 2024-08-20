@@ -79,6 +79,22 @@ export default {
     "border-yellow-500",
     "border-orange-500",
 
+    "focus:border-brand-primary",
+    "focus:border-red-500",
+    "focus:border-pink-500",
+    "focus:border-purple-500",
+    "focus:border-violet-500",
+    "focus:border-indigo-500",
+    "focus:border-blue-500",
+    "focus:border-cyan-500",
+    "focus:border-teal-500",
+    "focus:border-emerald-500",
+    "focus:border-green-500",
+    "focus:border-lime-500",
+    "focus:border-yellow-500",
+    "focus:border-orange-500",
+
+
   ],
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {

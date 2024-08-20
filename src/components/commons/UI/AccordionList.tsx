@@ -1,6 +1,6 @@
-import { ISidebarDropdown } from "../../../configs/interfaces";
+import { ISidebarAccordion } from "../../../configs/interfaces";
 
-const DropdownListList: React.FC<ISidebarDropdown> = ({
+const AccordionList: React.FC<ISidebarAccordion> = ({
   title,
   content,
   className,
@@ -29,4 +29,4 @@ const DropdownListList: React.FC<ISidebarDropdown> = ({
   );
 };
 
-export default DropdownListList;
+export default AccordionList;

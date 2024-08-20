@@ -61,6 +61,19 @@ export interface TabsFormProps {
   defaultValue: string;
 }
 
+export interface DropdownProps {
+  items: { name: string; link?: string }[];
+  title: string;
+  classNameTitle?: string;
+}
+
+export interface SelectListProps {
+  options: { value: string; label: string }[];
+  placeholder?: string;
+  selectedValue?: string;
+  onChange?: (value: string) => void;
+}
+
 //////buttons
 export interface IBrandColorButton {
   text: string | React.ReactNode;
@@ -129,7 +142,7 @@ export interface IRestoreTaskButton {
 }
 
 //////Board component interfasces//
-export interface ISidebarDropdown {
+export interface ISidebarAccordion {
   title: string;
   content: string | React.ReactNode;
   className?: string;

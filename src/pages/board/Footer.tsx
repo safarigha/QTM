@@ -2,8 +2,8 @@ import { useState } from "react";
 import CreateNewButton from "../../components/commons/UI/buttons/CreateNewButton";
 import { IFooter } from "../../configs/interfaces";
 import ModalView from "../../components/commons/UI/ModalView";
-import New from "../../components/workspace/New";
 import useThemeColor from "../../hooks/useThemeColor";
+import New from "../task/new/New";
 
 const Footer: React.FC<IFooter> = () => {
   const { themeColor } = useThemeColor();
@@ -20,7 +20,7 @@ const Footer: React.FC<IFooter> = () => {
         onClick={openNewTask}
       />
       <ModalView isOpen={isOpenNewTask} onClose={closeNewTask}>
-        <New onClose={closeNewTask} />
+        <New />
       </ModalView>
     </div>
   );
