@@ -1,15 +1,10 @@
-///استفاده نشده
-
 import { IaddProjectButton } from "../../../../configs/interfaces";
 import { getTailwindColor } from "../../../../helpers/getHexColor";
 
-const addProjectButton: React.FC<IaddProjectButton> = ({ color }) => {
-  const setColor = (color: string) => {
-    const parts = color.split("-");
-    return `${parts[1]}-${parts[2]}`;
-  };
+const addProjectButton: React.FC<IaddProjectButton> = ({ color, onClick }) => {
   return (
     <button
+      onClick={onClick}
       className={`flex items-center justify-center cursor-pointer border-4 rounded-2xl border-${
         getTailwindColor(color).split("-")[1]
       }-${getTailwindColor(color).split("-")[2]}`}

@@ -13,7 +13,7 @@ const InputForm: React.FC<IInputForm> = ({
   includeCheckbox = false,
   onclick,
 }) => {
-  const { textColor } = useThemeColor();
+  const { textColor, bgFormMode } = useThemeColor();
 
   const {
     register,
@@ -28,7 +28,10 @@ const InputForm: React.FC<IInputForm> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className="w-full">
+    <form
+      onSubmit={handleSubmit(handleFormSubmit)}
+      className={`w-full ${bgFormMode}`}
+    >
       {fields.map((field) => (
         <div className="mt-2" key={field.id}>
           <label className={textColor}>{field.label}</label>
@@ -37,7 +40,7 @@ const InputForm: React.FC<IInputForm> = ({
             value={field.value}
             defaultValue={field.defaultValue}
             {...register(field.id)}
-            className={`bg-taransparent mt-2 block w-full h-10 rounded-lg border border-gray-primary px-4 focus:outline-none focus:border-blue-primary ${alignmentHelper(
+            className={` mt-2 block w-full h-10 rounded-lg border border-gray-primary px-4 focus:outline-none focus:border-blue-primary ${alignmentHelper(
               field.value || field.defaultValue || ""
             )}}`}
           />

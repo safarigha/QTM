@@ -21,7 +21,7 @@ const NewDisplayData: React.FC<NewDisplayDataProps> = ({
   onSuccess,
   onPrevious,
 }) => {
-  const { textColor, themeColor } = useThemeColor();
+  const { textColor, themeColor, bgFormMode } = useThemeColor();
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -64,7 +64,9 @@ const NewDisplayData: React.FC<NewDisplayDataProps> = ({
       onSubmit={handleSubmit(handleFormSubmit)}
       className="flex items-center justify-center"
     >
-      <div className="flex border flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
+      <div
+        className={`flex border flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl ${bgFormMode}`}
+      >
         <GrLinkPrevious
           onClick={onPrevious}
           className="size-4 transform -translate-x-[287px] -translate-y-[6px]"

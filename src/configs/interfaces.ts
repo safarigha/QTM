@@ -72,6 +72,7 @@ export interface IBrandColorButton {
 
 export interface IaddProjectButton {
   color: string;
+  onClick?: () => void;
 }
 
 export interface ICloseButton {

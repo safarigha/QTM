@@ -54,8 +54,7 @@ const Header: React.FC<IHeader> = ({ className, onTabChange }) => {
   const [activeTab, setActiveTab] = useState<string>(fields[0].name);
   const handleTabChange = (name: string) => {
     setActiveTab(name);
-    console.log(name);
-    console.log(activeTab);
+
     if (onTabChange) {
       onTabChange(name);
     }

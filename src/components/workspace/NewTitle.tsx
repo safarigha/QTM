@@ -13,7 +13,7 @@ import useThemeColor from "../../hooks/useThemeColor";
 const nameWorkspaceSchema = WorkspaceSchema.pick({ name: true });
 
 const NewTitle: React.FC<INewWorkspaceSteps> = ({ onNext }) => {
-  const { textColor } = useThemeColor();
+  const { textColor, bgFormMode } = useThemeColor();
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -33,7 +33,9 @@ const NewTitle: React.FC<INewWorkspaceSteps> = ({ onNext }) => {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="flex border flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
+      <div
+        className={`flex border flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl ${bgFormMode}`}
+      >
         <p
           className={`font-extrabold ${textColor} justify-center w-fit pb-2 text-[32px]`}
         >

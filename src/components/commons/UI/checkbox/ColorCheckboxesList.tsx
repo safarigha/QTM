@@ -46,7 +46,7 @@ const ColorCheckboxesList: React.FC<ColorCheckboxesListProps> = ({
     <div className={`flex items-center ${className}`}>
       <PiEmpty
         onClick={handleResetColor}
-        className="size-6  rounded-[8px] ml-1 text-gray-600 cursor-pointer hover:bg-transparent hover:border-2"
+        className="size-6 rounded-[8px] ml-1 text-gray-600 cursor-pointer hover:bg-transparent hover:border-2"
       />
       {colorTheme.map((color, index) => (
         <Checkbox

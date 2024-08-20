@@ -46,6 +46,8 @@ export default {
     "bg-lime-500",
     "bg-yellow-500",
     "bg-orange-500",
+    "bg-white",
+    "bg-black",
 
     "text-brand-primary",
     "text-red-500",

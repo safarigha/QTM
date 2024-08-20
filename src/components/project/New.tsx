@@ -20,7 +20,7 @@ import useThemeColor from "../../hooks/useThemeColor";
 const nameProjectSchema = ProjectSchema.pick({ name: true });
 
 const New: React.FC<NewProjectProps> = ({ onClose, workspaceId }) => {
-  const { textColor } = useThemeColor();
+  const { textColor, bgFormMode } = useThemeColor();
 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -66,8 +66,10 @@ const New: React.FC<NewProjectProps> = ({ onClose, workspaceId }) => {
   ];
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="flex border flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl">
+    <div className="flex items-center justify-center ">
+      <div
+        className={`flex border flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl ${bgFormMode}`}
+      >
         <CloseButton
           className="transform -translate-y-[8px] translate-x-[290px]"
           onClick={onClose}
