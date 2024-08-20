@@ -13,7 +13,7 @@ const Layout = ({ isSignIn, children }: IAuthProps) => {
     <div className="h-screen overflow-hidden relative flex flex-col items-center justify-center">
       <header className="flex items-center justify-between px-20 mt-20 fixed top-0 w-full z-10">
         <h1
-          className={`font-black text-3xl text-brand-primary text-transparent bg-clip-text`}
+          className={`font-black text-3xl text-brand-primary text-brand-primary bg-clip-text`}
         >
           کیوتی‌منیجر
         </h1>
