@@ -16,6 +16,7 @@ import useThemeColor from "../../hooks/useThemeColor";
 import QTlogo from "../../components/commons/UI/svgs/QTlogo";
 import { getHexColor } from "../../helpers/getHexColor";
 import AccordionList from "../../components/commons/UI/AccordionList";
+import { getBoards } from "../../configs/APIs/boardsApi";
 
 const Sidbar: React.FC = () => {
   const { textColor, borderColor, themeColor } = useThemeColor();

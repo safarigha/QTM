@@ -134,6 +134,15 @@ export interface ICreateNewButton {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
+export interface IBoardItem {
+  color: string;
+  label: string;
+  className: string;
+  labelClassName: string;
+  onAddNewCardClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onMoreClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
 export interface IRestoreTaskButton {
   label: string;
   className: string;
@@ -203,6 +212,7 @@ export interface NewProjectProps {
 export interface INewProjectFormData {
   id: string;
   name: string;
+  workspaceId?: string;
 }
 
 //////inputForm
@@ -317,6 +327,7 @@ export interface WorkspaceState {
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
+
 export interface Project {
   id: string;
   name: string;

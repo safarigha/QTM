@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getWorkspaces } from "../APIs/workspacesApi";
 import { WorkspaceState } from "../interfaces";
 import { getAccessToken } from "../../helpers/authToken";
@@ -32,7 +32,7 @@ const workspacesSlice = createSlice({
       state.status = "idle";
       state.error = null;
     },
-    setCurrentWorkspaceId: (state, action: PayloadAction<string>) => {
+    setCurrentWorkspaceId: (state, action) => {
       state.currentWorkspaceId = action.payload;
     },
   },

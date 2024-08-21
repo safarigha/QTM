@@ -6,6 +6,7 @@ import projectsReducer from "./projectSlice";
 import accountReducer from "./accountSlice";
 import formNewWorkspaceReducer from "./formNewWorkspaceSlice";
 import colorReducer from "./colorSlice";
+import selectionsReducer from "./selectionsSlice";
 
 const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
     account: accountReducer,
     formNewWorkspace: formNewWorkspaceReducer,
     color: colorReducer,
+    selections: selectionsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
