@@ -40,36 +40,35 @@ const New: React.FC = () => {
         });
     }
   }, [workspaceId, projectId]);
-
   return (
     <div>
       <div
-        className={` border border-t -translate-y-[29px] ${borderColor}`}
+        className={`border border-t -translate-y-[29px] ${borderColor}`}
       ></div>
       {loading ? (
-        <p>Loading boards...</p>
+        <p>در حال بارگزاری اطلاعات ...</p>
       ) : boards.length > 0 ? (
-        boards.map((board) => (
-          <>
-            <div className={`bg-${board.color}-500 mb-[50px]`}>
-              {board.color},{getHexColor(`bg-${board.color}-500`)}
-            </div>
+        <div
+          className="flex overflow-x-auto flex-nowrap gap-4 -translate-y-[10px]"
+          style={{ whiteSpace: "nowrap" }}
+        >
+          {boards.map((board) => (
             <BoardItem
               key={board.id}
               color={getHexColor(`bg-${board.color}-500`)}
               label={board.name}
-              className={`${bgFormMode} z-10 h-[40px] w-[250px] shadow-md rounded-[16px] text-xs border border-gray-100`}
+              className={`flex-shrink-0 ${bgFormMode} h-[40px] w-[250px] shadow-md rounded-[16px] text-xs border border-gray-100`}
               labelClassName="font-medium text-base"
               onAddNewCardClick={() => console.log("Add new card")}
               onMoreClick={() => console.log("More options")}
             />
-          </>
-        ))
+          ))}
+        </div>
       ) : (
         <CreateNewButton
           color={getHexColor(themeColor)}
           label="ساختن برد جدید"
-          className={`h-[40px] w-[250px] shadow-md rounded-[16px]  text-xs border border-gray-100 ${textColor}`}
+          className={`-translate-y-[10px] h-[40px] w-[250px] shadow-md rounded-[16px] text-xs border border-gray-100 ${textColor}`}
           labelClassName="font-medium	text-base	 "
           onClick={() => console.log("onClick")}
         />

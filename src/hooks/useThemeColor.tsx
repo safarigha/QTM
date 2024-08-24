@@ -20,7 +20,24 @@ const useThemeColor = () => {
   const bgFormMode =
     localStorage.getItem("theme") === "dark" ? "bg-black" : "bg-white";
 
-  return { themeColor, textColor, borderColor, bgFormMode };
+  const formModeStyle =
+    localStorage.getItem("theme") === "dark"
+      ? {
+          bg: "bg-black",
+          text: "text-white",
+          border: "border-black",
+          code: "#000000",
+          textCode: "#FFFFFF",
+        }
+      : {
+          bg: "bg-white",
+          text: "text-black",
+          border: "border-gray-100",
+          code: "#FFFFFF",
+          textCode: "#000000",
+        };
+
+  return { themeColor, textColor, borderColor, bgFormMode, formModeStyle };
 };
 
 export default useThemeColor;
