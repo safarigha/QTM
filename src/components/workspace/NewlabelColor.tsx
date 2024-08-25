@@ -20,7 +20,7 @@ import { useState } from "react";
 const colorWorkspaceSchema = WorkspaceSchema.pick({ color: true });
 
 const NewlabelColor: React.FC<INewlabelColor> = ({ onNext, onPrevious }) => {
-  const { textColor, bgFormMode } = useThemeColor();
+  const { textColor, formModeStyle } = useThemeColor();
 
   const dispatch = useDispatch<AppDispatch>();
   const { labelColor, colorName } = useSelector(
@@ -53,7 +53,7 @@ const NewlabelColor: React.FC<INewlabelColor> = ({ onNext, onPrevious }) => {
     <form onSubmit={handleSubmit(handleFormSubmit)} className="w-full">
       <div className="flex items-center justify-center">
         <div
-          className={`flex border flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl ${bgFormMode}`}
+          className={`flex border flex-col justify-center items-center p-6 w-[640px] rounded-[20px] shadow-2xl ${formModeStyle.bg}`}
         >
           <GrLinkPrevious
             onClick={onPrevious}

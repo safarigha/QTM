@@ -6,12 +6,12 @@ const Dropdown: React.FC<DropdownProps> = ({
   title,
   classNameTitle,
 }) => {
-  const { bgFormMode } = useThemeColor();
+  const { formModeStyle } = useThemeColor();
   return (
     <details className="dropdown">
       <summary className={`${classNameTitle}`}>{title}</summary>
       <ul
-        className={`menu dropdown-content ${bgFormMode} rounded-box z-[1] w-52 p-2 shadow`}
+        className={`menu dropdown-content ${formModeStyle.bg} rounded-box z-[1] w-52 p-2 shadow`}
       >
         {items.map((item, index) => (
           <li key={index}>

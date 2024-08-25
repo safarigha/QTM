@@ -17,7 +17,7 @@
 
 @layer components {
   .brand-bg-checkbox:not(:checked) {
-    @apply bg-gray-primary;
+    @apply bg-gray-500;
     opacity: 0.2;
   }
 }

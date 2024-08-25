@@ -5,10 +5,12 @@ import Footer from "./Footer";
 import useThemeColor from "../../../hooks/useThemeColor";
 
 const New: React.FC = () => {
-  const { bgFormMode } = useThemeColor();
+  const { formModeStyle } = useThemeColor();
   return (
     <div className={`flex items-center justify-center min-h-screen `}>
-      <form className={`w-[1153px] rounded-[20px] shadow-lg ${bgFormMode}`}>
+      <form
+        className={`w-[1153px] rounded-[20px] shadow-lg ${formModeStyle.bg}`}
+      >
         <div className="m-8 flex flex-col">
           <Header />
           <Content />

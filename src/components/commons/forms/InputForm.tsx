@@ -13,7 +13,7 @@ const InputForm: React.FC<IInputForm> = ({
   includeCheckbox = false,
   onclick,
 }) => {
-  const { textColor, bgFormMode } = useThemeColor();
+  const { textColor, formModeStyle } = useThemeColor();
 
   const {
     register,
@@ -30,7 +30,7 @@ const InputForm: React.FC<IInputForm> = ({
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className={`w-full ${bgFormMode}`}
+      className={`w-full ${formModeStyle.bg}`}
     >
       {fields.map((field) => (
         <div className="mt-2" key={field.id}>

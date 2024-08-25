@@ -14,8 +14,7 @@ interface Board {
 }
 
 const Column: React.FC = () => {
-  const { themeColor, borderColor, textColor, bgFormMode, formModeStyle } =
-    useThemeColor();
+  const { themeColor, borderColor, textColor, formModeStyle } = useThemeColor();
   const [boards, setBoards] = useState<Board[]>([]);
   const [loading, setLoading] = useState(true);
   const workspaceId = useSelector(

@@ -14,7 +14,7 @@ interface Board {
 }
 
 const New: React.FC = () => {
-  const { themeColor, borderColor, textColor, bgFormMode } = useThemeColor();
+  const { themeColor, borderColor, textColor, formModeStyle } = useThemeColor();
   const [boards, setBoards] = useState<Board[]>([]);
   const [loading, setLoading] = useState(true);
   const workspaceId = useSelector(
@@ -57,7 +57,7 @@ const New: React.FC = () => {
               key={board.id}
               color={getHexColor(`bg-${board.color}-500`)}
               label={board.name}
-              className={`flex-shrink-0 ${bgFormMode} h-[40px] w-[250px] shadow-md rounded-[16px] text-xs border border-gray-100`}
+              className={`flex-shrink-0 ${formModeStyle.bg} h-[40px] w-[250px] shadow-md rounded-[16px] text-xs border border-gray-100`}
               labelClassName="font-medium text-base"
               onAddNewCardClick={() => console.log("Add new card")}
               onMoreClick={() => console.log("More options")}
