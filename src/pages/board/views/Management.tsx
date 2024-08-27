@@ -54,7 +54,7 @@ const Management: React.FC<IManagementView> = () => {
   };
 
   return (
-    <div className="w-[1050px] h-screen overflow-y-auto">
+    <div className=" h-screen overflow-y-auto">
       {workspaces.map((workspace) => (
         <div key={workspace.id} className="border-b mb-2 overflow-x-auto">
           <h2 className="text-xl font-extrabold"> {workspace.name}</h2>

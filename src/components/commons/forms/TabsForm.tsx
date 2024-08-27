@@ -29,7 +29,7 @@ const TabsForm: React.FC<TabsFormProps> = ({
 
   return (
     <>
-      <div className="flex items-center w-[1050px]  border-b-[2px] border-[#D2D4D7] ">
+      <div className="flex items-center border-b-[2px] border-[#D2D4D7] ">
         <h2 className=" ml-2 pb-1 text-xl font-extrabold">
           {activeTab !== "managementView"
             ? currentProject?.name
