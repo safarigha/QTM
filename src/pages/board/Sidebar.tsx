@@ -16,7 +16,6 @@ import useThemeColor from "../../hooks/useThemeColor";
 import QTlogo from "../../components/commons/UI/svgs/QTlogo";
 import { getHexColor } from "../../helpers/getHexColor";
 import AccordionList from "../../components/commons/UI/AccordionList";
-import { getBoards } from "../../configs/APIs/boardsApi";
 
 const Sidbar: React.FC = () => {
   const { textColor, borderColor, themeColor, formModeStyle } = useThemeColor();
@@ -66,7 +65,7 @@ const Sidbar: React.FC = () => {
       <SidebarDisplayAccount className="justify-right mr-[30px] mt-[30px]" />
       <div className="flex items-center">
         <SidebarLogoutAccount className="justify-right mr-[30px] mt-4 mb-6" />
-        <SwitchModeTheme className="justify-left mr-auto ml-[30px] mt-4 mb-6" />
+        {/* <SwitchModeTheme className="justify-left mr-auto ml-[30px] mt-4 mb-6" /> */}
       </div>
       <ModalView isOpen={isOpenNewWorkspace} onClose={closeNewWorkspace}>
         <New onClose={closeNewWorkspace} />
