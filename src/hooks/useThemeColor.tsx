@@ -20,9 +20,9 @@ const useThemeColor = () => {
   const formModeStyle =
     localStorage.getItem("theme") === "dark"
       ? {
-          bg: "bg-black",
+          bg: "bg-[#1D232A]",
           text: "text-white",
-          border: "border-black",
+          border: "border-[#1D232A]",
           code: "#000000",
           textCode: "#FFFFFF",
         }

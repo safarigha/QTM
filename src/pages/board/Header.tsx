@@ -94,7 +94,7 @@ const Header: React.FC<IHeader> = ({ className, onTabChange }) => {
     );
 
   return (
-    <div className={`flex items-center  pr-4 ${className}`}>
+    <div className={`flex items-center z-0 pr-4 ${className}`}>
       <div className="flex-grow">
         <TabsForm
           fields={fields}

@@ -18,9 +18,9 @@ const Dashboard: React.FC = () => {
     }
   }, [dispatch]);
   return (
-    <div className="flex h-screen items-start mt-[30px] ml-[40px] mb-[39px] ">
+    <div className="flex h-screen items-start ml-[40px] mb-[39px] ">
       <Sidebar />
-      <div className="flex-grow">
+      <div className="flex-grow mr-[340px]">
         <Header onTabChange={(name) => setActiveTab(name)} />
         {activeTab !== "calenderView" && activeTab !== "managementView" && (
           <Footer />

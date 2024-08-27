@@ -19,7 +19,7 @@ import AccordionList from "../../components/commons/UI/AccordionList";
 import { getBoards } from "../../configs/APIs/boardsApi";
 
 const Sidbar: React.FC = () => {
-  const { textColor, borderColor, themeColor } = useThemeColor();
+  const { textColor, borderColor, themeColor, formModeStyle } = useThemeColor();
 
   const dispatch = useAppDispatch();
   const workspaces = useSelector(
@@ -35,7 +35,9 @@ const Sidbar: React.FC = () => {
   }, [dispatch, workspaces.length]);
 
   return (
-    <div className=" pt-[20px] h-screen w-[340px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-200 overflow-y-auto scrollbar-gutter-stable">
+    <div
+      className={`top-0 z-50 fixed  ${formModeStyle.bg} h-screen w-[340px] pt-[30px] flex flex-col border-brand-500 border-l-[0.5px] border-gray-200 overflow-y-auto scrollbar-gutter-stable`}
+    >
       <IconTitle
         className="flex-col pt-2 font-black text-2xl "
         label="کیوتی منیجر"
