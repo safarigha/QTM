@@ -7,7 +7,6 @@ import SidebarDisplayAccount from "../../components/board/SidebarDisplayAccount"
 import { useEffect, useState } from "react";
 import { RootState, useAppDispatch } from "../../configs/servers/store";
 import SidebarLogoutAccount from "../../components/board/SidebarLogoutAccount";
-import SwitchModeTheme from "../../components/commons/UI/SwitchModeTheme";
 import New from "../../components/workspace/New";
 import ModalView from "../../components/commons/UI/ModalView";
 import { useSelector } from "react-redux";
@@ -65,7 +64,6 @@ const Sidbar: React.FC = () => {
       <SidebarDisplayAccount className="justify-right mr-[30px] mt-[30px]" />
       <div className="flex items-center">
         <SidebarLogoutAccount className="justify-right mr-[30px] mt-4 mb-6" />
-        {/* <SwitchModeTheme className="justify-left mr-auto ml-[30px] mt-4 mb-6" /> */}
       </div>
       <ModalView isOpen={isOpenNewWorkspace} onClose={closeNewWorkspace}>
         <New onClose={closeNewWorkspace} />
