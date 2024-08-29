@@ -43,7 +43,7 @@ const Column: React.FC = () => {
         className={`border border-t -translate-y-[29px] ${borderColor}`}
       ></div>
       {loading ? (
-        <p>در حال بارگزاری اطلاعات ...</p>
+        <p>لطفا پروژه مورد نظر را از "لیست فضای کاری" انتخاب کنید</p>
       ) : boards.length > 0 ? (
         <>
           <div

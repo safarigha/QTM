@@ -10,7 +10,7 @@ const BoardItem: React.FC<IBoardItem> = ({
   onMoreClick,
 }) => {
   return (
-    <div className="relative h-[44px] w-[250px] mb-2">
+    <div className="relative h-[44px] w-[250px]">
       <div
         className={`absolute top-0 left-0 right-0 z-0 h-[40px] shadow-md rounded-[16px] text-xs bg-[${color}]`}
       ></div>
