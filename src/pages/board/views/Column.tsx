@@ -1,21 +1,16 @@
 import { useEffect, useState } from "react";
+import { IBoard } from "../../../configs/interfaces";
 import { useSelector } from "react-redux";
 import useThemeColor from "../../../hooks/useThemeColor";
 import { RootState } from "../../../configs/servers/store";
 import { getBoards } from "../../../configs/APIs/boardsApi";
 import BoardItem from "../../../components/commons/UI/boardItems";
 import { getHexColor } from "../../../helpers/getHexColor";
-import CreateNewButton from "../../../components/commons/UI/buttons/CreateNewButton";
-
-interface Board {
-  id: string;
-  color: string;
-  name: string;
-}
+import NewBoardButton from "../../../components/commons/UI/buttons/NewBoardButton";
 
 const Column: React.FC = () => {
-  const { themeColor, borderColor, textColor, formModeStyle } = useThemeColor();
-  const [boards, setBoards] = useState<Board[]>([]);
+  const { borderColor, formModeStyle } = useThemeColor();
+  const [boards, setBoards] = useState<IBoard[]>([]);
   const [loading, setLoading] = useState(true);
   const workspaceId = useSelector(
     (state: RootState) => state.workspaces.currentWorkspaceId
@@ -43,7 +38,10 @@ const Column: React.FC = () => {
         className={`border border-t -translate-y-[29px] ${borderColor}`}
       ></div>
       {loading ? (
-        <p>لطفا پروژه مورد نظر را از "لیست فضای کاری" انتخاب کنید</p>
+        <p>
+          در صورت عدم انتخاب پروژه، لطفا پروژه موردنظر خود را از "لیست فضای
+          کاری" انتخاب نمایید در غیراینصورت لطفا شکیبا باشید
+        </p>
       ) : boards.length > 0 ? (
         <>
           <div
@@ -61,23 +59,11 @@ const Column: React.FC = () => {
                 onMoreClick={() => console.log("More options")}
               />
             ))}
-            <CreateNewButton
-              color={formModeStyle.textCode}
-              label="ساختن برد جدید"
-              className={`flex-shrink-0 ${formModeStyle.bg}  h-[44px] w-[250px] shadow-md rounded-[16px] text-xs border border-gray-100`}
-              labelClassName="font-medium	text-base	 "
-              onClick={() => console.log("onClick")}
-            />
+            <NewBoardButton className={`flex-shrink-0`} />
           </div>
         </>
       ) : (
-        <CreateNewButton
-          color={getHexColor(themeColor)}
-          label="ساختن برد جدید"
-          className={` h-[44px] w-[250px] shadow-md rounded-[16px] text-xs border border-gray-100 ${textColor}`}
-          labelClassName="font-medium	text-base	 "
-          onClick={() => console.log("onClick")}
-        />
+        <NewBoardButton />
       )}
     </div>
   );

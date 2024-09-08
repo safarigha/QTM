@@ -151,6 +151,16 @@ export interface IRestoreTaskButton {
 }
 
 //////Board component interfasces//
+export interface IBoard {
+  id: string;
+  color: string;
+  name: string;
+}
+
+export interface InewBoard {
+  className?: string;
+}
+
 export interface ISidebarAccordion {
   title: string;
   content: string | React.ReactNode;

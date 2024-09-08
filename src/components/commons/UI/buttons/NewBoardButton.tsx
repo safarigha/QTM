@@ -1,8 +1,8 @@
-import CreateNewButton from "../../components/commons/UI/buttons/CreateNewButton";
-import { InewBoard } from "../../configs/interfaces";
-import useThemeColor from "../../hooks/useThemeColor";
+import { InewBoard } from "../../../../configs/interfaces";
+import useThemeColor from "../../../../hooks/useThemeColor";
+import CreateNewButton from "./CreateNewButton";
 
-const New: React.FC<InewBoard> = ({ className }) => {
+const NewBoardButton: React.FC<InewBoard> = ({ className }) => {
   const { formModeStyle } = useThemeColor();
 
   return (
@@ -16,4 +16,4 @@ const New: React.FC<InewBoard> = ({ className }) => {
   );
 };
 
-export default New;
+export default NewBoardButton;
