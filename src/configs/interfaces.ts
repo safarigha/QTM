@@ -189,6 +189,32 @@ export interface ISidebarLogoutAccount {
   className?: string;
 }
 
+export interface INewBoardFormData {
+  name?: string;
+  color?: string;
+}
+
+export interface INewBoardSteps {
+  onNext: (data: INewBoardFormData) => void;
+}
+
+export interface NewBoardProps {
+  onClose: () => void;
+}
+
+export interface INewlabelColor {
+  onNext?: (data: INewBoardFormData) => void;
+  onPrevious?: () => void;
+  onSuccess?: () => void;
+}
+
+export interface BoardState {
+  boards: any[];
+  currentBoardsId: string | null;
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
+}
+
 //////Workspace component interfasces//
 export interface INewWorkspaceFormData {
   name?: string;
@@ -204,8 +230,9 @@ export interface NewWorkspaceProps {
 }
 
 export interface INewlabelColor {
-  onNext: (data: INewWorkspaceFormData) => void;
-  onPrevious: () => void;
+  onNext?: (data: INewWorkspaceFormData) => void;
+  onPrevious?: () => void;
+  onSuccess?: () => void;
 }
 
 export interface NewDisplayDataProps {

@@ -1,8 +1,11 @@
 import { z } from "zod";
 
 const BoardSchema = z.object({
-  id: z.number().int(),
-  name: z.string().max(200, "نام نمی‌تواند بیشتر از 200 کاراکتر باشد"),
+  name: z
+    .string()
+    .nonempty({ message: "عنوان برد الزامی است" })
+    .min(3, { message: "عنوان برد باید حداقل 3 کاراکتر باشد" })
+    .max(255, { message: "عنوان برد باید حداکثر ۲۵۵ کاراکتر باشد" }),
   order: z
     .number()
     .int()
@@ -17,10 +20,7 @@ const BoardSchema = z.object({
   tasks: z.string(),
   tasks_count: z.string(),
   is_archive: z.boolean(),
-  color: z
-    .string()
-    .max(256, "رنگ نمی‌تواند بیشتر از 256 کاراکتر باشد")
-    .optional(),
+  color: z.string().nonempty({ message: " انتخاب رنگ لیبل برد الزامی است" }),
 });
 
 export default BoardSchema;

@@ -5,6 +5,7 @@ import workspacesReducer from "./workspaceSlice";
 import projectsReducer from "./projectSlice";
 import accountReducer from "./accountSlice";
 import formNewWorkspaceReducer from "./formNewWorkspaceSlice";
+import formNewBoardReducer from "./formNewBoardSlice";
 import colorReducer from "./colorSlice";
 import selectionsReducer from "./selectionsSlice";
 
@@ -15,6 +16,7 @@ const store = configureStore({
     projects: projectsReducer,
     account: accountReducer,
     formNewWorkspace: formNewWorkspaceReducer,
+    formNewBoardspace: formNewBoardReducer,
     color: colorReducer,
     selections: selectionsReducer,
   },

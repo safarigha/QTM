@@ -5,8 +5,8 @@ import {
   NewWorkspaceProps,
 } from "../../configs/interfaces";
 import CloseButton from "../commons/UI/buttons/CloseButton";
-import NewlabelColor from "./NewlabelColor";
 import { useNavigate } from "react-router-dom";
+import NewlabelColor from "./NewlabelColor";
 
 const New: React.FC<NewWorkspaceProps> = ({ onClose }) => {
   const [step, setStep] = useState(1);
